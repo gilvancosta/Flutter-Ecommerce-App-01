@@ -1,28 +1,28 @@
-sealed class UserModel {
+sealed class ProductModel {
   final int id;
   final String name;
   final String email;
   final String? avatar;
-  UserModel({
+  ProductModel({
     required this.id,
     required this.name,
     required this.email,
     this.avatar,
   });
 
-  factory UserModel.fromMap(Map<String, dynamic> json) {
+  factory ProductModel.fromMap(Map<String, dynamic> json) {
     return switch (json['profile']) {
-      'ADM' => UserModelADM.fromMap(json),
-      'EMPLOYEE' => UserModelEmployee.fromMap(json),
+      'ADM' => ProductModelADM.fromMap(json),
+      'EMPLOYEE' => ProductModelEmployee.fromMap(json),
       _ => throw ArgumentError('User profile not found'),
     };
   }
 }
 
-class UserModelADM extends UserModel {
+class ProductModelADM extends ProductModel {
   final List<String>? workDays;
   final List<int>? workHours;
-  UserModelADM({
+  ProductModelADM({
     required super.id,
     required super.name,
     required super.email,
@@ -31,14 +31,14 @@ class UserModelADM extends UserModel {
     this.workHours,
   });
 
-  factory UserModelADM.fromMap(Map<String, dynamic> json) {
+  factory ProductModelADM.fromMap(Map<String, dynamic> json) {
     return switch (json) {
       {
         'id': final int id,
         'name': final String name,
         'email': final String email,
       } =>
-        UserModelADM(
+        ProductModelADM(
           id: id,
           name: name,
           email: email,
@@ -51,12 +51,12 @@ class UserModelADM extends UserModel {
   }
 }
 
-class UserModelEmployee extends UserModel {
+class ProductModelEmployee extends ProductModel {
   final int barbershopId;
   final List<String> workDays;
   final List<int> workHours;
 
-  UserModelEmployee({
+  ProductModelEmployee({
     required super.id,
     required super.name,
     required super.email,
@@ -66,7 +66,7 @@ class UserModelEmployee extends UserModel {
     required this.workHours,
   });
 
-  factory UserModelEmployee.fromMap(Map<String, dynamic> json) {
+  factory ProductModelEmployee.fromMap(Map<String, dynamic> json) {
     return switch (json) {
       {
         'id': final int id,
@@ -76,7 +76,7 @@ class UserModelEmployee extends UserModel {
         'work_days': final List workDays,
         'work_hours': final List workHours,
       } =>
-        UserModelEmployee(
+        ProductModelEmployee(
           id: id,
           name: name,
           email: email,

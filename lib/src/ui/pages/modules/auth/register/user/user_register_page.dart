@@ -1,3 +1,4 @@
+// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app_01/src/core/ui/helpers/form_helper.dart';
@@ -6,7 +7,6 @@ import 'package:validatorless/validatorless.dart';
 
 import '../../../../../../core/ui/helpers/messages.dart';
 import 'user_register_vm.dart';
-
 
 class UserRegisterPage extends ConsumerStatefulWidget {
   const UserRegisterPage({super.key});
@@ -48,11 +48,33 @@ class _UserRegisterPageState extends ConsumerState<UserRegisterPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Criar Nova Conta'),
+        automaticallyImplyLeading: false, // desabilita o botão de voltar
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: ClipOval(
+            child: Container(
+              //  color: context.primaryColor.withAlpha(20),
+              padding: const EdgeInsets.all(8),
+              child: Icon(
+                Icons.arrow_back_ios_outlined,
+                size: 20,
+                // color: context.primaryColor,
+              ),
+            ),
+          ),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Text('Atacadão Eletrônicos', style: TextStyle(fontSize: 12)),
+            Text('Criar Nova Conta', style: TextStyle(fontSize: 16))
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(30.0),
+          padding: const EdgeInsets.only(left: 30.0, right: 30.0, top: 15),
           child: Form(
             key: formKey,
             child: Column(
@@ -84,7 +106,8 @@ class _UserRegisterPageState extends ConsumerState<UserRegisterPage> {
                   controller: passwordEC,
                   validator: Validatorless.multiple([
                     Validatorless.required('Senha obrigatória'),
-                    Validatorless.min(6, 'Senha deve conter no mínimo 6 caracteres'),
+                    Validatorless.min(
+                        6, 'Senha deve conter no mínimo 6 caracteres'),
                   ]),
                   obscureText: true,
                   decoration: const InputDecoration(
@@ -97,7 +120,8 @@ class _UserRegisterPageState extends ConsumerState<UserRegisterPage> {
                   validator: Validatorless.multiple([
                     Validatorless.required('Confirmar senha é obrigatório'),
                     // Validatorless.min(6, 'Senha deve conter no mínimo 6 caracteres'),
-                    Validatorless.compare(passwordEC, 'As senhas diferente de confirmar senha'),
+                    Validatorless.compare(
+                        passwordEC, 'As senhas diferente de confirmar senha'),
                   ]),
                   obscureText: true,
                   decoration: const InputDecoration(

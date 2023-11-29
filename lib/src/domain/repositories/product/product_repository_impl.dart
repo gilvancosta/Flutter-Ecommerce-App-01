@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+
 import 'package:dio/dio.dart';
 
 import '../../../core/exceptions/auth_exception.dart';
@@ -7,13 +8,12 @@ import '../../../core/exceptions/repository_exception.dart';
 import '../../../core/fp/either.dart';
 import '../../../core/fp/nil.dart';
 import '../../../core/restClient/rest_client.dart';
-import '../../model/user_model.dart';
-import 'user_repository.dart';
+import '../../entities/product_model.dart';
+import 'product_repository.dart';
 
-
-class UserRepositoryImpl implements UserRepository {
-  final RestClient restClient;
-  UserRepositoryImpl({
+class ProductRepositoryImpl implements ProductRepository {
+  final RestClientApp restClient;
+  ProductRepositoryImpl({
     required this.restClient,
   });
 
@@ -40,10 +40,10 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Either<RepositoryException, UserModel>> me() async {
+  Future<Either<RepositoryException, ProductModel>> me() async {
     try {
       final Response(:data) = await restClient.auth.get('/me');
-      return Success(UserModel.fromMap(data));
+      return Success(ProductModel.fromMap(data));
     } on DioException catch (e, s) {
       log('Erro ao buscar usuário logado', error: e, stackTrace: s);
       return Failure(RepositoryException(message: 'Erro ao buscar usuário logado'));
@@ -54,12 +54,12 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Either<RepositoryException, Nil>> registerAdmin(({String email, String name, String password}) userData) async {
+  Future<Either<RepositoryException, Nil>> registerAdmin(({String email, String name, String password}) productData) async {
     try {
-      await restClient.auth.post('/users', data: {
-        'email': userData.email,
-        'name': userData.name,
-        'password': userData.password,
+      await restClient.auth.post('/Products', data: {
+        'email': productData.email,
+        'name': productData.name,
+        'password': productData.password,
         'profile': 'ADM',
       });
       return Success(Nil());
@@ -70,11 +70,11 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Either<RepositoryException, List<UserModel>>> getEmployees(int barbershopId) async {
+  Future<Either<RepositoryException, List<ProductModel>>> getEmployees(int barbershopId) async {
     try {
-      final Response(:List data) = await restClient.auth.get('/users', queryParameters: {'barbershop_id': barbershopId});
+      final Response(:List data) = await restClient.auth.get('/Products', queryParameters: {'barbershop_id': barbershopId});
 
-      final employees = data.map((e) => UserModel.fromMap(e)).toList();
+      final employees = data.map((e) => ProductModel.fromMap(e)).toList();
       return Success(employees);
     } on Exception catch (e, s) {
       log('Erro ao buscar colaboradores', error: e, stackTrace: s);
@@ -86,21 +86,21 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Either<RepositoryException, Nil>> registerAdmAsEmployee(({List<int> workHours, List<String> workdays}) userModel) async {
+  Future<Either<RepositoryException, Nil>> registerAdmAsEmployee(({List<int> workHours, List<String> workdays}) productModel) async {
     try {
-      final userModelResult = await me();
+      final productModelResult = await me();
 
-      final int userId;
+      final int productId;
 
-      switch (userModelResult) {
-        case Success(value: UserModel(:var id)):
-          userId = id;
+      switch (productModelResult) {
+        case Success(value: ProductModel(:var id)):
+          productId = id;
         case Failure(:var exception):
           return Failure(exception);
       }
-      await restClient.auth.put('/users/$userId', data: {
-        'work_days': userModel.workdays,
-        'work_hours': userModel.workHours,
+      await restClient.auth.put('/Products/$productId', data: {
+        'work_days': productModel.workdays,
+        'work_hours': productModel.workHours,
       });
 
       return Success(nil);
@@ -119,19 +119,19 @@ class UserRepositoryImpl implements UserRepository {
       String password,
       List<String> workdays,
       List<int> workHours,
-    }) userModel,
+    }) productModel,
   ) async {
     try {
       await restClient.auth.post(
-        '/users',
+        '/Products',
         data: {
-          'barbershop_id': userModel.barbershopId,
-          'name': userModel.name,
-          'email': userModel.email,
-          'password': userModel.password,
+          'barbershop_id': productModel.barbershopId,
+          'name': productModel.name,
+          'email': productModel.email,
+          'password': productModel.password,
           'profile': 'EMPLOYEE',
-          'work_days': userModel.workdays,
-          'work_hours': userModel.workHours,
+          'work_days': productModel.workdays,
+          'work_hours': productModel.workHours,
         },
       );
 

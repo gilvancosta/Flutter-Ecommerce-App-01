@@ -4,30 +4,34 @@ import 'package:dio/dio.dart';
 import '../../../core/exceptions/repository_exception.dart';
 import '../../../core/fp/either.dart';
 import '../../../core/fp/nil.dart';
+
 import '../../../core/restClient/rest_client.dart';
-import '../../model/barbershop_model.dart';
-import '../../model/user_model.dart';
+import '../../entities/barbershop_model.dart';
+
+import '../../entities/product_model.dart';
+
 import 'barbershop_repository.dart';
 
 
 class BarbershopRepositoryImpl implements BarbershopRepository {
-  final RestClient restClient;
+  final RestClientApp restClient;
   BarbershopRepositoryImpl({
     required this.restClient,
   });
 
+
   @override
-  Future<Either<RepositoryException, BarbershopModel>> getMyBarbershop(UserModel userModel) async {
-    switch (userModel) {
-      case UserModelADM():
+  Future<Either<RepositoryException, BarbershopModel>> getMyBarbershop(ProductModel productModel) async {
+    switch (productModel) {
+      case ProductModelADM():
         final Response(data: List(first: data)) = await restClient.auth.get(
           '/barbershop',
           queryParameters: {'user_id': '#userAuthRef'},
         );
         return Success(BarbershopModel.fromMap(data));
-      case UserModelEmployee():
+      case ProductModelEmployee():
         final Response(:data) = await restClient.auth.get(
-          '/barbershop/${userModel.barbershopId}',
+          '/barbershop/${productModel.barbershopId}',
         );
         return Success(BarbershopModel.fromMap(data));
     }

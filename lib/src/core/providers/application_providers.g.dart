@@ -6,36 +6,37 @@ part of 'application_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$restClientHash() => r'0ee58f1fd102b2016ed621885f1e8d52ed00da66';
+String _$firebaseAuthHash() => r'c8e57c3e164ad1c2cad48c4508e47f6097e350a7';
 
-/// See also [restClient].
-@ProviderFor(restClient)
-final restClientProvider = Provider<RestClient>.internal(
-  restClient,
-  name: r'restClientProvider',
+/// See also [firebaseAuth].
+@ProviderFor(firebaseAuth)
+final firebaseAuthProvider = Provider<FirebaseAuth>.internal(
+  firebaseAuth,
+  name: r'firebaseAuthProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$restClientHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$firebaseAuthHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef RestClientRef = ProviderRef<RestClient>;
-String _$userRepositoryHash() => r'4a324f69804b6738f220b7c48b19aad627021894';
+typedef FirebaseAuthRef = ProviderRef<FirebaseAuth>;
+String _$userLoginRepositoryHash() =>
+    r'fd0ec36c870d6536608231d9ef2d2c943c48a3c8';
 
-/// See also [userRepository].
-@ProviderFor(userRepository)
-final userRepositoryProvider = Provider<UserRepository>.internal(
-  userRepository,
-  name: r'userRepositoryProvider',
+/// See also [userLoginRepository].
+@ProviderFor(userLoginRepository)
+final userLoginRepositoryProvider = Provider<UserLoginRepository>.internal(
+  userLoginRepository,
+  name: r'userLoginRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$userRepositoryHash,
+      : _$userLoginRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef UserRepositoryRef = ProviderRef<UserRepository>;
-String _$userLoginServiceHash() => r'62431221aac8e45888e74928ecf0b5836e72b999';
+typedef UserLoginRepositoryRef = ProviderRef<UserLoginRepository>;
+String _$userLoginServiceHash() => r'149053c23a7c173c4cd2e080ef101e144468ba4e';
 
 /// See also [userLoginService].
 @ProviderFor(userLoginService)
@@ -50,11 +51,89 @@ final userLoginServiceProvider = Provider<UserLoginService>.internal(
 );
 
 typedef UserLoginServiceRef = ProviderRef<UserLoginService>;
-String _$getMeHash() => r'835de91f459d1216fe7813de1ce4ffa8c28975d4';
+String _$userRegisterRepositoryHash() =>
+    r'216f960e6410e68d79f9ca9abc638762ffd73a2e';
+
+/// See also [userRegisterRepository].
+@ProviderFor(userRegisterRepository)
+final userRegisterRepositoryProvider =
+    Provider<UserRegisterRepository>.internal(
+  userRegisterRepository,
+  name: r'userRegisterRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$userRegisterRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef UserRegisterRepositoryRef = ProviderRef<UserRegisterRepository>;
+String _$userRegisterServiceHash() =>
+    r'a5c4a37f1a9583cbe70f7f4674c4e52b2a635026';
+
+/// See also [userRegisterService].
+@ProviderFor(userRegisterService)
+final userRegisterServiceProvider = Provider<UserRegisterService>.internal(
+  userRegisterService,
+  name: r'userRegisterServiceProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$userRegisterServiceHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef UserRegisterServiceRef = ProviderRef<UserRegisterService>;
+String _$restClientAppHash() => r'65a7660b7996e7c8afd87ad44ac6a8277b97ca24';
+
+/// See also [restClientApp].
+@ProviderFor(restClientApp)
+final restClientAppProvider = Provider<RestClientApp>.internal(
+  restClientApp,
+  name: r'restClientAppProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$restClientAppHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef RestClientAppRef = ProviderRef<RestClientApp>;
+String _$productRepositoryHash() => r'e0112dcc88f61ceb8a9c234da719e682e2f4b587';
+
+/// See also [productRepository].
+@ProviderFor(productRepository)
+final productRepositoryProvider = Provider<ProductRepository>.internal(
+  productRepository,
+  name: r'productRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$productRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef ProductRepositoryRef = ProviderRef<ProductRepository>;
+String _$productServiceHash() => r'4262840e23b815d1e46efb4a4f3005379d6a2472';
+
+/// See also [productService].
+@ProviderFor(productService)
+final productServiceProvider = Provider<ProductService>.internal(
+  productService,
+  name: r'productServiceProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$productServiceHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef ProductServiceRef = ProviderRef<ProductService>;
+String _$getMeHash() => r'b7bff3a45ec5d49c6d1d5f0712016282417b6e7c';
 
 /// See also [getMe].
 @ProviderFor(getMe)
-final getMeProvider = FutureProvider<UserModel>.internal(
+final getMeProvider = FutureProvider<ProductModel>.internal(
   getMe,
   name: r'getMeProvider',
   debugGetCreateSourceHash:
@@ -63,9 +142,9 @@ final getMeProvider = FutureProvider<UserModel>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef GetMeRef = FutureProviderRef<UserModel>;
+typedef GetMeRef = FutureProviderRef<ProductModel>;
 String _$barbershopRepositoryHash() =>
-    r'a64ad01ae6b70f8192c02a09abc33ea968315cb9';
+    r'48aacc145eef3019bc8258535fe321a66f52ebbf';
 
 /// See also [barbershopRepository].
 @ProviderFor(barbershopRepository)
@@ -80,7 +159,7 @@ final barbershopRepositoryProvider = Provider<BarbershopRepository>.internal(
 );
 
 typedef BarbershopRepositoryRef = ProviderRef<BarbershopRepository>;
-String _$getMyBarbershopHash() => r'e1c72495b6a8e9b1b3af23c7ef1c9144fb45e841';
+String _$getMyBarbershopHash() => r'bc203d00620b2129f3aabf5e76644138140fa7f8';
 
 /// See also [getMyBarbershop].
 @ProviderFor(getMyBarbershop)
@@ -110,7 +189,7 @@ final logoutProvider = AutoDisposeFutureProvider<void>.internal(
 
 typedef LogoutRef = AutoDisposeFutureProviderRef<void>;
 String _$scheduleRepositoryHash() =>
-    r'd8bb90e09ddffd4926259e9e2ec796a76739a37d';
+    r'4e5f0013d8575741ec1ef04cea5bfddff4f13556';
 
 /// See also [scheduleRepository].
 @ProviderFor(scheduleRepository)

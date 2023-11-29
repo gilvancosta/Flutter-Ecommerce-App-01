@@ -5,12 +5,12 @@ import '../../../core/exceptions/repository_exception.dart';
 import '../../../core/fp/either.dart';
 import '../../../core/fp/nil.dart';
 import '../../../core/restClient/rest_client.dart';
-import '../../model/schedule_model.dart';
+import '../../entities/schedule_model.dart';
 import 'schedule_repository.dart';
 
 
 class ScheduleRepositoryImpl implements ScheduleRepository {
-  final RestClient restClient;
+  final RestClientApp restClient;
 
   ScheduleRepositoryImpl({
     required this.restClient,

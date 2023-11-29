@@ -1,11 +1,10 @@
 import 'package:asyncstate/asyncstate.dart';
-
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../../core/fp/either.dart';
 import '../../../../../../core/providers/application_providers.dart';
-import '../../../../../../domain/services/user_register/user_register_adm_service.dart';
-import 'user_register_providers.dart';
+import '../../../../../../domain/services/user_register/user_register_service.dart';
+
 part 'user_register_vm.g.dart';
 
 enum UserRegisterStateStatus {
@@ -24,13 +23,16 @@ class UserRegisterVm extends _$UserRegisterVm {
     required String email,
     required String password,
   }) async {
-    final UserRegisterAdmService userRegisterAdmService = ref.read(userRegisterAdmServiceProvider);
+    final UserRegisterService userLoginService = ref.read(userRegisterServiceProvider);
     final userData = (
       name: name,
       email: email,
       password: password,
     );
-    final registerResult = await userRegisterAdmService.execute(userData).asyncLoader();
+
+    final registerResult = await userLoginService
+        .register(userData.name,userData.email, userData.password)
+        .asyncLoader();
     switch (registerResult) {
       case Success():
         ref.invalidate(getMeProvider);
@@ -40,6 +42,7 @@ class UserRegisterVm extends _$UserRegisterVm {
     }
   }
 }
+
 
 
 

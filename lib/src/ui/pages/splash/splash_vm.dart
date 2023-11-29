@@ -1,10 +1,9 @@
-
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/constants/local_storage_keys.dart';
 import '../../../core/providers/application_providers.dart';
-import '../../../domain/model/user_model.dart';
+import '../../../domain/entities/product_model.dart';
 
 part 'splash_vm.g.dart';
 
@@ -29,8 +28,8 @@ class SplashVm extends _$SplashVm {
       try {
         final userModel = await ref.watch(getMeProvider.future);
         return switch (userModel) {
-          UserModelADM() => SplashState.loggedADM,
-          UserModelEmployee() => SplashState.loggedEmployee,
+          ProductModelADM() => SplashState.loggedADM,
+          ProductModelEmployee() => SplashState.loggedEmployee,
         };
       } catch (e) {
         return SplashState.login;

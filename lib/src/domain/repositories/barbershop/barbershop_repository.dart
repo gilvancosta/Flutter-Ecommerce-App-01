@@ -2,8 +2,9 @@
 import '../../../core/exceptions/repository_exception.dart';
 import '../../../core/fp/either.dart';
 import '../../../core/fp/nil.dart';
-import '../../model/barbershop_model.dart';
-import '../../model/user_model.dart';
+import '../../entities/barbershop_model.dart';
+import '../../entities/product_model.dart';
+
 
 abstract interface class BarbershopRepository {
   Future<Either<RepositoryException, Nil>> save(
@@ -14,5 +15,5 @@ abstract interface class BarbershopRepository {
         List<int> openingHours,
       }) data);
 
-  Future<Either<RepositoryException, BarbershopModel>> getMyBarbershop(UserModel userModel);
+  Future<Either<RepositoryException, BarbershopModel>> getMyBarbershop(ProductModel productModel);
 }

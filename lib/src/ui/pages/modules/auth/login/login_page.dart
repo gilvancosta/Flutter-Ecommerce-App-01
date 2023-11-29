@@ -5,6 +5,7 @@ import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 
 import '../../../../../core/constants/constants.dart';
+import '../../../../../core/router/app_router.dart';
 import '../../../../../core/theme/app_messages.dart';
 import '../../../../../core/ui/helpers/messages.dart';
 import '../../../../../core/widgets/TextFormField/my_textformfield_email.dart';
@@ -33,6 +34,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final appRouter = ref.watch(appRouterProvider);
+
     final LoginVm(:login) = ref.watch(loginVmProvider.notifier);
 
     ref.listen(loginVmProvider, (_, state) {
@@ -176,11 +179,14 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                     ),
                                     TextButton(
                                       onPressed: () {
-                                        Navigator.of(context)
-                                            .pushNamed('/register');
+                                        appRouter.push(
+                                            '/auth/register/user');
+
+                                        //  Navigator.of(context)
+                                        // .pushNamed('/auth/register/user');
                                       },
                                       child: const Text(
-                                        'Cadastre-se',
+                                        'Cadastre-se1',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.w500,

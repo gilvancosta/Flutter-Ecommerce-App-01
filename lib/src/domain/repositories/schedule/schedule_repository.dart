@@ -3,7 +3,7 @@
 import '../../../core/exceptions/repository_exception.dart';
 import '../../../core/fp/either.dart';
 import '../../../core/fp/nil.dart';
-import '../../model/schedule_model.dart';
+import '../../entities/schedule_model.dart';
 
 abstract interface class ScheduleRepository {
   Future<Either<RepositoryException, Nil>> scheduleClient(

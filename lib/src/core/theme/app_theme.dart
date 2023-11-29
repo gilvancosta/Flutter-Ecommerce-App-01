@@ -28,7 +28,6 @@ const colorList = <Color>[
         assert(selectedColor < colorList.length,
             'Selected color must be less or equal than ${colorList.length - 1}');
 
-
   static const defaultInputBorder = OutlineInputBorder(
     borderRadius: BorderRadius.all(
       Radius.circular(8),
@@ -73,6 +72,11 @@ const colorList = <Color>[
     ),
     fontFamily: FontConstants.fontFamily,
   );
+
+
+
+
+
 
 
   AppTheme copyWith({int? selectedColor, bool? isDarkmode}) => AppTheme(

@@ -5,8 +5,8 @@ sealed class FontConstants {
 }
 
 sealed class ColorsConstants {
-  static const brow = Color(0xFFB07B01);
-  static const grey = Color(0xFF999999);
+  static const brow = Color(0xffff6a14);
+  static const grey = Color(0xff0033ff);
   static const greyLight = Color(0xFFE9E2E9);
   static const red = Color(0xFFEB1212);
 }

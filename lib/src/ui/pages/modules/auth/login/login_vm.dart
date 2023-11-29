@@ -4,7 +4,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../../core/exceptions/service_exception.dart';
 import '../../../../../core/fp/either.dart';
 import '../../../../../core/providers/application_providers.dart';
-import '../../../../../domain/model/user_model.dart';
+//import '../../../../../domain/model/user_model.dart';
+import '../../../../../domain/entities/product_model.dart';
 import 'login_state.dart';
 
 
@@ -18,7 +19,7 @@ class LoginVm extends _$LoginVm {
   Future<void> login(String email, String password) async {
     final loaderHandle = AsyncLoaderHandler()..start();
 
-    final loginService = ref.watch(userLoginServiceProvider);
+    final loginService = ref.watch(productServiceProvider);
 
     final result = await loginService.execute(email, password);
 
@@ -33,9 +34,9 @@ class LoginVm extends _$LoginVm {
         
         final userModel = await ref.read(getMeProvider.future);
         switch (userModel) {
-          case UserModelADM():
+          case ProductModelADM():
             state = state.copyWith(status: LoginStateStatus.admLogin);
-          case UserModelEmployee():
+          case ProductModelEmployee():
             state = state.copyWith(status: LoginStateStatus.employeeLogin);
         }
         break;
