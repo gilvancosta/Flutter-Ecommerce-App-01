@@ -3,7 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/constants/local_storage_keys.dart';
 import '../../../core/providers/application_providers.dart';
-import '../../../domain/entities/product_model.dart';
+
+import '../../../domain/models/user_model.dart';
 
 part 'splash_vm.g.dart';
 
@@ -28,8 +29,8 @@ class SplashVm extends _$SplashVm {
       try {
         final userModel = await ref.watch(getMeProvider.future);
         return switch (userModel) {
-          ProductModelADM() => SplashState.loggedADM,
-          ProductModelEmployee() => SplashState.loggedEmployee,
+          UserModelADM() => SplashState.loggedADM,
+          UserModelEmployee() => SplashState.loggedEmployee,
         };
       } catch (e) {
         return SplashState.login;

@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:validatorless/validatorless.dart';
 
 import '../../theme/app_icons.dart';
+import '../../ui/helpers/form_helper.dart';
 import '../../validators/validators.dart';
 
-
-
 class MyTextFormFieldPasswordConfirme extends StatelessWidget {
- final  TextEditingController? passwordEC;
+  final TextEditingController? passwordEC;
   final IconButton? suffixIconButton;
   final bool obscureText;
   final ValueNotifier<bool> obscureTextVN;
   final TextEditingController? controller;
- //final FormFieldValidator<String>? validator;
+  //final FormFieldValidator<String>? validator;
   final FocusNode? focusNode;
 
   MyTextFormFieldPasswordConfirme({
@@ -21,7 +20,6 @@ class MyTextFormFieldPasswordConfirme extends StatelessWidget {
     this.suffixIconButton,
     this.obscureText = false,
     this.controller,
- 
     this.focusNode,
   })  : assert(
           obscureText == true ? suffixIconButton == null : true,
@@ -38,11 +36,12 @@ class MyTextFormFieldPasswordConfirme extends StatelessWidget {
         return TextFormField(
           controller: controller,
           validator: Validatorless.multiple([
-                      Validatorless.required('Senha obrigatória'),
-                      Validators.compare(
-                          passwordEC, 'Confirmação de senha é diferente'),
-                    ]),
+            Validatorless.required('Senha obrigatória'),
+            Validators.compare(passwordEC, 'Confirmação de senha é diferente'),
+          ]),
           focusNode: focusNode,
+          //Esconde o teclado ao clicar fora do campo
+          onTapOutside: (_) => context.unfocus(),   
           decoration: InputDecoration(
             labelText: 'Confirmar Senha',
             labelStyle: const TextStyle(fontSize: 15, color: Colors.black),

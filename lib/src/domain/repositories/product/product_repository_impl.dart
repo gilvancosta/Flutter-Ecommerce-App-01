@@ -8,7 +8,8 @@ import '../../../core/exceptions/repository_exception.dart';
 import '../../../core/fp/either.dart';
 import '../../../core/fp/nil.dart';
 import '../../../core/restClient/rest_client.dart';
-import '../../entities/product_model.dart';
+
+import '../../models/user_model.dart';
 import 'product_repository.dart';
 
 class ProductRepositoryImpl implements ProductRepository {
@@ -40,10 +41,10 @@ class ProductRepositoryImpl implements ProductRepository {
   }
 
   @override
-  Future<Either<RepositoryException, ProductModel>> me() async {
+  Future<Either<RepositoryException, UserModel>> me() async {
     try {
       final Response(:data) = await restClient.auth.get('/me');
-      return Success(ProductModel.fromMap(data));
+      return Success(UserModel.fromMap(data));
     } on DioException catch (e, s) {
       log('Erro ao buscar usuário logado', error: e, stackTrace: s);
       return Failure(RepositoryException(message: 'Erro ao buscar usuário logado'));
@@ -70,11 +71,11 @@ class ProductRepositoryImpl implements ProductRepository {
   }
 
   @override
-  Future<Either<RepositoryException, List<ProductModel>>> getEmployees(int barbershopId) async {
+  Future<Either<RepositoryException, List<UserModel>>> getEmployees(int barbershopId) async {
     try {
       final Response(:List data) = await restClient.auth.get('/Products', queryParameters: {'barbershop_id': barbershopId});
 
-      final employees = data.map((e) => ProductModel.fromMap(e)).toList();
+      final employees = data.map((e) => UserModel.fromMap(e)).toList();
       return Success(employees);
     } on Exception catch (e, s) {
       log('Erro ao buscar colaboradores', error: e, stackTrace: s);
@@ -93,7 +94,7 @@ class ProductRepositoryImpl implements ProductRepository {
       final int productId;
 
       switch (productModelResult) {
-        case Success(value: ProductModel(:var id)):
+        case Success(value: UserModel(:var id)):
           productId = id;
         case Failure(:var exception):
           return Failure(exception);

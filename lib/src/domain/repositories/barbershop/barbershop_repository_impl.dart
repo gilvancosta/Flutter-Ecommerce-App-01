@@ -6,10 +6,10 @@ import '../../../core/fp/either.dart';
 import '../../../core/fp/nil.dart';
 
 import '../../../core/restClient/rest_client.dart';
-import '../../entities/barbershop_model.dart';
+import '../../models/barbershop_model.dart';
 
-import '../../entities/product_model.dart';
 
+import '../../models/user_model.dart';
 import 'barbershop_repository.dart';
 
 
@@ -21,17 +21,17 @@ class BarbershopRepositoryImpl implements BarbershopRepository {
 
 
   @override
-  Future<Either<RepositoryException, BarbershopModel>> getMyBarbershop(ProductModel productModel) async {
-    switch (productModel) {
-      case ProductModelADM():
+  Future<Either<RepositoryException, BarbershopModel>> getMyBarbershop(UserModel userModel) async {
+    switch (userModel) {
+      case UserModelADM():
         final Response(data: List(first: data)) = await restClient.auth.get(
           '/barbershop',
           queryParameters: {'user_id': '#userAuthRef'},
         );
         return Success(BarbershopModel.fromMap(data));
-      case ProductModelEmployee():
+      case UserModelEmployee():
         final Response(:data) = await restClient.auth.get(
-          '/barbershop/${productModel.barbershopId}',
+          '/barbershop/${userModel.barbershopId}',
         );
         return Success(BarbershopModel.fromMap(data));
     }

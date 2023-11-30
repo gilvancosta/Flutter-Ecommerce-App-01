@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:validatorless/validatorless.dart';
 
 import '../../theme/app_icons.dart';
+import '../../ui/helpers/form_helper.dart';
 
 class MyTextFormFieldPassword extends StatelessWidget {
   final bool obscureText;
@@ -31,6 +32,8 @@ class MyTextFormFieldPassword extends StatelessWidget {
             Validatorless.min(6, 'Senha deve ter pelo menos 6 caracteres'),
           ]),
           focusNode: focusNode,
+          //Esconde o teclado ao clicar fora do campo
+          onTapOutside: (_) => context.unfocus(),
           decoration: InputDecoration(
             label: const Text('Senha'),
             hintText: 'Digite sua senha',

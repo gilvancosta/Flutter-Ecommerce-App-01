@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../domain/models/user_model.dart';
 import '../../domain/repositories/users/user_register/user_register_repository.dart';
 import '../../domain/repositories/users/user_register/user_register_repository_impl.dart';
 import '../../domain/services/user_register/user_register_service.dart';
@@ -20,8 +21,8 @@ import '../../domain/services/user_login/user_login_service_impl.dart';
 import '../../domain/repositories/product/product_repository.dart';
 import '../../domain/repositories/product/product_repository_impl.dart';
 
-import '../../domain/entities/barbershop_model.dart';
-import '../../domain/entities/product_model.dart';
+import '../../domain/models/barbershop_model.dart';
+
 
 import '../../domain/repositories/barbershop/barbershop_repository.dart';
 import '../../domain/repositories/barbershop/barbershop_repository_impl.dart';
@@ -65,7 +66,7 @@ ProductService productService(ProductServiceRef ref) =>
     ProductServiceImpl(productRepository: ref.read(productRepositoryProvider));
 
 @Riverpod(keepAlive: true)
-Future<ProductModel> getMe(GetMeRef ref) async {
+Future<UserModel> getMe(GetMeRef ref) async {
   final result = await ref.watch(productRepositoryProvider).me();
 
   return switch (result) {

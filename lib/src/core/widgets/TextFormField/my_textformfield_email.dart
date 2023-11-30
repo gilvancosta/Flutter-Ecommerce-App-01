@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:validatorless/validatorless.dart';
 
+import '../../ui/helpers/form_helper.dart';
+
 class MyTextFormFieldEmail extends StatelessWidget {
   final TextEditingController? controller;
   final FocusNode? focusNode;
@@ -20,7 +22,8 @@ class MyTextFormFieldEmail extends StatelessWidget {
         Validatorless.email('E-mail inválido'),
       ]),
       focusNode: focusNode,
-
+    //Esconde o teclado ao clicar fora do campo
+          onTapOutside: (_) => context.unfocus(),   
       decoration: const InputDecoration(
         label: Text('E-mail'),
         hintText: 'Digite seu login',

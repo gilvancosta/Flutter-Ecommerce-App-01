@@ -41,7 +41,8 @@ class _UserRegisterPageState extends ConsumerState<UserRegisterPage> {
           Navigator.of(context).pushNamed('/auth/register/barbershop');
           break;
         case UserRegisterStateStatus.error:
-          Messages.showError('Erro ao realizar cadastro', context);
+          Messages.showError('Erro ao realizar cadastro',context);
+
           break;
       }
     });

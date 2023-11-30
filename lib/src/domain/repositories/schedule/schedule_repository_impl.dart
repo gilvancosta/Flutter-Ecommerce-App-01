@@ -5,7 +5,7 @@ import '../../../core/exceptions/repository_exception.dart';
 import '../../../core/fp/either.dart';
 import '../../../core/fp/nil.dart';
 import '../../../core/restClient/rest_client.dart';
-import '../../entities/schedule_model.dart';
+import '../../models/schedule_model.dart';
 import 'schedule_repository.dart';
 
 

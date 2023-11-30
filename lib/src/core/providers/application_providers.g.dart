@@ -129,11 +129,11 @@ final productServiceProvider = Provider<ProductService>.internal(
 );
 
 typedef ProductServiceRef = ProviderRef<ProductService>;
-String _$getMeHash() => r'b7bff3a45ec5d49c6d1d5f0712016282417b6e7c';
+String _$getMeHash() => r'9508c5117d41dd14cb26999d7068889af8ca723d';
 
 /// See also [getMe].
 @ProviderFor(getMe)
-final getMeProvider = FutureProvider<ProductModel>.internal(
+final getMeProvider = FutureProvider<UserModel>.internal(
   getMe,
   name: r'getMeProvider',
   debugGetCreateSourceHash:
@@ -142,7 +142,7 @@ final getMeProvider = FutureProvider<ProductModel>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef GetMeRef = FutureProviderRef<ProductModel>;
+typedef GetMeRef = FutureProviderRef<UserModel>;
 String _$barbershopRepositoryHash() =>
     r'48aacc145eef3019bc8258535fe321a66f52ebbf';
 

@@ -37,7 +37,7 @@ class _BarbershopRegisterPageState extends ConsumerState<BarbershopRegisterPage>
         case BarbershopRegisterStateStatus.inital:
           break;
         case BarbershopRegisterStateStatus.error:
-          Messages.showError('Desculpe ocorreu um erro ao registrar barbearia', context);
+         Messages.showError('Desculpe ocorreu um erro ao registrar barbearia', context);
         case BarbershopRegisterStateStatus.success:
           Navigator.of(context).pushNamedAndRemoveUntil('/home/adm', (route) => false);
       }

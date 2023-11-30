@@ -3,18 +3,19 @@ import '../../../core/exceptions/auth_exception.dart';
 import '../../../core/exceptions/repository_exception.dart';
 import '../../../core/fp/either.dart';
 import '../../../core/fp/nil.dart';
-import '../../entities/product_model.dart';
+
+import '../../models/user_model.dart';
 
 abstract interface class ProductRepository {
   Future<Either<AuthException, String>> login(String email, String password);
 
-  Future<Either<RepositoryException, ProductModel>> me();
+  Future<Either<RepositoryException, UserModel>> me();
 
   Future<Either<RepositoryException, Nil>> registerAdmin(
     ({String name, String email, String password}) userData,
   );
 
-  Future<Either<RepositoryException, List<ProductModel>>> getEmployees(
+  Future<Either<RepositoryException, List<UserModel>>> getEmployees(
     int barbershopId,
   );
 

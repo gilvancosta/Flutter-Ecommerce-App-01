@@ -1,7 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
+
+import '../../../core/exceptions/service_exception.dart';
+import '../../../core/fp/either.dart';
+import '../../../core/fp/nil.dart';
 
 abstract class UserRegisterService {
-  Future<User?> register(String name, String email, String password);
+    Future<Either<ServiceException, Nil>> register(String name, String email, String password);
 
 }
 

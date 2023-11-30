@@ -5,7 +5,8 @@ import '../../../../../core/exceptions/service_exception.dart';
 import '../../../../../core/fp/either.dart';
 import '../../../../../core/providers/application_providers.dart';
 //import '../../../../../domain/model/user_model.dart';
-import '../../../../../domain/entities/product_model.dart';
+
+import '../../../../../domain/models/user_model.dart';
 import 'login_state.dart';
 
 
@@ -19,9 +20,9 @@ class LoginVm extends _$LoginVm {
   Future<void> login(String email, String password) async {
     final loaderHandle = AsyncLoaderHandler()..start();
 
-    final loginService = ref.watch(productServiceProvider);
+    final loginService = ref.watch(userLoginServiceProvider);
 
-    final result = await loginService.execute(email, password);
+    final result = await loginService.login(email, password);
 
     switch (result) {
       case Success():
@@ -34,9 +35,9 @@ class LoginVm extends _$LoginVm {
         
         final userModel = await ref.read(getMeProvider.future);
         switch (userModel) {
-          case ProductModelADM():
+          case UserModelADM():
             state = state.copyWith(status: LoginStateStatus.admLogin);
-          case ProductModelEmployee():
+          case UserModelEmployee():
             state = state.copyWith(status: LoginStateStatus.employeeLogin);
         }
         break;

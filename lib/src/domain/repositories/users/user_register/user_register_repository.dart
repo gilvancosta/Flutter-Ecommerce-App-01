@@ -1,5 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import '../../../../core/exceptions/repository_exception.dart';
+import '../../../../core/fp/either.dart';
+import '../../../../core/fp/nil.dart';
 abstract class UserRegisterRepository {
-  Future<User?> register(String nome, String email, String password);
+  Future<Either<RepositoryException, Nil>> register(String nome, String email, String password);
  
 }

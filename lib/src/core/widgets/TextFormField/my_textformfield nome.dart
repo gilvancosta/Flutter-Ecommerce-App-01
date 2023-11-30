@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../theme/app_icons.dart';
-
+import '../../ui/helpers/form_helper.dart';
 
 class My_TextFormField extends StatelessWidget {
   final String label;
@@ -36,6 +36,9 @@ class My_TextFormField extends StatelessWidget {
           controller: controller,
           validator: validator,
           focusNode: focusNode,
+          //Esconde o teclado ao clicar fora do campo
+          onTapOutside: (_) => context.unfocus(),   
+
           decoration: InputDecoration(
             labelText: label,
             labelStyle: const TextStyle(fontSize: 15, color: Colors.black),

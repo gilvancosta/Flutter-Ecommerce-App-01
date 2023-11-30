@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:asyncstate/asyncstate.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -23,16 +25,14 @@ class UserRegisterVm extends _$UserRegisterVm {
     required String email,
     required String password,
   }) async {
-    final UserRegisterService userLoginService = ref.read(userRegisterServiceProvider);
-    final userData = (
-      name: name,
-      email: email,
-      password: password,
-    );
+    final userRegisterService = ref.watch(userRegisterServiceProvider);
 
-    final registerResult = await userLoginService
-        .register(userData.name,userData.email, userData.password)
-        .asyncLoader();
+    //final UserRegisterService userRegisterService = ref.read(userRegisterServiceProvider);
+
+    final registerResult =
+        await userRegisterService.register(name, email, password).asyncLoader();
+    print('BBBBBBB:');
+
     switch (registerResult) {
       case Success():
         ref.invalidate(getMeProvider);
