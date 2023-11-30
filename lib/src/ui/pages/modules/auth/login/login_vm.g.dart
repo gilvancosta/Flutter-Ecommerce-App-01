@@ -15,7 +15,7 @@ final loginVmProvider =
   LoginVm.new,
   name: r'loginVmProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$loginVmHash,
+      const bool.fromEnvironment('dart.vm.person') ? null : _$loginVmHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

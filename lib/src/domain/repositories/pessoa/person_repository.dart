@@ -5,7 +5,7 @@ import '../../../core/fp/nil.dart';
 
 import '../../models/user_model.dart';
 
-abstract interface class ProductRepository {
+abstract interface class PersonRepository {
   Future<Either<AuthException, String>> login(String email, String password);
 
   Future<Either<RepositoryException, UserModel>> me();
@@ -22,7 +22,7 @@ abstract interface class ProductRepository {
     ({
       List<String> workdays,
       List<int> workHours,
-    }) productModel,
+    }) personModel,
   );
 
   Future<Either<RepositoryException, Nil>> registerCustomer(
@@ -33,6 +33,6 @@ abstract interface class ProductRepository {
       String password,
       List<String> workdays,
       List<int> workHours,
-    }) productModel,
+    }) personModel,
   );
 }

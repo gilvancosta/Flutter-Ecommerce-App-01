@@ -1,6 +1,7 @@
 sealed class UserModel {
+
   final int id;
-  final String displayName;
+  final String? displayName;
   final String email;
   final String? photoURL;
 
@@ -21,6 +22,11 @@ sealed class UserModel {
 }
 
 class UserModelADM extends UserModel {
+
+
+  final List<String>? workDays;
+  final List<int>? workHours;
+
   UserModelADM({
     required super.id,
     required super.displayName,
@@ -34,7 +40,7 @@ class UserModelADM extends UserModel {
     return switch (json) {
       {
         'id': final int id,
-        'name': final String displayName,
+        'displayName': final String displayName,
         'email': final String email,
       } =>
         UserModelADM(
@@ -51,11 +57,15 @@ class UserModelADM extends UserModel {
     };
   }
 
-  final List<String>? workDays;
-  final List<int>? workHours;
 }
 
 class UserModelCustomer extends UserModel {
+
+
+  final List<String> workDays;
+  final List<int> workHours;
+  final int barbershopId;
+
   UserModelCustomer({
     required super.id,
     required super.displayName,
@@ -67,6 +77,8 @@ class UserModelCustomer extends UserModel {
   });
 
   factory UserModelCustomer.fromMap(Map<String, dynamic> json) {
+
+
     return switch (json) {
       {
         'id': final int id,
@@ -89,7 +101,4 @@ class UserModelCustomer extends UserModel {
     };
   }
 
-  final List<String> workDays;
-  final List<int> workHours;
-  final int barbershopId;
 }

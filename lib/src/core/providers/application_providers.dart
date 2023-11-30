@@ -18,11 +18,10 @@ import '../../domain/repositories/users/user_login/user_login_repository_impl.da
 import '../../domain/services/user_login/user_login_service.dart';
 import '../../domain/services/user_login/user_login_service_impl.dart';
 
-import '../../domain/repositories/product/product_repository.dart';
-import '../../domain/repositories/product/product_repository_impl.dart';
+import '../../domain/repositories/pessoa/person_repository.dart';
+import '../../domain/repositories/pessoa/person_repository_impl.dart';
 
 import '../../domain/models/barbershop_model.dart';
-
 
 import '../../domain/repositories/barbershop/barbershop_repository.dart';
 import '../../domain/repositories/barbershop/barbershop_repository_impl.dart';
@@ -30,8 +29,8 @@ import '../../domain/repositories/barbershop/barbershop_repository_impl.dart';
 import '../../domain/repositories/schedule/schedule_repository.dart';
 import '../../domain/repositories/schedule/schedule_repository_impl.dart';
 
-import '../../domain/services/product/product_service.dart';
-import '../../domain/services/product/product_service_impl.dart';
+import '../../domain/services/person/person_service.dart';
+import '../../domain/services/person/person_service_impl.dart';
 
 part 'application_providers.g.dart';
 
@@ -40,17 +39,23 @@ FirebaseAuth firebaseAuth(FirebaseAuthRef ref) => FirebaseAuth.instance;
 
 // == User Login ==
 @Riverpod(keepAlive: true)
-UserLoginRepository userLoginRepository(UserLoginRepositoryRef ref) => UserRepositoryImpl(firebaseAuth: ref.read(firebaseAuthProvider));
+UserLoginRepository userLoginRepository(UserLoginRepositoryRef ref) =>
+    UserRepositoryImpl(firebaseAuth: ref.read(firebaseAuthProvider));
 
 @Riverpod(keepAlive: true)
-UserLoginService userLoginService(UserLoginServiceRef ref) => UserLoginServiceImpl(userLoginRepository: ref.read(userLoginRepositoryProvider));
+UserLoginService userLoginService(UserLoginServiceRef ref) =>
+    UserLoginServiceImpl(
+        userLoginRepository: ref.read(userLoginRepositoryProvider));
 
 // == User Register ==
 @Riverpod(keepAlive: true)
-UserRegisterRepository userRegisterRepository(UserRegisterRepositoryRef ref) => UserRegisterRepositoryImpl(firebaseAuth: ref.read(firebaseAuthProvider));
+UserRegisterRepository userRegisterRepository(UserRegisterRepositoryRef ref) =>
+    UserRegisterRepositoryImpl(firebaseAuth: ref.read(firebaseAuthProvider));
 
 @Riverpod(keepAlive: true)
-UserRegisterService userRegisterService(UserRegisterServiceRef ref) => UserRegisterServiceImpl(userRegisterRepository: ref.read(userRegisterRepositoryProvider));
+UserRegisterService userRegisterService(UserRegisterServiceRef ref) =>
+    UserRegisterServiceImpl(
+        userRegisterRepository: ref.read(userRegisterRepositoryProvider));
 
 // == RestClientApp ==
 
@@ -58,16 +63,16 @@ UserRegisterService userRegisterService(UserRegisterServiceRef ref) => UserRegis
 RestClientApp restClientApp(RestClientAppRef ref) => RestClientApp();
 
 @Riverpod(keepAlive: true)
-ProductRepository productRepository(ProductRepositoryRef ref) =>
-    ProductRepositoryImpl(restClient: ref.read(restClientAppProvider));
+PersonRepository personRepository(PersonRepositoryRef ref) =>
+    PersonRepositoryImpl(restClient: ref.read(restClientAppProvider));
 
 @Riverpod(keepAlive: true)
-ProductService productService(ProductServiceRef ref) =>
-    ProductServiceImpl(productRepository: ref.read(productRepositoryProvider));
+PersonService personService(PersonServiceRef ref) =>
+    PersonServiceImpl(personRepository: ref.read(personRepositoryProvider));
 
 @Riverpod(keepAlive: true)
 Future<UserModel> getMe(GetMeRef ref) async {
-  final result = await ref.watch(productRepositoryProvider).me();
+  final result = await ref.watch(personRepositoryProvider).me();
 
   return switch (result) {
     Success(value: final userModel) => userModel,
@@ -81,10 +86,10 @@ BarbershopRepository barbershopRepository(BarbershopRepositoryRef ref) =>
 
 @Riverpod(keepAlive: true)
 Future<BarbershopModel> getMyBarbershop(GetMyBarbershopRef ref) async {
-  final productModel = await ref.watch(getMeProvider.future);
+  final personModel = await ref.watch(getMeProvider.future);
 
   final barbershopRepository = ref.watch(barbershopRepositoryProvider);
-  final result = await barbershopRepository.getMyBarbershop(productModel);
+  final result = await barbershopRepository.getMyBarbershop(personModel);
 
   return switch (result) {
     Success(value: final barbershop) => barbershop,
@@ -102,8 +107,6 @@ Future<void> logout(LogoutRef ref) async {
   Navigator.of(BarbershopNavGlobalKey.instance.navkey.currentContext!)
       .pushNamedAndRemoveUntil('/auth/login', (route) => false);
 }
-
-
 
 @riverpod
 ScheduleRepository scheduleRepository(ScheduleRepositoryRef ref) =>

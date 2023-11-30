@@ -15,7 +15,7 @@ final splashVmProvider =
   SplashVm.new,
   name: r'splashVmProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$splashVmHash,
+      const bool.fromEnvironment('dart.vm.person') ? null : _$splashVmHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

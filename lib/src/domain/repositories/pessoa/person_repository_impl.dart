@@ -10,11 +10,11 @@ import '../../../core/fp/nil.dart';
 import '../../../core/restClient/rest_client.dart';
 
 import '../../models/user_model.dart';
-import 'product_repository.dart';
+import 'person_repository.dart';
 
-class ProductRepositoryImpl implements ProductRepository {
+class PersonRepositoryImpl implements PersonRepository {
   final RestClientApp restClient;
-  ProductRepositoryImpl({
+  PersonRepositoryImpl({
     required this.restClient,
   });
 
@@ -58,12 +58,12 @@ class ProductRepositoryImpl implements ProductRepository {
 
   @override
   Future<Either<RepositoryException, Nil>> registerAdmin(
-      ({String email, String name, String password}) productData) async {
+      ({String email, String name, String password}) personData) async {
     try {
-      await restClient.auth.post('/Products', data: {
-        'email': productData.email,
-        'name': productData.name,
-        'password': productData.password,
+      await restClient.auth.post('/Persons', data: {
+        'email': personData.email,
+        'name': personData.name,
+        'password': personData.password,
         'profile': 'ADM',
       });
       return Success(Nil());
@@ -79,7 +79,7 @@ class ProductRepositoryImpl implements ProductRepository {
       int barbershopId) async {
     try {
       final Response(:List data) = await restClient.auth
-          .get('/Products', queryParameters: {'barbershop_id': barbershopId});
+          .get('/Persons', queryParameters: {'barbershop_id': barbershopId});
 
       final customers = data.map((e) => UserModel.fromMap(e)).toList();
       return Success(customers);
@@ -97,21 +97,21 @@ class ProductRepositoryImpl implements ProductRepository {
 
   @override
   Future<Either<RepositoryException, Nil>> registerAdmAsCustomer(
-      ({List<int> workHours, List<String> workdays}) productModel) async {
+      ({List<int> workHours, List<String> workdays}) personModel) async {
     try {
-      final productModelResult = await me();
+      final personModelResult = await me();
 
-      final int productId;
+      final int personId;
 
-      switch (productModelResult) {
+      switch (personModelResult) {
         case Success(value: UserModel(:var id)):
-          productId = id;
+          personId = id;
         case Failure(:var exception):
           return Failure(exception);
       }
-      await restClient.auth.put('/Products/$productId', data: {
-        'work_days': productModel.workdays,
-        'work_hours': productModel.workHours,
+      await restClient.auth.put('/Persons/$personId', data: {
+        'work_days': personModel.workdays,
+        'work_hours': personModel.workHours,
       });
 
       return Success(nil);
@@ -132,19 +132,19 @@ class ProductRepositoryImpl implements ProductRepository {
       String password,
       List<String> workdays,
       List<int> workHours,
-    }) productModel,
+    }) personModel,
   ) async {
     try {
       await restClient.auth.post(
-        '/Products',
+        '/Persons',
         data: {
-          'barbershop_id': productModel.barbershopId,
-          'name': productModel.name,
-          'email': productModel.email,
-          'password': productModel.password,
+          'barbershop_id': personModel.barbershopId,
+          'name': personModel.name,
+          'email': personModel.email,
+          'password': personModel.password,
           'profile': 'CUSTOMER',
-          'work_days': productModel.workdays,
-          'work_hours': productModel.workHours,
+          'work_days': personModel.workdays,
+          'work_hours': personModel.workHours,
         },
       );
 

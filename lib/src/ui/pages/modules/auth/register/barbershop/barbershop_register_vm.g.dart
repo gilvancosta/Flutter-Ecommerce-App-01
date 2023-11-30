@@ -15,7 +15,7 @@ final barbershopRegisterVmProvider = AutoDisposeNotifierProvider<
     BarbershopRegisterVm, BarbershopRegisterState>.internal(
   BarbershopRegisterVm.new,
   name: r'barbershopRegisterVmProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.person')
       ? null
       : _$barbershopRegisterVmHash,
   dependencies: null,

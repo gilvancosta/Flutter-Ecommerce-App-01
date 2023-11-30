@@ -14,7 +14,7 @@ final userRegisterVmProvider = AutoDisposeNotifierProvider<UserRegisterVm,
     UserRegisterStateStatus>.internal(
   UserRegisterVm.new,
   name: r'userRegisterVmProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.person')
       ? null
       : _$userRegisterVmHash,
   dependencies: null,
