@@ -12,7 +12,7 @@ enum SplashState {
   initial,
   login,
   loggedADM,
-  loggedEmployee,
+  loggedCustomer,
   error;
 }
 
@@ -30,7 +30,7 @@ class SplashVm extends _$SplashVm {
         final userModel = await ref.watch(getMeProvider.future);
         return switch (userModel) {
           UserModelADM() => SplashState.loggedADM,
-          UserModelEmployee() => SplashState.loggedEmployee,
+          UserModelCustomer() => SplashState.loggedCustomer,
         };
       } catch (e) {
         return SplashState.login;

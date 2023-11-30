@@ -1,4 +1,3 @@
-
 import '../../../core/exceptions/auth_exception.dart';
 import '../../../core/exceptions/repository_exception.dart';
 import '../../../core/fp/either.dart';
@@ -15,18 +14,18 @@ abstract interface class ProductRepository {
     ({String name, String email, String password}) userData,
   );
 
-  Future<Either<RepositoryException, List<UserModel>>> getEmployees(
+  Future<Either<RepositoryException, List<UserModel>>> getCustomers(
     int barbershopId,
   );
 
-  Future<Either<RepositoryException, Nil>> registerAdmAsEmployee(
+  Future<Either<RepositoryException, Nil>> registerAdmAsCustomer(
     ({
       List<String> workdays,
       List<int> workHours,
     }) productModel,
   );
 
-  Future<Either<RepositoryException, Nil>> registerEmployee(
+  Future<Either<RepositoryException, Nil>> registerCustomer(
     ({
       int barbershopId,
       String name,

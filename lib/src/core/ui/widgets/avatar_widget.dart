@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import '../../constants/constants.dart';
 import '../barbershop_icons.dart';
 
-
-
 class AvatarWidget extends StatelessWidget {
   final bool hideUploadButton;
 
@@ -21,7 +19,9 @@ class AvatarWidget extends StatelessWidget {
           Container(
             width: 90,
             height: 90,
-            decoration: const BoxDecoration(image: DecorationImage(image: AssetImage(ImageConstants.avatar))),
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(ImageConstants.photoURL))),
           ),
           Positioned(
             bottom: 2,
@@ -38,7 +38,7 @@ class AvatarWidget extends StatelessWidget {
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
-                  BarbershopIcons.addEmployee,
+                  BarbershopIcons.addCustomer,
                   color: ColorsConstants.brow,
                   size: 20,
                 ),

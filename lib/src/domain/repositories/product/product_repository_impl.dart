@@ -19,7 +19,8 @@ class ProductRepositoryImpl implements ProductRepository {
   });
 
   @override
-  Future<Either<AuthException, String>> login(String email, String password) async {
+  Future<Either<AuthException, String>> login(
+      String email, String password) async {
     try {
       final Response(:data) = await restClient.unAuth.post('/auth', data: {
         'email': email,
@@ -47,7 +48,8 @@ class ProductRepositoryImpl implements ProductRepository {
       return Success(UserModel.fromMap(data));
     } on DioException catch (e, s) {
       log('Erro ao buscar usuário logado', error: e, stackTrace: s);
-      return Failure(RepositoryException(message: 'Erro ao buscar usuário logado'));
+      return Failure(
+          RepositoryException(message: 'Erro ao buscar usuário logado'));
     } on ArgumentError catch (e, s) {
       log('Invalid Json', error: e, stackTrace: s);
       return Failure(RepositoryException(message: e.message));
@@ -55,7 +57,8 @@ class ProductRepositoryImpl implements ProductRepository {
   }
 
   @override
-  Future<Either<RepositoryException, Nil>> registerAdmin(({String email, String name, String password}) productData) async {
+  Future<Either<RepositoryException, Nil>> registerAdmin(
+      ({String email, String name, String password}) productData) async {
     try {
       await restClient.auth.post('/Products', data: {
         'email': productData.email,
@@ -66,28 +69,35 @@ class ProductRepositoryImpl implements ProductRepository {
       return Success(Nil());
     } on Exception catch (e, s) {
       log('Erro ao cadastrar usuário', error: e, stackTrace: s);
-      return Failure(RepositoryException(message: 'Erro ao cadastrar usuário admin'));
+      return Failure(
+          RepositoryException(message: 'Erro ao cadastrar usuário admin'));
     }
   }
 
   @override
-  Future<Either<RepositoryException, List<UserModel>>> getEmployees(int barbershopId) async {
+  Future<Either<RepositoryException, List<UserModel>>> getCustomers(
+      int barbershopId) async {
     try {
-      final Response(:List data) = await restClient.auth.get('/Products', queryParameters: {'barbershop_id': barbershopId});
+      final Response(:List data) = await restClient.auth
+          .get('/Products', queryParameters: {'barbershop_id': barbershopId});
 
-      final employees = data.map((e) => UserModel.fromMap(e)).toList();
-      return Success(employees);
+      final customers = data.map((e) => UserModel.fromMap(e)).toList();
+      return Success(customers);
     } on Exception catch (e, s) {
       log('Erro ao buscar colaboradores', error: e, stackTrace: s);
-      return Failure(RepositoryException(message: 'Erro ao buscar colaboradores'));
+      return Failure(
+          RepositoryException(message: 'Erro ao buscar colaboradores'));
     } on ArgumentError catch (e, s) {
-      log('Erro ao converter colaboradores (Invalid json)', error: e, stackTrace: s);
-      return Failure(RepositoryException(message: 'Erro ao buscar colaboradores'));
+      log('Erro ao converter colaboradores (Invalid json)',
+          error: e, stackTrace: s);
+      return Failure(
+          RepositoryException(message: 'Erro ao buscar colaboradores'));
     }
   }
 
   @override
-  Future<Either<RepositoryException, Nil>> registerAdmAsEmployee(({List<int> workHours, List<String> workdays}) productModel) async {
+  Future<Either<RepositoryException, Nil>> registerAdmAsCustomer(
+      ({List<int> workHours, List<String> workdays}) productModel) async {
     try {
       final productModelResult = await me();
 
@@ -106,13 +116,15 @@ class ProductRepositoryImpl implements ProductRepository {
 
       return Success(nil);
     } on DioException catch (e, s) {
-      log('Erro ao inserir administrador como colaborador', error: e, stackTrace: s);
-      return Failure(RepositoryException(message: 'Erro ao inserir administrador como colaborador'));
+      log('Erro ao inserir administrador como colaborador',
+          error: e, stackTrace: s);
+      return Failure(RepositoryException(
+          message: 'Erro ao inserir administrador como colaborador'));
     }
   }
 
   @override
-  Future<Either<RepositoryException, Nil>> registerEmployee(
+  Future<Either<RepositoryException, Nil>> registerCustomer(
     ({
       int barbershopId,
       String email,
@@ -130,7 +142,7 @@ class ProductRepositoryImpl implements ProductRepository {
           'name': productModel.name,
           'email': productModel.email,
           'password': productModel.password,
-          'profile': 'EMPLOYEE',
+          'profile': 'CUSTOMER',
           'work_days': productModel.workdays,
           'work_hours': productModel.workHours,
         },

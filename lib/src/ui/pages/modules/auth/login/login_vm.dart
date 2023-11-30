@@ -9,7 +9,6 @@ import '../../../../../core/providers/application_providers.dart';
 import '../../../../../domain/models/user_model.dart';
 import 'login_state.dart';
 
-
 part 'login_vm.g.dart';
 
 @riverpod
@@ -32,13 +31,13 @@ class LoginVm extends _$LoginVm {
         /// invalidando os caches para evitar o login com o usuário errado
         ref.invalidate(getMeProvider);
         ref.invalidate(getMyBarbershopProvider);
-        
+
         final userModel = await ref.read(getMeProvider.future);
         switch (userModel) {
           case UserModelADM():
             state = state.copyWith(status: LoginStateStatus.admLogin);
-          case UserModelEmployee():
-            state = state.copyWith(status: LoginStateStatus.employeeLogin);
+          case UserModelCustomer():
+            state = state.copyWith(status: LoginStateStatus.customerLogin);
         }
         break;
 

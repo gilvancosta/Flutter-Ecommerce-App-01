@@ -48,11 +48,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           Messages.showError('Erro ao realizar login', context);
         case LoginState(status: LoginStateStatus.admLogin):
           Navigator.of(context)
-              .pushNamedAndRemoveUntil('/home/adm-distribuidor', (route) => false);
+              .pushNamedAndRemoveUntil('/home/adm', (route) => false);
           break;
-        case LoginState(status: LoginStateStatus.employeeLogin):
+        case LoginState(status: LoginStateStatus.customerLogin):
           Navigator.of(context)
-              .pushNamedAndRemoveUntil('/home/revenda', (route) => false);
+              .pushNamedAndRemoveUntil('/home/customer', (route) => false);
           break;
       }
     });
@@ -131,7 +131,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                               switch (formKey.currentState!.validate()) {
                                 case (false):
                                   Messages.showError(
-                                      'Preencha os campos corretamente', context);
+                                      'Preencha os campos corretamente',
+                                      context);
                                   break;
                                 case true:
                                   login(emailEC.text, passwordEC.text);

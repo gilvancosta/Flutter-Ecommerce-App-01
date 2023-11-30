@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum LoginStateStatus { initial, error, admLogin, employeeLogin }
+enum LoginStateStatus { initial, error, admLogin, customerLogin }
 
 class LoginState {
   final LoginStateStatus status;

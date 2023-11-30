@@ -1,30 +1,31 @@
 sealed class UserModel {
+  final int id;
+  final String displayName;
+  final String email;
+  final String? photoURL;
+
   UserModel({
     required this.id,
-    required this.name,
+    required this.displayName,
     required this.email,
-    this.avatar,
+    this.photoURL,
   });
 
   factory UserModel.fromMap(Map<String, dynamic> json) {
     return switch (json['profile']) {
       'ADM' => UserModelADM.fromMap(json),
-      'EMPLOYEE' => UserModelEmployee.fromMap(json),
+      'CUSTOMER' => UserModelCustomer.fromMap(json),
       _ => throw ArgumentError('User profile not found'),
     };
   }
-
-  final int id;
-  final String name, email;
-  final String? avatar;
 }
 
 class UserModelADM extends UserModel {
   UserModelADM({
     required super.id,
-    required super.name,
+    required super.displayName,
     required super.email,
-    super.avatar,
+    super.photoURL,
     this.workDays,
     this.workHours,
   });
@@ -33,14 +34,14 @@ class UserModelADM extends UserModel {
     return switch (json) {
       {
         'id': final int id,
-        'name': final String name,
+        'name': final String displayName,
         'email': final String email,
       } =>
         UserModelADM(
           id: id,
-          name: name,
+          displayName: displayName,
           email: email,
-          avatar: json['avatar'],
+          photoURL: json['photoURL'],
           // ignore: avoid_dynamic_calls
           workDays: json['work_days']?.cast<String>(),
           // ignore: avoid_dynamic_calls
@@ -54,37 +55,37 @@ class UserModelADM extends UserModel {
   final List<int>? workHours;
 }
 
-class UserModelEmployee extends UserModel {
-  UserModelEmployee({
+class UserModelCustomer extends UserModel {
+  UserModelCustomer({
     required super.id,
-    required super.name,
+    required super.displayName,
     required super.email,
     required this.barbershopId,
-    super.avatar,
+    super.photoURL,
     required this.workDays,
     required this.workHours,
   });
 
-  factory UserModelEmployee.fromMap(Map<String, dynamic> json) {
+  factory UserModelCustomer.fromMap(Map<String, dynamic> json) {
     return switch (json) {
       {
         'id': final int id,
-        'name': final String name,
+        'name': final String displayName,
         'email': final String email,
         'barbershop_id': final int barbershopId,
         'work_days': final List workDays,
         'work_hours': final List workHours,
       } =>
-        UserModelEmployee(
+        UserModelCustomer(
           id: id,
-          name: name,
+          displayName: displayName,
           email: email,
           workDays: workDays.cast<String>(),
           workHours: workHours.cast<int>(),
-          avatar: json['avatar'],
+          photoURL: json['photoURL'],
           barbershopId: barbershopId,
         ),
-      _ => throw ArgumentError('Invalid UserModelEmployee JSON: $json'),
+      _ => throw ArgumentError('Invalid UserModelCustomer JSON: $json'),
     };
   }
 
