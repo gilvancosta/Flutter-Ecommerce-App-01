@@ -5,7 +5,7 @@ import '../../../core/exceptions/repository_exception.dart';
 import '../../../core/fp/either.dart';
 import '../../../core/fp/nil.dart';
 
-import '../../../core/restClient/rest_client.dart';
+import '../../../data/restClient/rest_client.dart';
 import '../../models/barbershop_model.dart';
 
 import '../../models/user_model.dart';
@@ -53,7 +53,7 @@ class BarbershopRepositoryImpl implements BarbershopRepository {
       });
       return Success(nil);
     } on DioException catch (e, s) {
-      log('Erro ao registrar barbearia', error: e, stackTrace: s);
+      log('Erro ao registrar barbearia', error: e, stackTrace: s, name: 'DioException');
       return Failure(
           RepositoryException(message: 'Erro ao registrar barbearia'));
     }

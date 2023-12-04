@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_print
 
-import 'dart:developer';
+import 'dart:developer' as developer;
 
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -17,18 +17,22 @@ class UserRegisterRepositoryImpl implements UserRegisterRepository {
 
   @override
   Future<Either<RepositoryException, Nil>> register(
-      String nome, String email, String password) async {
+    ({String name, String email, String password}) userData,
+  ) async {
     try {
       final userCredencial = await _firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: password);
+        email: userData.email,
+        password: userData.password,
+      );
+
+      developer.log('data:  $userCredencial', name: 'userCredencial');
+
       return Success(nil);
     } on FirebaseAuthException catch (e, s) {
-      log('Erro ao registrar usuário111', error: e, stackTrace: s);
+      developer.log('Erro ao registrar usuário111', error: e, stackTrace: s);
 
-
-             final loginTypes = await _firebaseAuth.fetchSignInMethodsForEmail(email);
-
-
+      final loginTypes =
+          await _firebaseAuth.fetchSignInMethodsForEmail(userData.email);
 
       if (loginTypes.contains('password')) {
         return Failure(
@@ -46,4 +50,40 @@ class UserRegisterRepositoryImpl implements UserRegisterRepository {
       }
     }
   }
-}
+
+  @override
+  Future<Either<RepositoryException, Nil>> registerAdmin(
+    ({String email, String name, String password}) userData,
+  ) async {
+    try {
+      final userCredencial = await _firebaseAuth.createUserWithEmailAndPassword(
+        email: userData.email,
+        password: userData.password,
+      );
+
+      developer.log('data:  $userCredencial', name: 'userCredencial');
+
+      return Success(nil);
+    } on FirebaseAuthException catch (e, s) {
+      developer.log('Erro ao registrar usuário111', error: e, stackTrace: s);
+
+      final loginTypes =
+          await _firebaseAuth.fetchSignInMethodsForEmail(userData.email);
+
+      if (loginTypes.contains('password')) {
+        return Failure(
+          RepositoryException(
+            message: 'E-mail já utilizado, por favor escolha outro e-mail',
+          ),
+        );
+      } else {
+        return Failure(
+          RepositoryException(
+            message:
+                'Você se cadastrou no TodoList pelo Google, por favor utilize ele para entrar !!!',
+          ),
+        );
+      }
+    }
+  }
+ }

@@ -1,24 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_router.dart';
+part of 'splash_vm.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appRouterHash() => r'a08b3f1ac8fdbda1a7b1a93745b9c719a9811b10';
+String _$splashVmHash() => r'69cd69bc8b947db0d5b154441b704e3a8b2b209e';
 
-/// See also [appRouter].
-@ProviderFor(appRouter)
-final appRouterProvider = AutoDisposeProvider<GoRouter>.internal(
-  appRouter,
-  name: r'appRouterProvider',
+/// See also [SplashVm].
+@ProviderFor(SplashVm)
+final splashVmProvider =
+    AutoDisposeAsyncNotifierProvider<SplashVm, SplashState>.internal(
+  SplashVm.new,
+  name: r'splashVmProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$appRouterHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$splashVmHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef AppRouterRef = AutoDisposeProviderRef<GoRouter>;
+typedef _$SplashVm = AutoDisposeAsyncNotifier<SplashState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

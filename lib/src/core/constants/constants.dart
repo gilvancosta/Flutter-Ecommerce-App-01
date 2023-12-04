@@ -12,7 +12,7 @@ sealed class ColorsConstants {
 }
 
 sealed class ImageConstants {
-  static const backgroundChair = 'assets/images/background_image_chair.jpg';
+  static const backgroundPage = 'assets/images/background_page.jpg';
   static const imageLogo = 'assets/images/imgLogo.png';
   static const imageLogoSplash = 'assets/images/imgLogoSplash.png';
   static const photoURL = 'assets/images/photoURL.png';

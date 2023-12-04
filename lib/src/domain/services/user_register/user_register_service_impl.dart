@@ -16,9 +16,10 @@ class UserRegisterServiceImpl implements UserRegisterService {
 
   @override
   Future<Either<ServiceException, Nil>> register(
-      String name, String email, String password) async {
+      ({String name, String email, String password}) userData) async {
+
     try {
-      await _userRegisterRepository.register(name, email, password);
+      await _userRegisterRepository.register(userData);
       return Success(nil);
     } on RepositoryException catch (e, s) {
       log('Erro ao registrar usuário', error: e, stackTrace: s);
@@ -29,4 +30,6 @@ class UserRegisterServiceImpl implements UserRegisterService {
       );
     }
   }
+
+
 }

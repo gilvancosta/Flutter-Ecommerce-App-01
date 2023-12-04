@@ -14,7 +14,7 @@ final firebaseAuthProvider = Provider<FirebaseAuth>.internal(
   firebaseAuth,
   name: r'firebaseAuthProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.person') ? null : _$firebaseAuthHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$firebaseAuthHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
@@ -28,7 +28,7 @@ String _$userLoginRepositoryHash() =>
 final userLoginRepositoryProvider = Provider<UserLoginRepository>.internal(
   userLoginRepository,
   name: r'userLoginRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.person')
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$userLoginRepositoryHash,
   dependencies: null,
@@ -43,7 +43,7 @@ String _$userLoginServiceHash() => r'149053c23a7c173c4cd2e080ef101e144468ba4e';
 final userLoginServiceProvider = Provider<UserLoginService>.internal(
   userLoginService,
   name: r'userLoginServiceProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.person')
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$userLoginServiceHash,
   dependencies: null,
@@ -60,7 +60,7 @@ final userRegisterRepositoryProvider =
     Provider<UserRegisterRepository>.internal(
   userRegisterRepository,
   name: r'userRegisterRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.person')
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$userRegisterRepositoryHash,
   dependencies: null,
@@ -76,7 +76,7 @@ String _$userRegisterServiceHash() =>
 final userRegisterServiceProvider = Provider<UserRegisterService>.internal(
   userRegisterService,
   name: r'userRegisterServiceProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.person')
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$userRegisterServiceHash,
   dependencies: null,
@@ -91,21 +91,22 @@ String _$restClientAppHash() => r'65a7660b7996e7c8afd87ad44ac6a8277b97ca24';
 final restClientAppProvider = Provider<RestClientApp>.internal(
   restClientApp,
   name: r'restClientAppProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.person') ? null : _$restClientAppHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$restClientAppHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
 typedef RestClientAppRef = ProviderRef<RestClientApp>;
-String _$personRepositoryHash() => r'e0112dcc88f61ceb8a9c234da719e682e2f4b587';
+String _$personRepositoryHash() => r'bb67f2fe0048f86d780f93fcf06a286f9a700365';
 
 /// See also [personRepository].
 @ProviderFor(personRepository)
 final personRepositoryProvider = Provider<PersonRepository>.internal(
   personRepository,
   name: r'personRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.person')
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$personRepositoryHash,
   dependencies: null,
@@ -113,21 +114,22 @@ final personRepositoryProvider = Provider<PersonRepository>.internal(
 );
 
 typedef PersonRepositoryRef = ProviderRef<PersonRepository>;
-String _$personServiceHash() => r'4262840e23b815d1e46efb4a4f3005379d6a2472';
+String _$personServiceHash() => r'a62e6959ff52257c46442b55284e20bbf5f2c09f';
 
 /// See also [personService].
 @ProviderFor(personService)
 final personServiceProvider = Provider<PersonService>.internal(
   personService,
   name: r'personServiceProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.person') ? null : _$personServiceHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$personServiceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
 typedef PersonServiceRef = ProviderRef<PersonService>;
-String _$getMeHash() => r'9508c5117d41dd14cb26999d7068889af8ca723d';
+String _$getMeHash() => r'4f4b4e628b942a73b15a7fb956a69d543d956db9';
 
 /// See also [getMe].
 @ProviderFor(getMe)
@@ -135,7 +137,7 @@ final getMeProvider = FutureProvider<UserModel>.internal(
   getMe,
   name: r'getMeProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.person') ? null : _$getMeHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$getMeHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
@@ -149,7 +151,7 @@ String _$barbershopRepositoryHash() =>
 final barbershopRepositoryProvider = Provider<BarbershopRepository>.internal(
   barbershopRepository,
   name: r'barbershopRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.person')
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$barbershopRepositoryHash,
   dependencies: null,
@@ -157,14 +159,14 @@ final barbershopRepositoryProvider = Provider<BarbershopRepository>.internal(
 );
 
 typedef BarbershopRepositoryRef = ProviderRef<BarbershopRepository>;
-String _$getMyBarbershopHash() => r'bc203d00620b2129f3aabf5e76644138140fa7f8';
+String _$getMyBarbershopHash() => r'561f61b14d4a449aa743d2b1ac68ddd7bc3f6353';
 
 /// See also [getMyBarbershop].
 @ProviderFor(getMyBarbershop)
 final getMyBarbershopProvider = FutureProvider<BarbershopModel>.internal(
   getMyBarbershop,
   name: r'getMyBarbershopProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.person')
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$getMyBarbershopHash,
   dependencies: null,
@@ -180,7 +182,7 @@ final logoutProvider = AutoDisposeFutureProvider<void>.internal(
   logout,
   name: r'logoutProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.person') ? null : _$logoutHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$logoutHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
@@ -195,7 +197,7 @@ final scheduleRepositoryProvider =
     AutoDisposeProvider<ScheduleRepository>.internal(
   scheduleRepository,
   name: r'scheduleRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.person')
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$scheduleRepositoryHash,
   dependencies: null,

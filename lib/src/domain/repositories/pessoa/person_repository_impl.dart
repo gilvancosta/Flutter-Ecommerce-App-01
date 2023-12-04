@@ -7,7 +7,7 @@ import '../../../core/exceptions/auth_exception.dart';
 import '../../../core/exceptions/repository_exception.dart';
 import '../../../core/fp/either.dart';
 import '../../../core/fp/nil.dart';
-import '../../../core/restClient/rest_client.dart';
+import '../../../data/restClient/rest_client.dart';
 
 import '../../models/user_model.dart';
 import 'person_repository.dart';
@@ -46,6 +46,9 @@ class PersonRepositoryImpl implements PersonRepository {
     try {
       final Response(:data) = await restClient.auth.get('/me');
       return Success(UserModel.fromMap(data));
+
+
+      
     } on DioException catch (e, s) {
       log('Erro ao buscar usuário logado', error: e, stackTrace: s);
       return Failure(

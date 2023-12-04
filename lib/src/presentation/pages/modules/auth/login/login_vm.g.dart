@@ -1,24 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_router.dart';
+part of 'login_vm.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appRouterHash() => r'a08b3f1ac8fdbda1a7b1a93745b9c719a9811b10';
+String _$loginVmHash() => r'd0d4b3be54e62b1dcf3519489fbdfad85d2b4746';
 
-/// See also [appRouter].
-@ProviderFor(appRouter)
-final appRouterProvider = AutoDisposeProvider<GoRouter>.internal(
-  appRouter,
-  name: r'appRouterProvider',
+/// See also [LoginVm].
+@ProviderFor(LoginVm)
+final loginVmProvider =
+    AutoDisposeNotifierProvider<LoginVm, LoginState>.internal(
+  LoginVm.new,
+  name: r'loginVmProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$appRouterHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$loginVmHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef AppRouterRef = AutoDisposeProviderRef<GoRouter>;
+typedef _$LoginVm = AutoDisposeNotifier<LoginState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

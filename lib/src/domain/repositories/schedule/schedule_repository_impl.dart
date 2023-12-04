@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import '../../../core/exceptions/repository_exception.dart';
 import '../../../core/fp/either.dart';
 import '../../../core/fp/nil.dart';
-import '../../../core/restClient/rest_client.dart';
+import '../../../data/restClient/rest_client.dart';
 import '../../models/schedule_model.dart';
 import 'schedule_repository.dart';
 

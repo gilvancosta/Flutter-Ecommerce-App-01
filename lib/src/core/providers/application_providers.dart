@@ -9,7 +9,7 @@ import '../../domain/repositories/users/user_register/user_register_repository_i
 import '../../domain/services/user_register/user_register_service.dart';
 import '../../domain/services/user_register/user_register_service_impl.dart';
 import '../fp/either.dart';
-import '../restClient/rest_client.dart';
+import '../../data/restClient/rest_client.dart';
 import '../ui/barbershop_nav_global_key.dart';
 
 import '../../domain/repositories/users/user_login/user_login_repository.dart';
