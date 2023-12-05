@@ -21,8 +21,8 @@ class PersonServiceImpl implements PersonService {
 
     switch (loginResult) {
       case Success(value: final accessToken):
-        final sp = await SharedPreferences.getInstance();
-        sp.setString(LocalStorageKeys.accessToken, accessToken);
+        final localStorage = await SharedPreferences.getInstance();
+        localStorage.setString(LocalStorageKeys.accessToken, accessToken);
         return Success(nil);
       case Failure(:final exception):
         return switch (exception) {

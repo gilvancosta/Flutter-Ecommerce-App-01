@@ -2,11 +2,11 @@
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../presentation/pages/home/home_page.dart';
-import '../../presentation/pages/modules/auth/login/login_page.dart';
-import '../../presentation/pages/modules/auth/register/barbershop/barbershop_register_page.dart';
-import '../../presentation/pages/modules/auth/register/user/user_register_page.dart';
-import '../../presentation/pages/splash/splash_page.dart';
+import '../../presentation/views/app_home/home_page.dart';
+import '../../presentation/views/modules/auth/login/login_page.dart';
+import '../../presentation/views/modules/auth/register/barbershop/barbershop_register_page.dart';
+import '../../presentation/views/modules/auth/register/user/user_register_page.dart';
+import '../../presentation/views/splash/splash_page.dart';
 
 part 'app_router.g.dart';
 
