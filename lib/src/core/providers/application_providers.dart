@@ -62,6 +62,8 @@ UserRegisterService userRegisterService(UserRegisterServiceRef ref) =>
 @Riverpod(keepAlive: true)
 RestClientApp restClientApp(RestClientAppRef ref) => RestClientApp();
 
+// == person ==
+
 @Riverpod(keepAlive: true)
 PersonRepository personRepository(PersonRepositoryRef ref) =>
     PersonRepositoryImpl(restClient: ref.read(restClientAppProvider));
@@ -79,6 +81,9 @@ Future<UserModel> getMe(GetMeRef ref) async {
     Failure(:final exception) => throw exception,
   };
 }
+
+// == barbershop ==
+
 
 @Riverpod(keepAlive: true)
 BarbershopRepository barbershopRepository(BarbershopRepositoryRef ref) =>
