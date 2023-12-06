@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:validatorless/validatorless.dart';
 
-import '../../../core/ui/helpers/form_helper.dart';
+import '../../../core/helpers/form_helper.dart';
 
 class MyTextFormFieldEmail extends StatelessWidget {
   final TextEditingController? controller;

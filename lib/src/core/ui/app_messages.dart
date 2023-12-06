@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_app_01/src/core/theme/app_theme_extensions.dart';
+import 'package:flutter_ecommerce_app_01/src/core/ui/app_theme_extensions.dart';
 
 class AppMessages {
   final BuildContext context;

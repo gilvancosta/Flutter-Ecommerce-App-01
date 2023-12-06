@@ -6,6 +6,8 @@ import '../../presentation/views/app_home/home_page.dart';
 import '../../presentation/views/modules/auth/login/login_page.dart';
 import '../../presentation/views/modules/auth/register/barbershop/barbershop_register_page.dart';
 import '../../presentation/views/modules/auth/register/user/user_register_page.dart';
+import '../../presentation/views/modules/auth/verification/email_verification_screen.dart';
+import '../../presentation/views/modules/home/home_adm/home_adm_view.dart';
 import '../../presentation/views/modules/home/home_customer/home_customer_view.dart';
 
 import '../../presentation/views/splash/splash_page.dart';
@@ -24,26 +26,28 @@ GoRouter appRouter(AppRouterRef ref) {
       builder: (context, state) => const HomePage(),
     ),
     GoRoute(
-      path: '/auth/login',
+      path: '/login',
       builder: (context, state) => const LoginPage(),
     ),
     GoRoute(
-      path: '/auth/register/user',
+      path: '/register/user',
       builder: (context, state) => const UserRegisterPage(),
     ),
     GoRoute(
-      path: '/auth/register/barbershop',
+      path: '/register/barbershop',
       builder: (context, state) => const BarbershopRegisterPage(),
     ),
     GoRoute(
       path: '/area-de-cliente',
       builder: (context, state) => const HomeCustomerView(),
     ),
-
     GoRoute(
       path: '/adm',
-      builder: (context, state) => const HomeCustomerView(),
+      builder: (context, state) => const HomeAdmView(),
     ),
-
+    GoRoute(
+      path: '/email-verification',
+      builder: (context, state) => const EmailVerificationScreen(),
+    ),
   ]);
 }

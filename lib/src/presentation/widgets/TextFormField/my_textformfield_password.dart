@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:validatorless/validatorless.dart';
 
-import '../../../core/theme/app_icons.dart';
-import '../../../core/ui/helpers/form_helper.dart';
+import '../../../core/ui/app_icons.dart';
+import '../../../core/helpers/form_helper.dart';
 
 class MyTextFormFieldPassword extends StatelessWidget {
   final bool obscureText;

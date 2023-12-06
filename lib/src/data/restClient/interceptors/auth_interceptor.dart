@@ -28,7 +28,7 @@ class AuthInterceptor extends Interceptor {
 
     if (extra case {'DIO_AUTH_KEY': true}) {
       if (response != null && response.statusCode == HttpStatus.forbidden) {
-        Navigator.of(BarbershopNavGlobalKey.instance.navkey.currentContext!).pushNamedAndRemoveUntil('/auth/login', (route) => false);
+        Navigator.of(BarbershopNavGlobalKey.instance.navkey.currentContext!).pushNamedAndRemoveUntil('/login', (route) => false);
       }
     }
      return handler.reject(err);

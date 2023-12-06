@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/navigation_drawer/navigation_drawer_widget.dart';
-import '../../../core/theme/theme_changer_provider.dart';
+import '../../../core/ui/theme_changer_provider.dart';
 import 'widgets/list_view_widget.dart';
 
 class HomePage extends ConsumerWidget {

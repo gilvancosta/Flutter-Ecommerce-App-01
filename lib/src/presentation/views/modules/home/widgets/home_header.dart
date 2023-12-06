@@ -1,11 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/providers/application_providers.dart';
 import '../../../../../core/ui/barbershop_icons.dart';
-import '../../../../../core/ui/widgets/barbershop_loader.dart';
+import '../../../../../core/widgets/barbershop_loader.dart';
 
 class HomeHeader extends ConsumerWidget {
   const HomeHeader({super.key}) : hideFilter = true;
@@ -40,7 +39,7 @@ class HomeHeader extends ConsumerWidget {
           SizedBox(height: MediaQuery.maybeViewPaddingOf(context)?.top),
           barberShop.maybeWhen(
             orElse: () => const Center(
-              child: BarbershopLoader(),
+              child: Text(''),
             ),
             data: (barbershop) => Row(
               children: [
@@ -73,7 +72,7 @@ class HomeHeader extends ConsumerWidget {
                 IconButton(
                   alignment: Alignment.centerRight,
                   onPressed: () {
-                   // ref.read(homeADMVMProvider.notifier).logout();
+                    // ref.read(homeADMVMProvider.notifier).logout();
                   },
                   icon: const Icon(
                     BarbershopIcons.exit,
@@ -95,11 +94,11 @@ class HomeHeader extends ConsumerWidget {
           ),
           const SizedBox(height: 24),
           const Text(
-            'Agende um Cliente',
+            'Conclua o Cadastro',
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w600,
-              fontSize: 40,
+              fontSize: 30,
             ),
           ),
           Offstage(

@@ -8,7 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/constants/constants.dart';
 import '../../../core/router/app_router.dart';
-import '../../../core/ui/helpers/messages.dart';
+import '../../../core/helpers/messages.dart';
 
 import 'splash_vm.dart';
 
@@ -65,18 +65,18 @@ class _SplashPageState extends ConsumerState<SplashPage> {
         error: (error, stackTrace) {
           log('Erro ao validar o login', error: error, stackTrace: stackTrace);
           Messages.showError('Erro ao validar o login', context);
-          _redirect('/auth/login');
+          _redirect('/login');
         },
         data: (data) {
           switch (data) {
             case SplashState.loggedADM:
-              _redirect('/home/adm');
+              _redirect('/adm');
               break;
             case SplashState.loggedCustomer:
-              _redirect('/home/customer');
+              _redirect('/area-de-cliente');
               break;
             case _:
-              _redirect('/auth/login');
+              _redirect('/login');
               break;
           }
         },

@@ -8,8 +8,10 @@ import '../../domain/repositories/users/user_register/user_register_repository.d
 import '../../domain/repositories/users/user_register/user_register_repository_impl.dart';
 import '../../domain/services/user_register/user_register_service.dart';
 import '../../domain/services/user_register/user_register_service_impl.dart';
+import '../exceptions/repository_exception.dart';
 import '../fp/either.dart';
 import '../../data/restClient/rest_client.dart';
+import '../fp/nil.dart';
 import '../ui/barbershop_nav_global_key.dart';
 
 import '../../domain/repositories/users/user_login/user_login_repository.dart';
@@ -33,6 +35,8 @@ import '../../domain/services/person/person_service.dart';
 import '../../domain/services/person/person_service_impl.dart';
 
 part 'application_providers.g.dart';
+
+// == FirebaseAuth.instancen ==
 
 @Riverpod(keepAlive: true)
 FirebaseAuth firebaseAuth(FirebaseAuthRef ref) => FirebaseAuth.instance;
@@ -84,7 +88,6 @@ Future<UserModel> getMe(GetMeRef ref) async {
 
 // == barbershop ==
 
-
 @Riverpod(keepAlive: true)
 BarbershopRepository barbershopRepository(BarbershopRepositoryRef ref) =>
     BarbershopRepositoryImpl(restClient: ref.watch(restClientAppProvider));
@@ -110,7 +113,7 @@ Future<void> logout(LogoutRef ref) async {
   ref.invalidate(getMeProvider);
   ref.invalidate(getMyBarbershopProvider);
   Navigator.of(BarbershopNavGlobalKey.instance.navkey.currentContext!)
-      .pushNamedAndRemoveUntil('/auth/login', (route) => false);
+      .pushNamedAndRemoveUntil('/login', (route) => false);
 }
 
 @riverpod

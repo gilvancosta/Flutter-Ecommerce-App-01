@@ -29,31 +29,31 @@ class UserRegisterVm extends _$UserRegisterVm {
 
     //final UserRegisterService userRegisterService = ref.read(userRegisterServiceProvider);
 
- final userData = (
+    final userData = (
       name: name,
       email: email,
       password: password,
     );
 
+    final user = await userRegisterService.register(userData).asyncLoader();
+    print('Bbbb registerResult: $user');
 
 
-    final registerResult =
-        await userRegisterService.register(userData).asyncLoader();
-    print('BBBBBBB:');
 
-    switch (registerResult) {
+
+
+    switch (user) {
       case Success():
-        ref.invalidate(getMeProvider);
         state = UserRegisterStateStatus.success;
+        print('Success():');
+      //  ref.invalidate(getMeProvider);
       case Failure():
+        print('Failure():');
         state = UserRegisterStateStatus.error;
     }
   }
 }
 
-
-
-
 /// Rodar o comando abaixo
 ///  dart run build_runner watch -d
-/// 
+///

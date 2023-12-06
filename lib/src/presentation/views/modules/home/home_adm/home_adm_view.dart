@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/providers/application_providers.dart';
 import '../../../../../core/ui/barbershop_icons.dart';
-import '../../../../../core/ui/widgets/barbershop_loader.dart';
+import '../../../../../core/widgets/barbershop_loader.dart';
 import '../widgets/home_header.dart';
 import 'provider/home_adm_state.dart';
 import 'provider/home_adm_vm.dart';

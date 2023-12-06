@@ -6,8 +6,8 @@ import 'package:flutter_signin_button/button_view.dart';
 
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/router/app_router.dart';
-import '../../../../../core/theme/app_messages.dart';
-import '../../../../../core/ui/helpers/messages.dart';
+import '../../../../../core/ui/app_messages.dart';
+import '../../../../../core/helpers/messages.dart';
 import '../../../../widgets/TextFormField/my_textformfield_email.dart';
 import '../../../../widgets/TextFormField/my_textformfield_password.dart';
 import 'login_state.dart';
@@ -179,10 +179,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                     ),
                                     TextButton(
                                       onPressed: () {
-                                        appRouter.push('/auth/register/user');
+                                        appRouter.pushReplacement('/register/user');
 
                                         //  Navigator.of(context)
-                                        // .pushNamed('/auth/register/user');
+                                        // .pushNamed('/register/user');
                                       },
                                       child: const Text(
                                         'Cadastre-se1',
@@ -204,7 +204,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         alignment: Alignment.bottomCenter,
                         child: InkWell(
                           onTap: () => Navigator.of(context)
-                              .pushNamed('/auth/register/user'),
+                              .pushNamed('/register/user'),
                           child: const Text(
                             'Criar Conta',
                             style: TextStyle(

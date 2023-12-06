@@ -5,9 +5,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'core/router/app_router.dart';
-import 'core/theme/app_theme.dart';
+import 'core/ui/app_theme.dart';
 
-import 'core/theme/theme_changer_provider.dart';
+import 'core/ui/theme_changer_provider.dart';
 import 'core/widgets/app_loader.dart';
 
 class MyApp extends ConsumerWidget {

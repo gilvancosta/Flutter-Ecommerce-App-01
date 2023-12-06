@@ -25,11 +25,17 @@ class UserRegisterRepositoryImpl implements UserRegisterRepository {
         password: userData.password,
       );
 
+      final userRegister = userCredencial.user;
+
+      await userRegister?.updateDisplayName(userData.name);
+
+      await userCredencial.user?.sendEmailVerification();
+
       developer.log('data:  $userCredencial', name: 'userCredencial');
 
       return Success(nil);
     } on FirebaseAuthException catch (e, s) {
-      developer.log('Erro ao registrar usuário111', error: e, stackTrace: s);
+      developer.log('Erro ao registrar usuário', error: e, stackTrace: s);
 
       final loginTypes =
           await _firebaseAuth.fetchSignInMethodsForEmail(userData.email);
@@ -86,4 +92,4 @@ class UserRegisterRepositoryImpl implements UserRegisterRepository {
       }
     }
   }
- }
+}

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_app_01/src/core/ui/helpers/form_helper.dart';
+import 'package:flutter_ecommerce_app_01/src/core/helpers/form_helper.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:validatorless/validatorless.dart';
 
-import '../../../../../../core/ui/helpers/messages.dart';
-import '../../../../../../core/ui/widgets/hours_panel.dart';
-import '../../../../../../core/ui/widgets/weekdays_panel.dart';
+import '../../../../../../core/helpers/messages.dart';
+import '../../../../../../core/widgets/hours_panel.dart';
+import '../../../../../../core/widgets/weekdays_panel.dart';
 import 'barbershop_register_state.dart';
 import 'barbershop_register_vm.dart';
 

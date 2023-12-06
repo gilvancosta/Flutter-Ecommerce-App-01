@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/theme/app_icons.dart';
-import '../../../core/ui/helpers/form_helper.dart';
+import '../../../core/ui/app_icons.dart';
+import '../../../core/helpers/form_helper.dart';
 
 
 class MyTextFormFieldGeneral extends StatelessWidget {

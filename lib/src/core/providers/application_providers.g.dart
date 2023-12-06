@@ -174,7 +174,7 @@ final getMyBarbershopProvider = FutureProvider<BarbershopModel>.internal(
 );
 
 typedef GetMyBarbershopRef = FutureProviderRef<BarbershopModel>;
-String _$logoutHash() => r'2783d630873f180e00a222b4fe17036120023576';
+String _$logoutHash() => r'10aa4ddfd3b03b8bda2fd932cf54f66308db30a6';
 
 /// See also [logout].
 @ProviderFor(logout)

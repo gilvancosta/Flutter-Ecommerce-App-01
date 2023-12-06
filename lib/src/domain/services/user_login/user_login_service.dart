@@ -1,6 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
+
 abstract class UserLoginService {
+
+
+
 
   Future<User?> login(String email, String password);
 

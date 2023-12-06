@@ -1,9 +1,13 @@
 // ignore_for_file: avoid_print
-
+import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../../../core/exceptions/app_auth_exception.dart';
+import '../../../../core/exceptions/repository_exception.dart';
+import '../../../../core/fp/either.dart';
+
+import '../../../../core/fp/nil.dart';
 import 'user_login_repository.dart';
 
 class UserRepositoryImpl implements UserLoginRepository {
@@ -12,6 +16,20 @@ class UserRepositoryImpl implements UserLoginRepository {
   UserRepositoryImpl({required FirebaseAuth firebaseAuth})
       : _firebaseAuth = firebaseAuth;
 
+  @override
+  Future<Either<RepositoryException, Nil>> sendEmailVerification() async {
+    try {
+      final user = _firebaseAuth.currentUser;
+      if (user != null) {
+        await user.sendEmailVerification();
+      }
+      return Success(Nil());
+    } on Exception catch (e, s) {
+      log('Erro ao cadastrar usuário', error: e, stackTrace: s);
+      return Failure(
+          RepositoryException(message: 'Erro ao cadastrar usuário admin'));
+    }
+  }
 
   @override
   Future<User?> login(String email, String password) async {

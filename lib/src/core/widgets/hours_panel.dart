@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/constants.dart';
+import '../constants/constants.dart';
 
 class HoursPanel extends StatefulWidget {
   final List<int>? enabledTimes;

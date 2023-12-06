@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/constants.dart';
-import '../barbershop_icons.dart';
+import '../constants/constants.dart';
+import '../ui/barbershop_icons.dart';
 
 class AvatarWidget extends StatelessWidget {
   const AvatarWidget({super.key}) : hideUploadButton = false;

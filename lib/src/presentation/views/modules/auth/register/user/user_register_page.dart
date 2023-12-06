@@ -1,11 +1,13 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_app_01/src/core/ui/helpers/form_helper.dart';
+import 'package:flutter_ecommerce_app_01/src/core/router/app_router.dart';
+import 'package:flutter_ecommerce_app_01/src/core/helpers/form_helper.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:validatorless/validatorless.dart';
 
-import '../../../../../../core/ui/helpers/messages.dart';
+import '../../../../../../core/fp/nil.dart';
+import '../../../../../../core/helpers/messages.dart';
 import 'user_register_vm.dart';
 
 class UserRegisterPage extends ConsumerStatefulWidget {
@@ -31,21 +33,31 @@ class _UserRegisterPageState extends ConsumerState<UserRegisterPage> {
 
   @override
   Widget build(BuildContext context) {
+    final appRouter = ref.watch(appRouterProvider);
     final userRegisterVm1 = ref.watch(userRegisterVmProvider.notifier);
 
+    // crie um switch para verificar o estado do userRegisterVmProvider e der um print com o resultado
     ref.listen(userRegisterVmProvider, (_, state) {
       switch (state) {
         case UserRegisterStateStatus.initial:
           break;
         case UserRegisterStateStatus.success:
-          Navigator.of(context).pushNamed('/auth/register/barbershop');
           break;
         case UserRegisterStateStatus.error:
-          Messages.showError('Erro ao realizar cadastro', context);
-
           break;
       }
     });
+
+    ref.listen(
+      userRegisterVmProvider,
+      (_, state) => switch (state) {
+        UserRegisterStateStatus.initial => nil,
+        UserRegisterStateStatus.success =>
+          appRouter.push('/email-verification'),
+        UserRegisterStateStatus.error =>
+          Messages.showError('Erro ao realizar cadastro', context),
+      },
+    );
 
     return Scaffold(
       appBar: AppBar(
