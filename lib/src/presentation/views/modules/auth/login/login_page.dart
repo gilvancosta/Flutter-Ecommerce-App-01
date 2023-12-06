@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -43,6 +45,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     final userCredential = ref.watch(firebaseAuthProvider).currentUser;
 
     ref.listen(loginVmProvider, (_, state) {
+      print('DDDDDD result: $state');
+
       switch (state) {
         case LoginState(status: LoginStateStatus.initial):
           break;
@@ -54,6 +58,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           appRouter.push('/adm');
           break;
         case LoginState(status: LoginStateStatus.customerLogin):
+          print('CCCCCCC result: $state');
+
           final emailVerified =
               userCredential != null ? userCredential.emailVerified : false;
 

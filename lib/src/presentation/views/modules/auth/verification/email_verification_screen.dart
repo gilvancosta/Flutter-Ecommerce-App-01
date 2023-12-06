@@ -17,11 +17,11 @@ class EmailVerificationScreen extends ConsumerWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-           SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: HomeHeader(
               name: userCredential != null
-                        ? userCredential.displayName.toString()
-                        : 'Cliente',
+                  ? userCredential.displayName.toString()
+                  : 'Cliente',
               mensagem: 'Verifique seu e-mail',
               hideFilter: true,
             ),
@@ -34,12 +34,26 @@ class EmailVerificationScreen extends ConsumerWidget {
                 children: [
                   const AvatarWidget.withoutButton(),
                   const SizedBox(height: 24),
+                  const Text(
+                    'Enviamos uma mensagem para:',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                   Text(
                     userCredential != null
-                        ? userCredential.displayName.toString()
-                        : 'Cliente',
+                        ? userCredential.email.toString()
+                        : 'Não informado',
                     style: const TextStyle(
                       fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  const Text(
+                    'Confirme o email',
+                    style: TextStyle(
+                      fontSize: 16,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
