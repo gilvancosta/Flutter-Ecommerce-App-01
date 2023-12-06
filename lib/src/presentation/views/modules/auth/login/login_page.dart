@@ -5,6 +5,7 @@ import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 
 import '../../../../../core/constants/constants.dart';
+import '../../../../../core/providers/application_providers.dart';
 import '../../../../../core/router/app_router.dart';
 import '../../../../../core/ui/app_messages.dart';
 import '../../../../../core/helpers/messages.dart';
@@ -37,6 +38,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     final appRouter = ref.watch(appRouterProvider);
 
     final LoginVm(:login) = ref.watch(loginVmProvider.notifier);
+    final LoginVm(:googleLogin) = ref.watch(loginVmProvider.notifier);
+
+    final userCredential = ref.watch(firebaseAuthProvider).currentUser;
 
     ref.listen(loginVmProvider, (_, state) {
       switch (state) {
@@ -47,12 +51,18 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         case LoginState(status: LoginStateStatus.error):
           Messages.showError('Erro ao realizar login', context);
         case LoginState(status: LoginStateStatus.admLogin):
-          Navigator.of(context)
-              .pushNamedAndRemoveUntil('/home/adm', (route) => false);
+          appRouter.push('/adm');
           break;
         case LoginState(status: LoginStateStatus.customerLogin):
-          Navigator.of(context)
-              .pushNamedAndRemoveUntil('/home/customer', (route) => false);
+          final emailVerified =
+              userCredential != null ? userCredential.emailVerified : false;
+
+          if (emailVerified) {
+            appRouter.push('/area-de-cliente');
+          } else {
+            appRouter.push('/email-verification');
+          }
+
           break;
       }
     });
@@ -128,6 +138,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                               minimumSize: const Size.fromHeight(56),
                             ),
                             onPressed: () {
+                              login(emailEC.text, passwordEC.text);
+
                               switch (formKey.currentState!.validate()) {
                                 case (false):
                                   Messages.showError(
@@ -161,7 +173,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                     borderSide: BorderSide.none,
                                   ),
                                   onPressed: () {
-                                    // context.read<LoginController>().googleLogin();
+                                    googleLogin();
                                   },
                                 ),
                                 const SizedBox(height: 20),
@@ -179,7 +191,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                     ),
                                     TextButton(
                                       onPressed: () {
-                                        appRouter.pushReplacement('/register/user');
+                                        appRouter
+                                            .pushReplacement('/register/user');
 
                                         //  Navigator.of(context)
                                         // .pushNamed('/register/user');

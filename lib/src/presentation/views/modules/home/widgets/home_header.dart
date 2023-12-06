@@ -1,16 +1,24 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/providers/application_providers.dart';
 import '../../../../../core/ui/barbershop_icons.dart';
-import '../../../../../core/widgets/barbershop_loader.dart';
+
 
 class HomeHeader extends ConsumerWidget {
-  const HomeHeader({super.key}) : hideFilter = true;
-  const HomeHeader.withoutFilter({super.key}) : hideFilter = false;
-
+  final String name;
+  final String mensagem;
   final bool hideFilter;
+  const HomeHeader({
+    required this.name,
+    required this.mensagem,
+    required this.hideFilter,
+  });
+
+
+ 
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -84,9 +92,9 @@ class HomeHeader extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 24),
-          const Text(
-            'Bem-vindo',
-            style: TextStyle(
+          Text(
+            'Bem-vindo $name',
+            style: const TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w500,
               fontSize: 18,
@@ -94,7 +102,7 @@ class HomeHeader extends ConsumerWidget {
           ),
           const SizedBox(height: 24),
           const Text(
-            'Conclua o Cadastro',
+            'Verifique seu email',
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w600,

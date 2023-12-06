@@ -61,7 +61,11 @@ class HomeAdmView extends ConsumerWidget {
         data: (HomeADMState data) => CustomScrollView(
           slivers: [
             const SliverToBoxAdapter(
-              child: HomeHeader(),
+              child: HomeHeader(
+                name: 'Administrador',
+                mensagem: 'Atualize seu Cadastro',
+                hideFilter: false,
+              ),
             ),
             SliverList(
               delegate: SliverChildBuilderDelegate(

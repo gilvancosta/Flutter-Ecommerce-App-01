@@ -17,8 +17,14 @@ class EmailVerificationScreen extends ConsumerWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          const SliverToBoxAdapter(
-            child: HomeHeader(),
+           SliverToBoxAdapter(
+            child: HomeHeader(
+              name: userCredential != null
+                        ? userCredential.displayName.toString()
+                        : 'Cliente',
+              mensagem: 'Verifique seu e-mail',
+              hideFilter: true,
+            ),
           ),
           SliverFillRemaining(
             hasScrollBody: false,
@@ -44,7 +50,7 @@ class EmailVerificationScreen extends ConsumerWidget {
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(56),
                     ),
-                    child: const Text('AGENDAR CLIENTE'),
+                    child: const Text('Enviar Novamente'),
                   ),
                   const SizedBox(height: 24),
                   OutlinedButton(
@@ -52,7 +58,7 @@ class EmailVerificationScreen extends ConsumerWidget {
                       minimumSize: const Size.fromHeight(56),
                     ),
                     onPressed: () {},
-                    child: const Text('VER AGENDA'),
+                    child: const Text('Já verifiquei'),
                   ),
                 ],
               ),

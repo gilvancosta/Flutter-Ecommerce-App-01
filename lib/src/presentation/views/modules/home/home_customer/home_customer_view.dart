@@ -19,7 +19,11 @@ class HomeCustomerView extends ConsumerWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          const SliverToBoxAdapter(child: HomeHeader()),
+          const SliverToBoxAdapter(child: HomeHeader(
+                                  name: 'Cliente',
+              mensagem: 'Atualize seu Cadastro',
+              hideFilter: false,  
+          )),
           SliverFillRemaining(
             hasScrollBody: false,
             child: Padding(

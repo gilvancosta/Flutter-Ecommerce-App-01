@@ -35,18 +35,7 @@ class _UserRegisterPageState extends ConsumerState<UserRegisterPage> {
   Widget build(BuildContext context) {
     final appRouter = ref.watch(appRouterProvider);
     final userRegisterVm1 = ref.watch(userRegisterVmProvider.notifier);
-
-    // crie um switch para verificar o estado do userRegisterVmProvider e der um print com o resultado
-    ref.listen(userRegisterVmProvider, (_, state) {
-      switch (state) {
-        case UserRegisterStateStatus.initial:
-          break;
-        case UserRegisterStateStatus.success:
-          break;
-        case UserRegisterStateStatus.error:
-          break;
-      }
-    });
+  
 
     ref.listen(
       userRegisterVmProvider,
