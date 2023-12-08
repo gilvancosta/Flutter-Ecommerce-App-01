@@ -33,7 +33,6 @@ class UserLoginServiceImpl implements UserLoginService {
       );
     }
   }
-
   @override
   Future<Either<ServiceException, Nil>> login(
     String email,

@@ -50,10 +50,10 @@ class UserRepositoryImpl implements UserLoginRepository {
         throw AppAuthException(message: 'Login ou senha inválidos');
       }
       if (e.code == 'wrong-password') {
-        throw AppAuthException(message: 'Login ou senha inválidos');
+        throw AppAuthException(message: 'Senha Bão confere');
       }
       if (e.code == 'invalid-email') {
-        throw AppAuthException(message: 'Login ou senha inválidos');
+        throw AppAuthException(message: 'Email inválido');
       }
       throw AppAuthException(message: e.message ?? 'Erro ao realizar login');
     }
@@ -86,6 +86,8 @@ class UserRepositoryImpl implements UserLoginRepository {
     try {
       final googleSignIn = GoogleSignIn();
       final googleUser = await googleSignIn.signIn();
+
+      
       if (googleUser != null) {
         loginMethods =
             await _firebaseAuth.fetchSignInMethodsForEmail(googleUser.email);

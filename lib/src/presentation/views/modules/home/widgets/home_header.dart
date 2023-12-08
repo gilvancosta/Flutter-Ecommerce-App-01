@@ -6,7 +6,6 @@ import '../../../../../core/constants/constants.dart';
 import '../../../../../core/providers/application_providers.dart';
 import '../../../../../core/ui/barbershop_icons.dart';
 
-
 class HomeHeader extends ConsumerWidget {
   final String name;
   final String mensagem;
@@ -16,9 +15,6 @@ class HomeHeader extends ConsumerWidget {
     required this.mensagem,
     required this.hideFilter,
   });
-
-
- 
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -93,7 +89,7 @@ class HomeHeader extends ConsumerWidget {
           ),
           const SizedBox(height: 24),
           Text(
-            'Bem-vindo $name',
+            'Bem-vindo Bem-vindo Bem-vindo $name',
             style: const TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w500,
