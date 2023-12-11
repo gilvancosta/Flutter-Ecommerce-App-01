@@ -58,10 +58,12 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           appRouter.push('/adm');
           break;
         case LoginState(status: LoginStateStatus.customerLogin):
-          print('CCCCCCC result: $state');
+          //  print('CCCCCCC result: $state');
 
           final emailVerified =
               userCredential != null ? userCredential.emailVerified : false;
+
+          print('CCCCCCC userCredential: $userCredential');
 
           if (emailVerified) {
             appRouter.push('/area-de-cliente');

@@ -19,11 +19,16 @@ class LoginVm extends _$LoginVm {
   LoginState build() => LoginState.initial();
 
   Future<void> googleLogin() async {
-    final loaderHandle = AsyncLoaderHandler()..start();
+     final loaderHandle = AsyncLoaderHandler()..start();
+
+   // print('AAAAAAAAAAAAAAAA 1111');
 
     final loginService = ref.watch(userLoginServiceProvider);
 
+  //  print('AAAAAAAAAAAAAAAA 222222');
     final user = await loginService.googleLogin();
+
+   // print('AAAAAAAAAAAAAAAA 333');
 
     //_userService.logout();
 
@@ -38,7 +43,7 @@ class LoginVm extends _$LoginVm {
         );
     }
 
-    loaderHandle.close();
+      loaderHandle.close();
   }
 
   Future<void> login(String email, String password) async {

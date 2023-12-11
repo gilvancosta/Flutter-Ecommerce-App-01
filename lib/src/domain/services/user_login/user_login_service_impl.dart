@@ -33,13 +33,14 @@ class UserLoginServiceImpl implements UserLoginService {
       );
     }
   }
+
   @override
   Future<Either<ServiceException, Nil>> login(
     String email,
     String password,
   ) async {
     try {
-      final result = await _userLoginRepository.login(
+      await _userLoginRepository.login(
         email,
         password,
       );
@@ -59,7 +60,20 @@ class UserLoginServiceImpl implements UserLoginService {
       _userLoginRepository.forgotPassword(email);
 
   @override
-  Future<User?> googleLogin() => _userLoginRepository.googleLogin();
+  Future<Either<ServiceException, Nil>> googleLogin() async {
+    try {
+      await _userLoginRepository.googleLogin();
+      return Success(nil);
+    } on ServiceException catch (e, s) {
+      log('Erro ao registrar usuário', error: e, stackTrace: s);
+
+      return Failure(
+        ServiceException(
+          message: e.message,
+        ),
+      );
+    }
+  }
 
   @override
   Future<void> logout() => _userLoginRepository.logout();

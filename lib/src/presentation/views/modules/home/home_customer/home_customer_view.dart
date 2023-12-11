@@ -5,9 +5,7 @@ import '../../../../../core/constants/constants.dart';
 
 import '../../../../../core/widgets/avatar_widget.dart';
 
-
 import '../widgets/home_header.dart';
-
 
 class HomeCustomerView extends ConsumerWidget {
   const HomeCustomerView({super.key});
@@ -17,13 +15,20 @@ class HomeCustomerView extends ConsumerWidget {
     //  final userModelAsync = ref.watch(getMeProvider);
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Cliente'),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              //  ref.read(userLoginServiceProvider).logout();
+            },
+            icon: const Icon(Icons.logout),
+          ),
+        ],
+      ),
       body: CustomScrollView(
         slivers: [
-          const SliverToBoxAdapter(child: HomeHeader(
-                                  name: 'Cliente',
-              mensagem: 'Atualize seu Cadastro',
-              hideFilter: false,  
-          )),
           SliverFillRemaining(
             hasScrollBody: false,
             child: Padding(
