@@ -35,7 +35,6 @@ class _UserRegisterPageState extends ConsumerState<UserRegisterPage> {
   Widget build(BuildContext context) {
     final appRouter = ref.watch(appRouterProvider);
     final userRegisterVm1 = ref.watch(userRegisterVmProvider.notifier);
-  
 
     ref.listen(
       userRegisterVmProvider,

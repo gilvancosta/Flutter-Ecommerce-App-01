@@ -15,6 +15,6 @@ sealed class ImageConstants {
   static const backgroundPage = 'assets/images/background_page.jpg';
   static const imageLogo = 'assets/images/imgLogo.png';
   static const imageLogoSplash = 'assets/images/imgLogoSplash.png';
-  static const photoURL = 'assets/images/photoURL.png';
+  static const photoURL = 'assets/images/imgLogoSplash.png';
   static const avatar = 'assets/images/avatar.png';
 }

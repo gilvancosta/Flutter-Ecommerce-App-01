@@ -53,9 +53,9 @@ class LoginVm extends _$LoginVm {
       final loginService = ref.watch(userLoginServiceProvider);
 
       final result = await loginService.login(email, password);
-      print('AAAAAAAAAAAAAAAA result: $result');
-
+     // print('AAAAAAAAAAAAAAAA result: $result');
       state = state.copyWith(status: LoginStateStatus.customerLogin);
+
     } on AppAuthException catch (e) {
       state = state.copyWith(
         status: LoginStateStatus.error,

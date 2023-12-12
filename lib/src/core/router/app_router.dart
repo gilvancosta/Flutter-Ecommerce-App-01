@@ -7,6 +7,7 @@ import '../../presentation/views/modules/auth/login/login_page.dart';
 import '../../presentation/views/modules/auth/register/barbershop/barbershop_register_page.dart';
 import '../../presentation/views/modules/auth/register/user/user_register_page.dart';
 import '../../presentation/views/modules/auth/verification/email_verification_screen.dart';
+import '../../presentation/views/modules/customer/registration/customer_registration_screen.dart';
 import '../../presentation/views/modules/home/home_adm/home_adm_view.dart';
 import '../../presentation/views/modules/home/home_customer/home_customer_view.dart';
 
@@ -38,7 +39,7 @@ GoRouter appRouter(AppRouterRef ref) {
       builder: (context, state) => const BarbershopRegisterPage(),
     ),
     GoRoute(
-      path: '/area-de-cliente',
+      path: '/home-customer',
       builder: (context, state) => const HomeCustomerView(),
     ),
     GoRoute(
@@ -48,6 +49,10 @@ GoRouter appRouter(AppRouterRef ref) {
     GoRoute(
       path: '/email-verification',
       builder: (context, state) => const EmailVerificationScreen(),
+    ),
+    GoRoute(
+      path: '/customer-registration',
+      builder: (context, state) => const CustomerRegistrationScreen(),
     ),
   ]);
 }

@@ -45,7 +45,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     final userCredential = ref.watch(firebaseAuthProvider).currentUser;
 
     ref.listen(loginVmProvider, (_, state) {
-      print('DDDDDD result: $state');
+      //  print('DDDDDD result: $state');
 
       switch (state) {
         case LoginState(status: LoginStateStatus.initial):
@@ -63,10 +63,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           final emailVerified =
               userCredential != null ? userCredential.emailVerified : false;
 
-          print('CCCCCCC userCredential: $userCredential');
+          // print('CCCCCCC userCredential: $userCredential');
 
           if (emailVerified) {
-            appRouter.push('/area-de-cliente');
+            appRouter.push('/customer-registration');
           } else {
             appRouter.push('/email-verification');
           }

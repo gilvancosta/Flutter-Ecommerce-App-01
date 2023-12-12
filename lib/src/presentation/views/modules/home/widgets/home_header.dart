@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/providers/application_providers.dart';
+import '../../../../../core/router/app_router.dart';
 import '../../../../../core/ui/barbershop_icons.dart';
 
 class HomeHeader extends ConsumerWidget {
@@ -18,8 +19,8 @@ class HomeHeader extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final barberShop = ref.watch(getMyBarbershopProvider);
-
+    // final barberShop = ref.watch(getMyBarbershopProvider);
+    final appRouter = ref.watch(appRouterProvider);
     return Container(
       width: MediaQuery.sizeOf(context).width,
       padding: const EdgeInsets.all(16),
@@ -41,51 +42,48 @@ class HomeHeader extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: MediaQuery.maybeViewPaddingOf(context)?.top),
-          barberShop.maybeWhen(
-            orElse: () => const Center(
-              child: Text(''),
-            ),
-            data: (barbershop) => Row(
-              children: [
-                const CircleAvatar(
-                  backgroundColor: Color(0xffbdbdbd),
-                  child: SizedBox.shrink(),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Text(
-                    barbershop.name,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                const Spacer(),
-                const Text(
-                  'Editar',
+          Row(
+            children: [
+              const CircleAvatar(
+                backgroundColor: Color(0xffbdbdbd),
+                child: SizedBox.shrink(),
+              ),
+              const SizedBox(width: 16),
+              const Expanded(
+                child: Text(
+                  'Atacadão Eletrônicos',
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
                   style: TextStyle(
-                    color: ColorsConstants.grey,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                IconButton(
-                  alignment: Alignment.centerRight,
-                  onPressed: () {
-                    // ref.read(homeADMVMProvider.notifier).logout();
-                  },
-                  icon: const Icon(
-                    BarbershopIcons.exit,
-                    color: ColorsConstants.grey,
-                    size: 32,
-                  ),
+              ),
+              const Spacer(),
+              const Text(
+                'Sair',
+                style: TextStyle(
+                  color: ColorsConstants.grey,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700,
                 ),
-              ],
-            ),
+              ),
+              IconButton(
+                alignment: Alignment.centerRight,
+                onPressed: () {
+                  //ref.read(homeADMVMProvider.notifier).logout();
+
+                  appRouter.pushReplacement('/login');
+                },
+                icon: const Icon(
+                  BarbershopIcons.exit,
+                  color: ColorsConstants.grey,
+                  size: 32,
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 24),
           Text(

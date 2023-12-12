@@ -8,7 +8,6 @@ import '../../../../../../core/providers/application_providers.dart';
 
 import 'email_verification_state.dart';
 
-
 part 'email_verification_vm.g.dart';
 
 @riverpod
@@ -16,19 +15,17 @@ class EmailVerificationVm extends _$EmailVerificationVm {
   @override
   EmailVerificationState build() => EmailVerificationState.initial();
 
-  Future<void> googleLogin() async {
-     final loaderHandle = AsyncLoaderHandler()..start();
+  Future<void> sendEmailVerification() async {
+    final loaderHandle = AsyncLoaderHandler()..start();
 
     final loginService = ref.watch(userLoginServiceProvider);
     final user = await loginService.sendEmailVerification();
-
 
     //_userService.logout();
 
     switch (user) {
       case Success():
-        state = state.copyWith(
-                status: VerificationState.success);
+        state = state.copyWith(status: VerificationState.success);
         break;
       case Failure(exception: ServiceException(:final message)):
         state = state.copyWith(
@@ -37,9 +34,6 @@ class EmailVerificationVm extends _$EmailVerificationVm {
         );
     }
 
-      loaderHandle.close();
+    loaderHandle.close();
   }
-
-
 }
-

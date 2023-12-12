@@ -3,24 +3,34 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../core/constants/constants.dart';
 
+import '../../../../../core/providers/application_providers.dart';
+import '../../../../../core/router/app_router.dart';
 import '../../../../../core/widgets/avatar_widget.dart';
 
-class HomeCustomerView extends ConsumerWidget {
-  const HomeCustomerView({super.key});
+class CustomerRegistrationScreen extends ConsumerStatefulWidget {
+  const CustomerRegistrationScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    //  final userModelAsync = ref.watch(getMeProvider);
+  ConsumerState<CustomerRegistrationScreen> createState() =>
+      CustomerRegistrationScreenState();
+}
 
+class CustomerRegistrationScreenState
+    extends ConsumerState<CustomerRegistrationScreen> {
+  @override
+  Widget build(BuildContext context) {
+    //  final userModelAsync = ref.watc(getMeProvider);
+    final appRouter = ref.watch(appRouterProvider);
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text('Cliente'),
+        title: const Text('Cadastro de Clientes'),
         centerTitle: true,
         actions: [
           IconButton(
             onPressed: () {
-              //  ref.read(userLoginServiceProvider).logout();
+              ref.read(userLoginServiceProvider).logout();
+              appRouter.pushReplacement('/login');
             },
             icon: const Icon(Icons.logout),
           ),
