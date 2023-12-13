@@ -60,6 +60,7 @@ dependencies:
   path: ^1.8.3
   intl: ^0.18.1
   flutter_signin_button: ^2.0.0
+  image_picker: ^1.0.5
 
 dev_dependencies:
   flutter_test:
