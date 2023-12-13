@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../core/ui/app_icons.dart';
 import '../../../core/helpers/form_helper.dart';
 
-
-class MyTextFormFieldGeneral extends StatelessWidget {
-  final String label;
+class MyTextFormFieldMultiline extends StatelessWidget {
+  final String fieldLabel;
   final IconButton? suffixIconButton;
   final bool obscureText;
   final ValueNotifier<bool> obscureTextVN;
@@ -13,9 +12,9 @@ class MyTextFormFieldGeneral extends StatelessWidget {
   final FormFieldValidator<String>? validator;
   final FocusNode? focusNode;
 
-  MyTextFormFieldGeneral({
+  MyTextFormFieldMultiline({
     Key? key,
-    required this.label,
+    required this.fieldLabel,
     this.suffixIconButton,
     this.obscureText = false,
     this.controller,
@@ -37,11 +36,12 @@ class MyTextFormFieldGeneral extends StatelessWidget {
           controller: controller,
           validator: validator,
           focusNode: focusNode,
-   //Esconde o teclado ao clicar fora do campo
-          onTapOutside: (_) => context.unfocus(),         
+          maxLines: 2,
+          //Esconde o teclado ao clicar fora do campo
+          onTapOutside: (_) => context.unfocus(),
           decoration: InputDecoration(
-            labelText: label,
-            labelStyle: const TextStyle(fontSize: 15, color: Colors.black),
+            labelText: fieldLabel,
+            labelStyle: const TextStyle(fontSize: 12, color: Colors.black),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
             ),

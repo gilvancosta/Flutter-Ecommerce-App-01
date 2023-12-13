@@ -90,6 +90,8 @@ class _UserRegisterPageState extends ConsumerState<UserRegisterPage> {
                   ),
                 ),
                 const SizedBox(height: 20),
+
+                
                 TextFormField(
                   onTapOutside: (_) => context.unfocus(),
                   controller: emailEC,
@@ -101,6 +103,9 @@ class _UserRegisterPageState extends ConsumerState<UserRegisterPage> {
                     labelText: 'E-mail',
                   ),
                 ),
+               
+               
+               
                 const SizedBox(height: 20),
                 TextFormField(
                   onTapOutside: (_) => context.unfocus(),

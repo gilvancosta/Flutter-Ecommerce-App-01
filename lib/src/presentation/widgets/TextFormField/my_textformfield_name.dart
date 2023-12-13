@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../core/ui/app_icons.dart';
 import '../../../core/helpers/form_helper.dart';
 
-class My_TextFormField extends StatelessWidget {
-  final String label;
+class MyTextFormFieldName extends StatelessWidget {
+  final String fieldLabel;
   final IconButton? suffixIconButton;
   final bool obscureText;
   final ValueNotifier<bool> obscureTextVN;
@@ -12,9 +12,9 @@ class My_TextFormField extends StatelessWidget {
   final FormFieldValidator<String>? validator;
   final FocusNode? focusNode;
 
-  My_TextFormField({
+  MyTextFormFieldName({
     Key? key,
-    required this.label,
+    required this.fieldLabel,
     this.suffixIconButton,
     this.obscureText = false,
     this.controller,
@@ -40,7 +40,7 @@ class My_TextFormField extends StatelessWidget {
           onTapOutside: (_) => context.unfocus(),   
 
           decoration: InputDecoration(
-            labelText: label,
+            labelText: fieldLabel,
             labelStyle: const TextStyle(fontSize: 15, color: Colors.black),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),

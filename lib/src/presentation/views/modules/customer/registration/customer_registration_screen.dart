@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_final_fields
+
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app_01/src/core/helpers/form_helper.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,6 +10,8 @@ import '../../../../../core/constants/constants.dart';
 import '../../../../../core/providers/application_providers.dart';
 import '../../../../../core/router/app_router.dart';
 import '../../../../../core/widgets/avatar_widget.dart';
+import '../../../../../domain/models/customer_model.dart';
+import 'widgets/registration_form_widget.dart';
 
 class CustomerRegistrationScreen extends ConsumerStatefulWidget {
   const CustomerRegistrationScreen({super.key});
@@ -19,6 +23,7 @@ class CustomerRegistrationScreen extends ConsumerStatefulWidget {
 
 class CustomerRegistrationScreenState
     extends ConsumerState<CustomerRegistrationScreen> {
+  bool _isloading = false;
   final formKey = GlobalKey<FormState>();
   final nameEC = TextEditingController();
   final emailEC = TextEditingController();
@@ -31,6 +36,8 @@ class CustomerRegistrationScreenState
     passwordEC.dispose();
     super.dispose();
   }
+
+  Future<void> _handleSubmit(CustomerModel formData) async {}
 
   @override
   Widget build(BuildContext context) {
@@ -55,187 +62,27 @@ class CustomerRegistrationScreenState
         title: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Atacadão Eletrônicos', style: TextStyle(fontSize: 12)),
-            Text('Cadastro de Cliente', style: TextStyle(fontSize: 16))
+            Text('Cadastro de Cliente', style: TextStyle(fontSize: 20))
           ],
         ),
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 30.0, right: 30.0, top: 15),
-          child: Form(
-            key: formKey,
-            child: Column(
-              children: [
-                // ========== copia =====================
-                const SizedBox(height: 20),
-                TextFormField(
-                  onTapOutside: (_) => context.unfocus(),
-                  controller: nameEC,
-                  validator: Validatorless.required('Nome obrigatório'),
-                  decoration: const InputDecoration(
-                    labelText: 'Nome',
-                  ),
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  onTapOutside: (_) => context.unfocus(),
-                  controller: emailEC,
-                  validator: Validatorless.multiple([
-                    Validatorless.required('E-mail obrigatório'),
-                    Validatorless.email('E-mail inválido'),
-                  ]),
-                  decoration: const InputDecoration(
-                    labelText: 'E-mail',
-                  ),
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  onTapOutside: (_) => context.unfocus(),
-                  controller: passwordEC,
-                  validator: Validatorless.multiple([
-                    Validatorless.required('Senha obrigatória'),
-                    Validatorless.min(
-                        6, 'Senha deve conter no mínimo 6 caracteres'),
-                  ]),
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: 'Senha',
-                  ),
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  onTapOutside: (_) => context.unfocus(),
-                  validator: Validatorless.multiple([
-                    Validatorless.required('Confirmar senha é obrigatório'),
-                    // Validatorless.min(6, 'Senha deve conter no mínimo 6 caracteres'),
-                    Validatorless.compare(
-                        passwordEC, 'As senhas diferente de confirmar senha'),
-                  ]),
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: 'Confirmar Senha',
-                  ),
-                ),
-                const SizedBox(height: 20),
-// ========== copia =====================
-
-                const SizedBox(height: 20),
-                TextFormField(
-                  onTapOutside: (_) => context.unfocus(),
-                  controller: nameEC,
-                  validator: Validatorless.required('Nome obrigatório'),
-                  decoration: const InputDecoration(
-                    labelText: 'Nome',
-                  ),
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  onTapOutside: (_) => context.unfocus(),
-                  controller: emailEC,
-                  validator: Validatorless.multiple([
-                    Validatorless.required('E-mail obrigatório'),
-                    Validatorless.email('E-mail inválido'),
-                  ]),
-                  decoration: const InputDecoration(
-                    labelText: 'E-mail',
-                  ),
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  onTapOutside: (_) => context.unfocus(),
-                  controller: passwordEC,
-                  validator: Validatorless.multiple([
-                    Validatorless.required('Senha obrigatória'),
-                    Validatorless.min(
-                        6, 'Senha deve conter no mínimo 6 caracteres'),
-                  ]),
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: 'Senha',
-                  ),
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  onTapOutside: (_) => context.unfocus(),
-                  validator: Validatorless.multiple([
-                    Validatorless.required('Confirmar senha é obrigatório'),
-                    // Validatorless.min(6, 'Senha deve conter no mínimo 6 caracteres'),
-                    Validatorless.compare(
-                        passwordEC, 'As senhas diferente de confirmar senha'),
-                  ]),
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: 'Confirmar Senha',
-                  ),
-                ),
-                const SizedBox(height: 20),
-
-// ========== copia =====================
-
-                const SizedBox(height: 20),
-                TextFormField(
-                  onTapOutside: (_) => context.unfocus(),
-                  controller: nameEC,
-                  validator: Validatorless.required('Nome obrigatório'),
-                  decoration: const InputDecoration(
-                    labelText: 'Nome',
-                  ),
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  onTapOutside: (_) => context.unfocus(),
-                  controller: emailEC,
-                  validator: Validatorless.multiple([
-                    Validatorless.required('E-mail obrigatório'),
-                    Validatorless.email('E-mail inválido'),
-                  ]),
-                  decoration: const InputDecoration(
-                    labelText: 'E-mail',
-                  ),
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  onTapOutside: (_) => context.unfocus(),
-                  controller: passwordEC,
-                  validator: Validatorless.multiple([
-                    Validatorless.required('Senha obrigatória'),
-                    Validatorless.min(
-                        6, 'Senha deve conter no mínimo 6 caracteres'),
-                  ]),
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: 'Senha',
-                  ),
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  onTapOutside: (_) => context.unfocus(),
-                  validator: Validatorless.multiple([
-                    Validatorless.required('Confirmar senha é obrigatório'),
-                    // Validatorless.min(6, 'Senha deve conter no mínimo 6 caracteres'),
-                    Validatorless.compare(
-                        passwordEC, 'As senhas diferente de confirmar senha'),
-                  ]),
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: 'Confirmar Senha',
-                  ),
-                ),
-                const SizedBox(height: 20),
-
-// ========== copia =====================
-
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 50),
-                  ),
-                  child: const Text('Enviar Cadastro'),
-                ),
-              ],
+        child: Stack(
+          children: [
+            Center(
+              child: SingleChildScrollView(
+                
+                child: RegistrationFormWidget(onSubmit: _handleSubmit),
+              ),
             ),
-          ),
+            if (_isloading)
+              Container(
+                color: Colors.black.withOpacity(0.5),
+                child: const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              )
+          ],
         ),
       ),
     );

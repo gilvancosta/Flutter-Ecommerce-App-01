@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../constants/constants.dart';
 
-
 const colorList = <Color>[
   Colors.blue,
   Colors.teal,
@@ -15,9 +14,7 @@ const colorList = <Color>[
   Colors.pinkAccent,
 ];
 
-
- class AppTheme {
-
+class AppTheme {
   final int selectedColor;
   final bool isDarkmode;
 
@@ -36,8 +33,6 @@ const colorList = <Color>[
       color: ColorsConstants.grey,
     ),
   );
-
-
 
   ThemeData getTheme = ThemeData(
     useMaterial3: true,
@@ -59,7 +54,8 @@ const colorList = <Color>[
       border: defaultInputBorder,
       enabledBorder: defaultInputBorder,
       focusedBorder: defaultInputBorder,
-      errorBorder: defaultInputBorder.copyWith(borderSide: const BorderSide(color: ColorsConstants.red)),
+      errorBorder: defaultInputBorder.copyWith(
+          borderSide: const BorderSide(color: ColorsConstants.red)),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
@@ -73,15 +69,8 @@ const colorList = <Color>[
     fontFamily: FontConstants.fontFamily,
   );
 
-
-
-
-
-
-
   AppTheme copyWith({int? selectedColor, bool? isDarkmode}) => AppTheme(
         selectedColor: selectedColor ?? this.selectedColor,
         isDarkmode: isDarkmode ?? this.isDarkmode,
       );
-
 }

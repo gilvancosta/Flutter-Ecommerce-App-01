@@ -4,25 +4,41 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app_01/src/core/helpers/form_helper.dart';
+import 'package:flutter_ecommerce_app_01/src/presentation/widgets/TextFormField/my_textformfield_general.dart';
+
+import 'package:validatorless/validatorless.dart';
 
 import '../../../../../../domain/models/customer_model.dart';
 
+import '../../../../../widgets/TextFormField/my_textformfield_multiline.dart';
+import '../../../../../widgets/TextFormField/my_textformfield_name.dart';
 import 'user_image_widget.dart';
 
-class AuthFormWidget extends StatefulWidget {
+class RegistrationFormWidget extends StatefulWidget {
   final void Function(CustomerModel) onSubmit;
 
-  const AuthFormWidget({
+  const RegistrationFormWidget({
     Key? key,
     required this.onSubmit,
   }) : super(key: key);
 
   @override
-  State<AuthFormWidget> createState() => _AuthFormWidgetState();
+  State<RegistrationFormWidget> createState() => _AuthFormWidgetState();
 }
 
-class _AuthFormWidgetState extends State<AuthFormWidget> {
+class _AuthFormWidgetState extends State<RegistrationFormWidget> {
   final _formKey = GlobalKey<FormState>();
+
+  final _fullNameEC = TextEditingController();
+  final _cnpjCpfEC = TextEditingController();
+  final _companyNameEC = TextEditingController();
+  final _phoneEC = TextEditingController();
+
+  final _cepEC = TextEditingController();
+  final _addressEC = TextEditingController();
+  final _baseStoreEC = TextEditingController();
+
   final _formData = CustomerModel();
 
   void _handleImagePick(File image) {
@@ -56,73 +72,93 @@ class _AuthFormWidgetState extends State<AuthFormWidget> {
     return Card(
       margin: const EdgeInsets.all(20),
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(5),
         child: Form(
           key: _formKey,
           child: Column(
             children: [
-              if (_formData.isSignup)
-                UserImageWidget(
-                  onImagePick: _handleImagePick,
-                ),
-              if (_formData.isSignup)
-                TextFormField(
-                  key: const ValueKey('name'),
-                  initialValue: _formData.name,
-                  onChanged: (name) => _formData.name = name,
-                  decoration: const InputDecoration(labelText: 'Nome'),
-                  validator: (localName) {
-                    final name = localName ?? '';
-                    if (name.trim().length < 5) {
-                      return 'Nome deve ter no mínimo 5 caracteres.';
-                    }
-                    return null;
-                  },
-                ),
-              TextFormField(
-                key: const ValueKey('email'),
-                initialValue: _formData.email,
-                onChanged: (email) => _formData.email = email,
-                decoration: const InputDecoration(labelText: 'E-mail'),
-                validator: (localEmail) {
-                  final email = localEmail ?? '';
-                  if (!email.contains('@')) {
-                    return 'E-mail nformado não é válido.';
-                  }
-                  return null;
-                },
+              UserImageWidget(
+                onImagePick: _handleImagePick,
               ),
-              TextFormField(
-                key: const ValueKey(
-                    'password'), // O objetivo desse key é para o teste automatizado
-                initialValue: _formData.password,
-                onChanged: (password) => _formData.password = password,
-                obscureText: true,
-                decoration: const InputDecoration(labelText: 'Senha'),
-                validator: (localPassword) {
-                  final password = localPassword ?? '';
-                  if (password.length < 6) {
-                    return 'Nome deve ter no mínimo 6 caracteres.';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 12),
+
+              // -Nome Completo --
+              MyTextFormFieldName(
+                  fieldLabel: 'Nome Completo',
+                  controller: _fullNameEC,
+                  validator: Validatorless.multiple([
+                    Validatorless.required('Nome obrigatório'),
+                    Validatorless.email('Nome inválido'),
+                  ])),
+
+              const SizedBox(height: 5),
+
+              // -CPF/CNPJ --
+              MyTextFormFieldName(
+                  fieldLabel: 'CNPJ ou CPF',
+                  controller: _cnpjCpfEC,
+                  validator: Validatorless.multiple([
+                    Validatorless.required('Nome obrigatório'),
+                    Validatorless.email('Nome inválido'),
+                  ])),
+
+              const SizedBox(height: 5),
+
+              // - Telefone --
+              MyTextFormFieldName(
+                  fieldLabel: 'Nome da Empresa',
+                  controller: _companyNameEC,
+                  validator: Validatorless.multiple([
+                    Validatorless.required('Nome obrigatório'),
+                    Validatorless.email('Nome inválido'),
+                  ])),
+
+              const SizedBox(height: 5),
+              // -CEP --
+              MyTextFormFieldName(
+                  fieldLabel: 'Telefone Celular',
+                  controller: _phoneEC,
+                  validator: Validatorless.multiple([
+                    Validatorless.required('Nome obrigatório'),
+                    Validatorless.email('Nome inválido'),
+                  ])),
+
+              const SizedBox(height: 5),
+              // -ENDEREÇO --
+              MyTextFormFieldName(
+                  fieldLabel: 'CEP',
+                  controller: _cepEC,
+                  validator: Validatorless.multiple([
+                    Validatorless.required('Nome obrigatório'),
+                    Validatorless.email('Nome inválido'),
+                  ])),
+
+              const SizedBox(height: 5),
+              // -CIDADE --
+              MyTextFormFieldMultiline(
+                  fieldLabel: 'Endereço',
+                  controller: _addressEC,
+                  validator: Validatorless.multiple([
+                    Validatorless.required('Nome obrigatório'),
+                    Validatorless.email('Nome inválido'),
+                  ])),
+
+              const SizedBox(height: 5),
+              // -ESTADO --
+
+              MyTextFormFieldName(
+                  fieldLabel: 'Loja base de compra',
+                  controller: _baseStoreEC,
+                  validator: Validatorless.multiple([
+                    Validatorless.required('Nome obrigatório'),
+                    Validatorless.email('Nome inválido'),
+                  ])),
+              const SizedBox(height: 5),
               ElevatedButton(
-                onPressed: _submit,
-                child: Text(_formData.isLogin ? 'Entrar' : 'Cadastrar'),
-              ),
-              TextButton(
-                onPressed: () {
-                  setState(() {
-                    _formData.toggleAuthMode();
-                  });
-                },
-                child: Text(
-                  _formData.isLogin
-                      ? 'Criar uma nova conta?'
-                      : 'Já possui conta?',
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(double.infinity, 50),
                 ),
+                child: const Text('ENVIAR CADASTRO PARA APROVAÇÃO'),
               ),
             ],
           ),
