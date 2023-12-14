@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
-enum ForgotPasswordStatus { initial, error, admLogin, customerLogin }
+enum ForgotPasswordStatus {
+  initial,
+  success,
+  error,
+}
 
 class ForgotPasswordState {
   final ForgotPasswordStatus status;

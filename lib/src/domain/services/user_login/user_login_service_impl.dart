@@ -56,11 +56,29 @@ class UserLoginServiceImpl implements UserLoginService {
   }
 
   @override
-  Future<void> forgotPassword(String email) =>
-      _userLoginRepository.forgotPassword(email);
+  Future<Either<ServiceException, Nil>>forgotPassword(String email)async {
+
+
+    try {
+      await _userLoginRepository.forgotPassword(email);
+      return Success(nil);
+    } on ServiceException catch (e, s) {
+      log('Erro no reset da password', error: e, stackTrace: s);
+
+      return Failure(
+        ServiceException(
+          message: e.message,
+        ),
+      );
+    }
+  }
+
+
 
   @override
   Future<Either<ServiceException, Nil>> googleLogin() async {
+
+
     try {
       await _userLoginRepository.googleLogin();
       return Success(nil);

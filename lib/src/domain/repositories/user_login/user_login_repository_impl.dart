@@ -60,25 +60,32 @@ class UserRepositoryImpl implements UserLoginRepository {
   }
 
   @override
-  Future<void> forgotPassword(String email) async {
+  Future<Either<RepositoryException, Nil>> forgotPassword(String email) async {
+
     try {
-      final loginMethods =
-          await _firebaseAuth.fetchSignInMethodsForEmail(email);
+     final loginMethods = await _firebaseAuth.fetchSignInMethodsForEmail(email);
+
+
       if (loginMethods.contains('password')) {
         await _firebaseAuth.sendPasswordResetEmail(email: email);
+        return Success(Nil());
+
       } else if (loginMethods.contains('google')) {
         throw AppAuthException(
             message:
-                'Cadastro realizado com o google, não pode ser resetado a senha');
+                'Cadastro realizado com o google, não existe senha para o sistema');
       } else {
         throw AppAuthException(message: 'E-mail não cadastrado');
       }
-    } on PlatformAssetBundle catch (e, s) {
-      print(e);
-      print(s);
-      throw AppAuthException(message: 'Erro ao resetar senha');
+
+    } on Exception catch (e, s) {
+      log('Erro ao cadastrar usuário', error: e, stackTrace: s);
+      return Failure(
+          RepositoryException(message: 'Erro ao reset senha'));
     }
   }
+
+
 
   @override
   Future<User?> googleLogin() async {

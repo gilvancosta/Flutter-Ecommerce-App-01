@@ -14,10 +14,10 @@ class UserRegisterPage extends ConsumerStatefulWidget {
   const UserRegisterPage({super.key});
 
   @override
-  ConsumerState<UserRegisterPage> createState() => _UserRegisterPageState();
+  ConsumerState<UserRegisterPage> createState() => UserRegisterPageState();
 }
 
-class _UserRegisterPageState extends ConsumerState<UserRegisterPage> {
+class UserRegisterPageState extends ConsumerState<UserRegisterPage> {
   final formKey = GlobalKey<FormState>();
   final nameEC = TextEditingController();
   final emailEC = TextEditingController();

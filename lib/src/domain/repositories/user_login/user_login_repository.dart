@@ -9,7 +9,7 @@ abstract class UserLoginRepository {
 
   Future<User?> login(String email, String password);
 
-  Future<void> forgotPassword(String email);
+  Future<Either<RepositoryException, Nil>> forgotPassword(String email);
 
   Future<User?> googleLogin();
 

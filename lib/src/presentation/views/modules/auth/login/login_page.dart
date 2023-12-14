@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:flutter_signin_button/button_list.dart';
@@ -13,8 +14,9 @@ import '../../../../../core/ui/app_messages.dart';
 import '../../../../../core/helpers/messages.dart';
 import '../../../../widgets/TextFormField/my_textformfield_email.dart';
 import '../../../../widgets/TextFormField/my_textformfield_password.dart';
-import '../forgot_password/forgot_password_state.dart';
-import '../forgot_password/forgot_password_vm.dart';
+
+import 'login_vm.dart';
+import 'login_state.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});

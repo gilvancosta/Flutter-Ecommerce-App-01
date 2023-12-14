@@ -14,7 +14,7 @@ abstract class UserLoginService {
 
 
   
-  Future<void> forgotPassword(String email);
+  Future<Either<ServiceException, Nil>>forgotPassword(String email);
   Future<Either<ServiceException, Nil>>googleLogin();
   Future<void> logout();
   Future<void> updateDisplayName(String name);
