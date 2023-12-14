@@ -50,7 +50,7 @@ class LoginVm extends _$LoginVm {
     try {
       final loginService = ref.watch(userLoginServiceProvider);
 
-      final result = await loginService.login(email, password);
+       await loginService.login(email, password);
      // print('AAAAAAAAAAAAAAAA result: $result');
       state = state.copyWith(status: LoginStateStatus.customerLogin);
 

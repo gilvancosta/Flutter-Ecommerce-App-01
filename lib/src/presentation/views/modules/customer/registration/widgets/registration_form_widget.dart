@@ -5,8 +5,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_ecommerce_app_01/src/presentation/widgets/TextFormField/my_textformfield_general.dart';
-
 import 'package:validatorless/validatorless.dart';
 
 import '../../../../../../domain/models/customer_model.dart';
@@ -37,7 +35,7 @@ class _AuthFormWidgetState extends State<RegistrationFormWidget> {
 
   final _cepEC = TextEditingController();
   final _addressEC = TextEditingController();
-  final _baseStoreEC = TextEditingController();
+  //final _baseStoreEC = TextEditingController();
 
   final _formData = CustomerModel();
 

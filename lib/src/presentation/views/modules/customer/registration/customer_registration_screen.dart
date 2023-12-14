@@ -1,15 +1,12 @@
 // ignore_for_file: prefer_final_fields
 
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_app_01/src/core/helpers/form_helper.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:validatorless/validatorless.dart';
 
-import '../../../../../core/constants/constants.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../core/providers/application_providers.dart';
 import '../../../../../core/router/app_router.dart';
-import '../../../../../core/widgets/avatar_widget.dart';
+
 import '../../../../../domain/models/customer_model.dart';
 import 'widgets/registration_form_widget.dart';
 
@@ -71,7 +68,6 @@ class CustomerRegistrationScreenState
           children: [
             Center(
               child: SingleChildScrollView(
-                
                 child: RegistrationFormWidget(onSubmit: _handleSubmit),
               ),
             ),

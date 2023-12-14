@@ -41,26 +41,31 @@ dependencies:
   firebase_auth: ^4.14.1
   cloud_firestore: ^4.13.2
   firebase_storage: ^11.5.2
-  firebase_messaging: ^14.7.5
+  firebase_messaging: ^14.7.9  
   # State Management
   flutter_riverpod: ^2.4.9
   riverpod_annotation: ^2.3.3
   # Router
   go_router: ^12.1.1
+  # Login
+  google_sign_in: ^6.1.6
+  validatorless: ^1.2.3
+  flutter_signin_button: ^2.0.0
+ # Loading
+  asyncstate: ^2.1.0
+  loading_animation_widget: ^1.2.0+4
+  flutter_overlay_loader: ^2.0.0
+  # Diversos
   uuid: ^4.2.1
   dio: ^5.3.4
   top_snackbar_flutter: ^3.1.0
   shared_preferences: ^2.2.2
-  asyncstate: ^2.1.0
-  validatorless: ^1.2.3
-  loading_animation_widget: ^1.2.0+4
-  google_sign_in: ^6.1.6
-  flutter_overlay_loader: ^2.0.0
   google_fonts: ^6.1.0
+  image_picker: ^1.0.5
   path: ^1.8.3
   intl: ^0.18.1
-  flutter_signin_button: ^2.0.0
-  image_picker: ^1.0.5
+ 
+
 
 dev_dependencies:
   flutter_test:
@@ -72,8 +77,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
-  riverpod_lint: ^2.3.7
   build_runner: ^2.4.6
+  riverpod_lint: ^2.3.7
   riverpod_generator: ^2.3.9
 
 # For information on the generic Dart part of this file, see the

@@ -1,4 +1,4 @@
-import 'dart:developer';
+
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,11 +10,10 @@ import '../../domain/repositories/user_register/user_register_repository.dart';
 import '../../domain/repositories/user_register/user_register_repository_impl.dart';
 import '../../domain/services/user_register/user_register_service.dart';
 import '../../domain/services/user_register/user_register_service_impl.dart';
-import '../exceptions/repository_exception.dart';
-import '../exceptions/service_exception.dart';
+
 import '../fp/either.dart';
 import '../../data/restClient/rest_client.dart';
-import '../fp/nil.dart';
+
 import '../ui/barbershop_nav_global_key.dart';
 
 import '../../domain/repositories/user_login/user_login_repository.dart';

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../core/constants/constants.dart';
-import '../../../../../core/providers/application_providers.dart';
+
 import '../../../../../core/router/app_router.dart';
 import '../../../../../core/ui/barbershop_icons.dart';
 

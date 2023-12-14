@@ -1,11 +1,8 @@
 // ignore_for_file: avoid_print
-
 import 'package:asyncstate/asyncstate.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import '../../../../../../core/fp/either.dart';
 import '../../../../../../core/providers/application_providers.dart';
-import '../../../../../../domain/services/user_register/user_register_service.dart';
 
 part 'user_register_vm.g.dart';
 

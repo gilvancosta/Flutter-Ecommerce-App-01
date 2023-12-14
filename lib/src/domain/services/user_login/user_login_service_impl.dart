@@ -1,11 +1,5 @@
 import 'dart:developer';
 
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../../core/constants/local_storage_keys.dart';
-import '../../../core/exceptions/auth_exception.dart';
-import '../../../core/exceptions/repository_exception.dart';
 import '../../../core/exceptions/service_exception.dart';
 import '../../../core/fp/either.dart';
 import '../../../core/fp/nil.dart';
