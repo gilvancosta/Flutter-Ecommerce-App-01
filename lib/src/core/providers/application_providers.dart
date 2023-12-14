@@ -6,8 +6,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../domain/models/user_model.dart';
-import '../../domain/repositories/users/user_register/user_register_repository.dart';
-import '../../domain/repositories/users/user_register/user_register_repository_impl.dart';
+import '../../domain/repositories/user_register/user_register_repository.dart';
+import '../../domain/repositories/user_register/user_register_repository_impl.dart';
 import '../../domain/services/user_register/user_register_service.dart';
 import '../../domain/services/user_register/user_register_service_impl.dart';
 import '../exceptions/repository_exception.dart';
@@ -17,8 +17,8 @@ import '../../data/restClient/rest_client.dart';
 import '../fp/nil.dart';
 import '../ui/barbershop_nav_global_key.dart';
 
-import '../../domain/repositories/users/user_login/user_login_repository.dart';
-import '../../domain/repositories/users/user_login/user_login_repository_impl.dart';
+import '../../domain/repositories/user_login/user_login_repository.dart';
+import '../../domain/repositories/user_login/user_login_repository_impl.dart';
 
 import '../../domain/services/user_login/user_login_service.dart';
 import '../../domain/services/user_login/user_login_service_impl.dart';

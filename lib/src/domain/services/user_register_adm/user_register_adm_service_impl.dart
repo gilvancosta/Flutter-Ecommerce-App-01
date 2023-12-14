@@ -1,7 +1,7 @@
 import '../../../core/exceptions/service_exception.dart';
 import '../../../core/fp/either.dart';
 import '../../../core/fp/nil.dart';
-import '../../repositories/users/user_register/user_register_repository.dart';
+import '../../repositories/user_register/user_register_repository.dart';
 import '../user_register/user_register_service.dart';
 import 'user_register_adm_service.dart';
          

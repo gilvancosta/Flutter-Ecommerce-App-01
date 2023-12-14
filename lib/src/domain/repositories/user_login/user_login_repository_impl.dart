@@ -3,11 +3,11 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import '../../../../core/exceptions/app_auth_exception.dart';
-import '../../../../core/exceptions/repository_exception.dart';
-import '../../../../core/fp/either.dart';
+import '../../../core/exceptions/app_auth_exception.dart';
+import '../../../core/exceptions/repository_exception.dart';
+import '../../../core/fp/either.dart';
 
-import '../../../../core/fp/nil.dart';
+import '../../../core/fp/nil.dart';
 import 'user_login_repository.dart';
 
 class UserRepositoryImpl implements UserLoginRepository {

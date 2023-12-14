@@ -4,7 +4,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_app_01/src/core/helpers/form_helper.dart';
+
 import 'package:flutter_ecommerce_app_01/src/presentation/widgets/TextFormField/my_textformfield_general.dart';
 
 import 'package:validatorless/validatorless.dart';
@@ -40,6 +40,22 @@ class _AuthFormWidgetState extends State<RegistrationFormWidget> {
   final _baseStoreEC = TextEditingController();
 
   final _formData = CustomerModel();
+
+  final List<String> cities = [
+    "Ribeirão Preto - SP",
+    "Sertãozinho - SP",
+    "São Carlos - SP",
+    "Rio Preto - SP",
+    "Campinas - SP",
+    "Uberlândia - MG",
+    "Franca - SP",
+    "Goiânia - GO",
+    "Anápolis - GO",
+    "Votuporanga - SP",
+    "Santa Fé do Sul - SP",
+  ];
+  final _cityDropdownButtonKey = GlobalKey<FormFieldState>();
+  String cityValue = "Ribeirão Preto - SP";
 
   void _handleImagePick(File image) {
     _formData.image = image;
@@ -145,13 +161,22 @@ class _AuthFormWidgetState extends State<RegistrationFormWidget> {
               const SizedBox(height: 5),
               // -ESTADO --
 
-              MyTextFormFieldName(
-                  fieldLabel: 'Loja base de compra',
-                  controller: _baseStoreEC,
-                  validator: Validatorless.multiple([
-                    Validatorless.required('Nome obrigatório'),
-                    Validatorless.email('Nome inválido'),
-                  ])),
+              DropdownButtonFormField<String>(
+                key: _cityDropdownButtonKey,
+                value: cityValue,
+                items: cities
+                    .map<DropdownMenuItem<String>>(
+                      (e) => DropdownMenuItem(
+                        value: e,
+                        child: Text(e),
+                      ),
+                    )
+                    .toList(),
+                onChanged: (String? newValue) {
+                  // Any code
+                },
+              ),
+
               const SizedBox(height: 5),
               ElevatedButton(
                 onPressed: () {},
