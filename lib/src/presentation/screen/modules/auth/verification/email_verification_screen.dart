@@ -7,7 +7,7 @@ import '../../../../../core/helpers/messages.dart';
 import '../../../../../core/providers/application_providers.dart';
 import '../../../../../core/router/app_router.dart';
 import '../../../../../core/widgets/avatar_widget.dart';
-import '../../home/widgets/home_header.dart';
+import '../../../../widgets/home_header.dart';
 
 import 'provider/email_verification_vm.dart';
 

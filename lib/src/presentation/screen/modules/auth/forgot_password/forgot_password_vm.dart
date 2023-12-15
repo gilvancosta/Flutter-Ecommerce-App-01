@@ -14,7 +14,7 @@ class ForgotPasswordVm extends _$ForgotPasswordVm {
   ForgotPasswordStatus build() => ForgotPasswordStatus.initial;
 
   Future<void> forgotPassword(String email) async {
-    final loaderHandle = AsyncLoaderHandler()..start();
+    // final loaderHandle = AsyncLoaderHandler()..start();
 
     final loginService = ref.watch(userLoginServiceProvider);
     final user = await loginService.forgotPassword(email);
@@ -29,6 +29,6 @@ class ForgotPasswordVm extends _$ForgotPasswordVm {
         state = ForgotPasswordStatus.error;
     }
 
-    loaderHandle.close();
+    // loaderHandle.close();
   }
 }

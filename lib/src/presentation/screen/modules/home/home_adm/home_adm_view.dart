@@ -6,7 +6,7 @@ import '../../../../../core/constants/constants.dart';
 import '../../../../../core/providers/application_providers.dart';
 import '../../../../../core/ui/barbershop_icons.dart';
 import '../../../../../core/widgets/barbershop_loader.dart';
-import '../widgets/home_header.dart';
+import '../../../../widgets/home_header.dart';
 import 'provider/home_adm_state.dart';
 import 'provider/home_adm_vm.dart';
 import 'widgets/home_employee_tile.dart';

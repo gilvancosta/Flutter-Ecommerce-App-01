@@ -1,17 +1,20 @@
 // ignore_for_file: avoid_print
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../presentation/views/app_home/home_page.dart';
-import '../../presentation/views/modules/auth/login/login_page.dart';
-import '../../presentation/views/modules/auth/register/barbershop/barbershop_register_page.dart';
-import '../../presentation/views/modules/auth/register/user/user_register_page.dart';
-import '../../presentation/views/modules/auth/verification/email_verification_screen.dart';
-import '../../presentation/views/modules/customer/registration/customer_registration_screen.dart';
-import '../../presentation/views/modules/home/home_adm/home_adm_view.dart';
-import '../../presentation/views/modules/home/home_customer/home_customer_view.dart';
+import '../../presentation/screen/app_home/home_page.dart';
+import '../../presentation/screen/modules/auth/forgot_password/check_email_screen.dart';
+import '../../presentation/screen/modules/auth/forgot_password/forgot_password_screen.dart';
+import '../../presentation/screen/modules/auth/login/login_page.dart';
+import '../../presentation/screen/modules/auth/register/barbershop/barbershop_register_page.dart';
+import '../../presentation/screen/modules/auth/register/user/user_register_page.dart';
+import '../../presentation/screen/modules/auth/verification/email_verification_screen.dart';
+import '../../presentation/screen/modules/customer/registration/customer_registration_screen.dart';
+import '../../presentation/screen/modules/home/home_adm/home_adm_view.dart';
+import '../../presentation/screen/modules/home/home_customer/home_customer_view.dart';
 
-import '../../presentation/views/splash/splash_page.dart';
+import '../../presentation/screen/splash/splash_page.dart';
 
 part 'app_router.g.dart';
 
@@ -53,6 +56,17 @@ GoRouter appRouter(AppRouterRef ref) {
     GoRoute(
       path: '/customer-registration',
       builder: (context, state) => const CustomerRegistrationScreen(),
+    ),
+    GoRoute(
+      path: '/forgot-password',
+      builder: (context, state) => const ForgotPasswordPage(),
+    ),
+    GoRoute(
+      path: '/check-email/:email',
+      builder: (BuildContext context, GoRouterState state) {
+        final email = state.pathParameters['email']!;
+        return CheckEmailScreen(email: email);
+      },
     ),
   ]);
 }

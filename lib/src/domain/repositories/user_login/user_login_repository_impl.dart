@@ -25,9 +25,8 @@ class UserRepositoryImpl implements UserLoginRepository {
       }
       return Success(Nil());
     } on Exception catch (e, s) {
-      log('Erro ao cadastrar usuário', error: e, stackTrace: s);
-      return Failure(
-          RepositoryException(message: 'Erro ao cadastrar usuário admin'));
+      log('Erro ao verificar email', error: e, stackTrace: s);
+      return Failure(RepositoryException(message: 'Erro ao verificar email'));
     }
   }
 
@@ -61,31 +60,17 @@ class UserRepositoryImpl implements UserLoginRepository {
 
   @override
   Future<Either<RepositoryException, Nil>> forgotPassword(String email) async {
-
+   // print(' --- AAAAAAAAA 1 --- $email');
     try {
-     final loginMethods = await _firebaseAuth.fetchSignInMethodsForEmail(email);
-
-
-      if (loginMethods.contains('password')) {
-        await _firebaseAuth.sendPasswordResetEmail(email: email);
-        return Success(Nil());
-
-      } else if (loginMethods.contains('google')) {
-        throw AppAuthException(
-            message:
-                'Cadastro realizado com o google, não existe senha para o sistema');
-      } else {
-        throw AppAuthException(message: 'E-mail não cadastrado');
-      }
-
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
+   //   print(' --- BBBBBBBBBB 2 --- $email');
+      return Success(Nil());
     } on Exception catch (e, s) {
-      log('Erro ao cadastrar usuário', error: e, stackTrace: s);
-      return Failure(
-          RepositoryException(message: 'Erro ao reset senha'));
+      log('Erro no reset da senha', error: e, stackTrace: s);
+     // print(' EEEEEEEE 1 --> $e - $s');
+      return Failure(RepositoryException(message: 'Erro no reset da senha'));
     }
   }
-
-
 
   @override
   Future<User?> googleLogin() async {
@@ -94,7 +79,6 @@ class UserRepositoryImpl implements UserLoginRepository {
       final googleSignIn = GoogleSignIn();
       final googleUser = await googleSignIn.signIn();
 
-      
       if (googleUser != null) {
         loginMethods =
             await _firebaseAuth.fetchSignInMethodsForEmail(googleUser.email);

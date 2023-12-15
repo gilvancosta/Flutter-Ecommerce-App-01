@@ -2,16 +2,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../../core/constants/constants.dart';
+import '../../../../../../core/constants/constants.dart';
+import '../../../../../../core/router/app_router.dart';
+import '../../../../../../core/ui/barbershop_icons.dart';
 
-import '../../../../../core/router/app_router.dart';
-import '../../../../../core/ui/barbershop_icons.dart';
-
-class HomeHeader extends ConsumerWidget {
+class HeaderScreenWidget extends ConsumerWidget {
   final String name;
   final String mensagem;
   final bool hideFilter;
-  const HomeHeader({
+
+  const HeaderScreenWidget({
+    super.key,
     required this.name,
     required this.mensagem,
     required this.hideFilter,
@@ -75,7 +76,7 @@ class HomeHeader extends ConsumerWidget {
                 onPressed: () {
                   //ref.read(homeADMVMProvider.notifier).logout();
 
-                  appRouter.pushReplacement('/login');
+                  appRouter.pop();
                 },
                 icon: const Icon(
                   BarbershopIcons.exit,
@@ -86,40 +87,12 @@ class HomeHeader extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: 24),
-          Text(
-            'Bem-vindo Bem-vindo Bem-vindo $name',
+           Text(
+            mensagem,
             style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w500,
-              fontSize: 18,
-            ),
-          ),
-          const SizedBox(height: 24),
-          const Text(
-            'Verifique seu email',
-            style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w600,
               fontSize: 30,
-            ),
-          ),
-          Offstage(
-            offstage: hideFilter,
-            child: const SizedBox(height: 24),
-          ),
-          Offstage(
-            offstage: hideFilter,
-            child: TextFormField(
-              decoration: const InputDecoration(
-                hintText: 'Buscar colaborador',
-                suffixIcon: Padding(
-                  padding: EdgeInsets.only(right: 24),
-                  child: Icon(
-                    BarbershopIcons.search,
-                    color: ColorsConstants.grey,
-                  ),
-                ),
-              ),
             ),
           ),
         ],

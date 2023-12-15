@@ -117,19 +117,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
                           // -- Forgot Password --
                           Align(
-                            alignment: Alignment.centerLeft,
+                            alignment: Alignment.centerRight,
                             child: TextButton(
                               onPressed: () {
-                                if (emailEC.text.isNotEmpty) {
-                                  // Recuperar senha
-                                  //  context
-                                  //     .read<LoginController>()
-                                  //     .forgotPassword(_emailEC.text);
-                                } else {
-                                  _emailFocus.requestFocus();
-                                  AppMessages.of(context).showError(
-                                      'Digite um e-mail para recuperar a senha');
-                                }
+                                appRouter.push('/forgot-password');
                               },
                               child: const Text(
                                 'Esqueceu a Senha?',

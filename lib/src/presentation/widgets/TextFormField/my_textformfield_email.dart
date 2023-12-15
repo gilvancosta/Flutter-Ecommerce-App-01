@@ -26,7 +26,7 @@ class MyTextFormFieldEmail extends StatelessWidget {
       onTapOutside: (_) => context.unfocus(),
       decoration: const InputDecoration(
         label: Text('E-mail'),
-        hintText: 'Digite seu login',
+        hintText: 'Digite seu e-mail de acesso',
         labelStyle: TextStyle(
           color: Colors.black,
           fontWeight: FontWeight.w500,
