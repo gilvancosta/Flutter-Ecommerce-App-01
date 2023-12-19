@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 
+
+sealed class CompanyConstants {
+  static const String CompanyName = 'Atacadão Eletrônicos';
+}
+
+
+
 sealed class FontConstants {
   static const String fontFamily = 'Poppins';
 }

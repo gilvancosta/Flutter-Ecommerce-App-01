@@ -1,5 +1,5 @@
 // ignore_for_file: avoid_print
-import 'package:asyncstate/asyncstate.dart';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../../../core/fp/either.dart';
 import '../../../../../../core/providers/application_providers.dart';
@@ -32,7 +32,7 @@ class UserRegisterVm extends _$UserRegisterVm {
       password: password,
     );
 
-    final user = await userRegisterService.register(userData).asyncLoader();
+    final user = await userRegisterService.register(userData);
     print('Bbbb registerResult: $user');
 
 

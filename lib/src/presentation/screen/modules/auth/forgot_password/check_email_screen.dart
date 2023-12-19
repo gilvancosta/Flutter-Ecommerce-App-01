@@ -21,7 +21,7 @@ class CheckEmailScreen extends ConsumerStatefulWidget {
 }
 
 class EmailVerificationScreenState extends ConsumerState<CheckEmailScreen> {
-  int _countSend = 0;
+
 
   @override
   Widget build(BuildContext context) {

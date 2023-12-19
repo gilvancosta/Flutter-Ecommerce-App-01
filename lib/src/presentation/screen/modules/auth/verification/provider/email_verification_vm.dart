@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_print
 
-import 'package:asyncstate/asyncstate.dart';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../../../core/exceptions/service_exception.dart';
 import '../../../../../../core/fp/either.dart';
@@ -16,7 +16,7 @@ class EmailVerificationVm extends _$EmailVerificationVm {
   EmailVerificationState build() => EmailVerificationState.initial();
 
   Future<void> sendEmailVerification() async {
-    final loaderHandle = AsyncLoaderHandler()..start();
+   // final loaderHandle = AsyncLoaderHandler()..start();
 
     final loginService = ref.watch(userLoginServiceProvider);
     final user = await loginService.sendEmailVerification();
@@ -34,6 +34,6 @@ class EmailVerificationVm extends _$EmailVerificationVm {
         );
     }
 
-    loaderHandle.close();
+   // loaderHandle.close();
   }
 }

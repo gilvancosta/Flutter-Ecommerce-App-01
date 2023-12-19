@@ -5,7 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/providers/application_providers.dart';
 import '../../../../../core/ui/barbershop_icons.dart';
-import '../../../../../core/widgets/barbershop_loader.dart';
+import '../../../../../core/widgets/app_loader.dart';
+
 import '../../../../widgets/home_header.dart';
 import 'provider/home_adm_state.dart';
 import 'provider/home_adm_vm.dart';
@@ -37,7 +38,7 @@ class HomeAdmView extends ConsumerWidget {
         ),
       ),
       body: homeState.when(
-        loading: () => const BarbershopLoader(),
+        loading: () => const AppLoader(),
         error: (e, s) {
           log('UI Erro ao buscar colaboradores', error: e, stackTrace: s);
           return Center(

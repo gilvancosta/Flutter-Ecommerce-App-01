@@ -6,7 +6,7 @@ part of 'forgot_password_vm.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$forgotPasswordVmHash() => r'81f2d5ebe8850712aa2667cb99aaa08ac146f8cd';
+String _$forgotPasswordVmHash() => r'5d7d57a741a6f2d72fe2fb50bc1219f1eb3dabc4';
 
 /// See also [ForgotPasswordVm].
 @ProviderFor(ForgotPasswordVm)

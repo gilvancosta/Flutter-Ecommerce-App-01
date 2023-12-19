@@ -1,4 +1,3 @@
-import 'package:asyncstate/asyncstate.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../core/exceptions/app_auth_exception.dart';
@@ -17,16 +16,16 @@ class LoginVm extends _$LoginVm {
   LoginState build() => LoginState.initial();
 
   Future<void> googleLogin() async {
-     final loaderHandle = AsyncLoaderHandler()..start();
+    // final loaderHandle = AsyncLoaderHandler()..start();
 
-   // print('AAAAAAAAAAAAAAAA 1111');
+    // print('AAAAAAAAAAAAAAAA 1111');
 
     final loginService = ref.watch(userLoginServiceProvider);
 
-  //  print('AAAAAAAAAAAAAAAA 222222');
+    //  print('AAAAAAAAAAAAAAAA 222222');
     final user = await loginService.googleLogin();
 
-   // print('AAAAAAAAAAAAAAAA 333');
+    // print('AAAAAAAAAAAAAAAA 333');
 
     //_userService.logout();
 
@@ -41,26 +40,26 @@ class LoginVm extends _$LoginVm {
         );
     }
 
-      loaderHandle.close();
+    // loaderHandle.close();
   }
 
   Future<void> login(String email, String password) async {
-    final loaderHandle = AsyncLoaderHandler()..start();
+    // final loaderHandle = AsyncLoaderHandler()..start();
 
     try {
       final loginService = ref.watch(userLoginServiceProvider);
 
-       await loginService.login(email, password);
-     // print('AAAAAAAAAAAAAAAA result: $result');
-      state = state.copyWith(status: LoginStateStatus.customerLogin);
+      await loginService.login(email, password);
 
+      // print('AAAAAAAAAAAAAAAA result: $result');
+      state = state.copyWith(status: LoginStateStatus.customerLogin);
     } on AppAuthException catch (e) {
       state = state.copyWith(
         status: LoginStateStatus.error,
         errorMessage: () => e.message,
       );
     } finally {
-      loaderHandle.close();
+      // loaderHandle.close();
     }
   }
 }

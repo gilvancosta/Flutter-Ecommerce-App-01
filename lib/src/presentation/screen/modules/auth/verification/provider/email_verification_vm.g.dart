@@ -7,7 +7,7 @@ part of 'email_verification_vm.dart';
 // **************************************************************************
 
 String _$emailVerificationVmHash() =>
-    r'101e39c69f81aad478121b1aa1dbb526f4a15252';
+    r'fcf7f82c2ba471e806ae56da2193f070f5aa382f';
 
 /// See also [EmailVerificationVm].
 @ProviderFor(EmailVerificationVm)

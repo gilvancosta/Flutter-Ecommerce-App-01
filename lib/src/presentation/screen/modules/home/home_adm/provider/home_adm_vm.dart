@@ -1,4 +1,4 @@
-import 'package:asyncstate/asyncstate.dart';
+
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -40,5 +40,5 @@ class HomeADMVM extends _$HomeADMVM {
     }
   }
 
-  Future<void> logout() async => ref.watch(logoutProvider.future).asyncLoader();
+  Future<void> logout() async => ref.watch(logoutProvider.future);
 }

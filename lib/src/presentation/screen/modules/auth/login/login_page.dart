@@ -8,15 +8,16 @@ import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 
 import '../../../../../core/constants/constants.dart';
+
 import '../../../../../core/providers/application_providers.dart';
 import '../../../../../core/router/app_router.dart';
-import '../../../../../core/ui/app_messages.dart';
+
 import '../../../../../core/helpers/messages.dart';
 import '../../../../widgets/TextFormField/my_textformfield_email.dart';
 import '../../../../widgets/TextFormField/my_textformfield_password.dart';
 
-import 'login_vm.dart';
 import 'login_state.dart';
+import 'login_vm.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
@@ -44,11 +45,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     final LoginVm(:login) = ref.watch(loginVmProvider.notifier);
     final LoginVm(:googleLogin) = ref.watch(loginVmProvider.notifier);
 
-    final userCredential = ref.watch(firebaseAuthProvider).currentUser;
-
-    ref.listen(loginVmProvider, (_, state) {
-      //  print('DDDDDD result: $state');
-
+    ref.listen(loginVmProvider, (_, state) async {
       switch (state) {
         case LoginState(status: LoginStateStatus.initial):
           break;
@@ -57,18 +54,19 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         case LoginState(status: LoginStateStatus.error):
           Messages.showError('Erro ao realizar login', context);
         case LoginState(status: LoginStateStatus.admLogin):
-          appRouter.push('/adm');
+          appRouter.pushReplacement('/adm');
           break;
         case LoginState(status: LoginStateStatus.customerLogin):
-          //  print('CCCCCCC result: $state');
 
+          // atualizar credenciais do usuário do firebird
+          // await ref.read(firebaseAuthProvider).currentUser?.reload();
+          // final userCredential = ref.watch(firebaseAuthProvider).currentUser;
+          final userCredential = ref.read(firebaseAuthProvider).currentUser;
           final emailVerified =
               userCredential != null ? userCredential.emailVerified : false;
 
-          // print('CCCCCCC userCredential: $userCredential');
-
           if (emailVerified) {
-            appRouter.push('/customer-registration');
+            appRouter.pushReplacement('/customer-registration');
           } else {
             appRouter.push('/email-verification');
           }
@@ -139,7 +137,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                               minimumSize: const Size.fromHeight(56),
                             ),
                             onPressed: () {
-                              login(emailEC.text, passwordEC.text);
+                              //login(emailEC.text, passwordEC.text);
 
                               switch (formKey.currentState!.validate()) {
                                 case (false):
