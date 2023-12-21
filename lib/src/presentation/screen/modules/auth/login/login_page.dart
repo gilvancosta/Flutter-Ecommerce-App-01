@@ -16,7 +16,6 @@ import '../../../../../core/router/app_routes.dart';
 import '../../../../widgets/TextFormField/my_textformfield_email.dart';
 import '../../../../widgets/TextFormField/my_textformfield_password.dart';
 
-
 import 'login_state.dart';
 import 'login_vm.dart';
 
@@ -42,9 +41,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final LoginVm(:login) = ref.watch(loginVmProvider.notifier);
-    final LoginVm(:googleLogin) = ref.watch(loginVmProvider.notifier);
+     final LoginVm(:googleLogin) = ref.watch(loginVmProvider.notifier);
 
-    ref.listen(loginVmProvider, (_, state) async {
+    ref.listen(loginVmProvider, (_, state) {
       switch (state) {
         case LoginState(status: LoginStateStatus.initial):
           break;
@@ -56,10 +55,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           Navigator.of(context).pushReplacementNamed(AppRoutes.homeAdmView);
           break;
         case LoginState(status: LoginStateStatus.customerLogin):
-
-          // atualizar credenciais do usuário do firebird
-          // await ref.read(firebaseAuthProvider).currentUser?.reload();
-          // final userCredential = ref.watch(firebaseAuthProvider).currentUser;
           final userCredential = ref.read(firebaseAuthProvider).currentUser;
           final emailVerified =
               userCredential != null ? userCredential.emailVerified : false;
@@ -71,8 +66,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
             Navigator.of(context)
                 .pushReplacementNamed(AppRoutes.emailVerificationScreen);
           }
-
-          break;
       }
     });
 
@@ -174,7 +167,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                     borderSide: BorderSide.none,
                                   ),
                                   onPressed: () {
-                                    googleLogin();
+                                      googleLogin();
                                   },
                                 ),
                                 const SizedBox(height: 20),

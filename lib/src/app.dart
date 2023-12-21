@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_ecommerce_app_01/src/presentation/screen/modules/auth/forgot_password/forgot_password_screen.dart';
 import 'package:flutter_ecommerce_app_01/src/presentation/screen/modules/customer/registration/customer_registration_screen.dart';
 
@@ -11,6 +12,7 @@ import 'core/router/app_routes.dart';
 import 'core/ui/app_theme.dart';
 
 import 'core/ui/theme_changer_provider.dart';
+
 import 'presentation/screen/app_home/home_page.dart';
 import 'presentation/screen/modules/auth/forgot_password/check_email_screen.dart';
 import 'presentation/screen/modules/auth/login/login_page.dart';
@@ -27,7 +29,6 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final AppTheme appTheme = ref.watch(themeNotifierProvider);
-
     return MaterialApp(
       title: CompanyConstants.CompanyName,
       debugShowCheckedModeBanner: false,
