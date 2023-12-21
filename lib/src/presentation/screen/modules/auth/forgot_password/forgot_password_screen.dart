@@ -5,7 +5,8 @@ import 'package:flutter_ecommerce_app_01/src/core/fp/nil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../core/helpers/messages.dart';
-import '../../../../../core/router/app_router.dart';
+
+import '../../../../../core/router/app_routes.dart';
 import '../../../../widgets/TextFormField/my_textformfield_email.dart';
 
 import 'forgot_password_state.dart';
@@ -33,19 +34,19 @@ class ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
 
   @override
   Widget build(BuildContext context) {
-    final appRouter = ref.watch(appRouterProvider);
+  
     String emailAtual = '';
     final ForgotPasswordVm(:forgotPassword) =
         ref.watch(forgotPasswordVmProvider.notifier);
-
     ref.listen(
       forgotPasswordVmProvider,
       (_, state) => switch (state) {
         ForgotPasswordStatus.initial => nil,
-        ForgotPasswordStatus.success =>
-          appRouter.pushReplacement('/check-email/$emailAtual'),
+        ForgotPasswordStatus.success => Navigator.of(context).pushReplacementNamed(AppRoutes.checkEmailScreen, arguments: {
+            'email': emailAtual,                                                     
+        }),
         ForgotPasswordStatus.error =>
-          Messages.showError('Erro ao realizar cadastro', context),
+          Messages.showError('Erro ao enviar Email', context),
       },
     );
 
@@ -115,7 +116,7 @@ class ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
                                     minimumSize: const Size.fromHeight(56),
                                   ),
                                   onPressed: () {
-                                    appRouter.pop();
+                                      Navigator.of(context).pop();
                                   },
                                   child: const Text('Voltar'),
                                 ),

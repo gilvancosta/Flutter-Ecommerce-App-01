@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 //import 'package:go_router/go_router.dart';
-import '../../../../core/router/app_router.dart';
+
 import 'widgets/menu_items.dart';
 
 class NavigationDrawerWidget extends ConsumerStatefulWidget {
@@ -20,7 +20,7 @@ class NavigationDrawerWidgetState
   @override
   Widget build(BuildContext context) {
     final hasNotch = MediaQuery.of(context).viewPadding.top > 35;
-    final appRouter = ref.watch(appRouterProvider);
+
     return NavigationDrawer(
       selectedIndex: navDrawerIndex,
       onDestinationSelected: (value) {
@@ -29,7 +29,7 @@ class NavigationDrawerWidgetState
         });
 
         final menuItem = appMenuItems[value];
-        appRouter.push(menuItem.location);
+         Navigator.of(context).pushNamed(menuItem.location);
         // context.push(menuItem.link);
         // widget.scaffoldKey.currentState?.closeDrawer();
         Navigator.pop(context);

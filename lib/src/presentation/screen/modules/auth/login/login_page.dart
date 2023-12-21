@@ -10,11 +10,12 @@ import 'package:flutter_signin_button/button_view.dart';
 import '../../../../../core/constants/constants.dart';
 
 import '../../../../../core/providers/application_providers.dart';
-import '../../../../../core/router/app_router.dart';
 
 import '../../../../../core/helpers/messages.dart';
+import '../../../../../core/router/app_routes.dart';
 import '../../../../widgets/TextFormField/my_textformfield_email.dart';
 import '../../../../widgets/TextFormField/my_textformfield_password.dart';
+
 
 import 'login_state.dart';
 import 'login_vm.dart';
@@ -40,8 +41,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final appRouter = ref.watch(appRouterProvider);
-
     final LoginVm(:login) = ref.watch(loginVmProvider.notifier);
     final LoginVm(:googleLogin) = ref.watch(loginVmProvider.notifier);
 
@@ -54,7 +53,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         case LoginState(status: LoginStateStatus.error):
           Messages.showError('Erro ao realizar login', context);
         case LoginState(status: LoginStateStatus.admLogin):
-          appRouter.pushReplacement('/adm');
+          Navigator.of(context).pushReplacementNamed(AppRoutes.homeAdmView);
           break;
         case LoginState(status: LoginStateStatus.customerLogin):
 
@@ -66,9 +65,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               userCredential != null ? userCredential.emailVerified : false;
 
           if (emailVerified) {
-            appRouter.pushReplacement('/customer-registration');
+            Navigator.of(context)
+                .pushReplacementNamed(AppRoutes.customerRegistrationScreen);
           } else {
-            appRouter.push('/email-verification');
+            Navigator.of(context)
+                .pushReplacementNamed(AppRoutes.emailVerificationScreen);
           }
 
           break;
@@ -118,7 +119,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             alignment: Alignment.centerRight,
                             child: TextButton(
                               onPressed: () {
-                                appRouter.push('/forgot-password');
+                                Navigator.of(context)
+                                    .pushNamed(AppRoutes.forgotPasswordPage);
                               },
                               child: const Text(
                                 'Esqueceu a Senha?',
@@ -190,14 +192,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                     ),
                                     TextButton(
                                       onPressed: () {
-                                        appRouter
-                                            .pushReplacement('/register/user');
-
-                                        //  Navigator.of(context)
-                                        // .pushNamed('/register/user');
+                                        Navigator.of(context).pushNamed(
+                                            AppRoutes.userRegisterPage);
                                       },
                                       child: const Text(
-                                        'Cadastre-se1',
+                                        'Cadastre-se',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.w500,

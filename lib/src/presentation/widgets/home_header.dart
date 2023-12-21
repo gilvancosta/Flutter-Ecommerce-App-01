@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/constants/constants.dart';
 
-import '../../core/router/app_router.dart';
 import '../../core/ui/barbershop_icons.dart';
 
 class HomeHeader extends ConsumerWidget {
@@ -19,8 +18,7 @@ class HomeHeader extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final barberShop = ref.watch(getMyBarbershopProvider);
-    final appRouter = ref.watch(appRouterProvider);
+
     return Container(
       width: MediaQuery.sizeOf(context).width,
       padding: const EdgeInsets.all(16),
@@ -75,7 +73,7 @@ class HomeHeader extends ConsumerWidget {
                 onPressed: () {
                   //ref.read(homeADMVMProvider.notifier).logout();
 
-                  appRouter.pop();
+                   Navigator.of(context).pop();
                 },
                 icon: const Icon(
                   BarbershopIcons.exit,

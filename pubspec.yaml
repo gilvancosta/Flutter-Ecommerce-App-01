@@ -43,8 +43,6 @@ dependencies:
   # State Management
   flutter_riverpod: ^2.4.9
   riverpod_annotation: ^2.3.3
-  # Router
-  go_router: ^12.1.1
   # Login
   google_sign_in: ^6.1.6
   validatorless: ^1.2.3

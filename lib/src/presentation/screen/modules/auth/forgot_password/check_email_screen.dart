@@ -4,7 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../../core/router/app_router.dart';
+
 import '../../../../../core/widgets/avatar_widget.dart';
 import '../../../../widgets/home_header.dart';
 
@@ -25,9 +25,7 @@ class EmailVerificationScreenState extends ConsumerState<CheckEmailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final appRouter = ref.watch(appRouterProvider);
-    // final LoginVm(:login) = ref.watch(loginVmProvider.notifier);
-
+ 
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -73,7 +71,7 @@ class EmailVerificationScreenState extends ConsumerState<CheckEmailScreen> {
                       minimumSize: const Size.fromHeight(56),
                     ),
                     onPressed: () {
-                      appRouter.pop();
+                       Navigator.of(context).pop();
                     },
                     child: const Text('Voltar para o Login'),
                   ),
