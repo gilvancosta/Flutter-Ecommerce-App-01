@@ -51,13 +51,13 @@ class LoginVm extends _$LoginVm {
     final loginService = ref.watch(userLoginServiceProvider);
 
     final result = await loginService.login(email, password);
-    print('AAAAAAAAAAAAAAAA result:  $result');
+   // print('AAAAAAAAAAAAAAAA result:  $result');
     switch (result) {
       case Success():
         state = state.copyWith(status: LoginStateStatus.customerLogin);
         break;
       case Failure(exception: ServiceException(:final message)):
-        print('BBBBBBBBB result:  $result - $message');
+       // print('BBBBBBBBB result:  $result - $message');
         state = state.copyWith(
           status: LoginStateStatus.error,
           errorMessage: () => message,

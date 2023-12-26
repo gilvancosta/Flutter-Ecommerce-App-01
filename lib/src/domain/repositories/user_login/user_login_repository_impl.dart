@@ -38,18 +38,10 @@ class UserRepositoryImpl implements UserLoginRepository {
       final userCredential = await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
       final accessToken = await userCredential.user?.getIdToken();
-      print(' EEEEEEEE 1 --> $accessToken');
-
+      // print(' EEEEEEEE 1 --> $accessToken');
       return Success(accessToken.toString());
-
-      // } on PlatformException catch (e, s) {
-      //print(' EEEEEEEE 1 --> ${e.code}');
-      // print(' SSSSSSSS 1 --> $s');
-      // throw AppAuthException(message: e.message ?? 'Erro ao realizar login');
     } on FirebaseAuthException catch (e, s) {
-      print(' EEEEEEEE 2 --> ${e.code}');
-      print(' SSSSSSSS 3 --> $s');
-
+      log('FirebaseAuthException', error: e, stackTrace: s);
       if (e.code == 'invalid-credential') {
         return Failure(AuthError(message: 'Login ou senha inválidos'));
       } else if (e.code == 'wrong-password') {
@@ -64,14 +56,11 @@ class UserRepositoryImpl implements UserLoginRepository {
 
   @override
   Future<Either<RepositoryException, Nil>> forgotPassword(String email) async {
-    // print(' --- AAAAAAAAA 1 --- $email');
     try {
       await _firebaseAuth.sendPasswordResetEmail(email: email);
-      //   print(' --- BBBBBBBBBB 2 --- $email');
       return Success(Nil());
     } on Exception catch (e, s) {
       log('Erro no reset da senha', error: e, stackTrace: s);
-      // print(' EEEEEEEE 1 --> $e - $s');
       return Failure(RepositoryException(message: 'Erro no reset da senha'));
     }
   }
