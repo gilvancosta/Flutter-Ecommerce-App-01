@@ -6,7 +6,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../core/helpers/messages.dart';
 
-import '../../../../../core/router/app_routes.dart';
+import '../../../../../core/router/app_router.dart';
+
 import '../../../../widgets/TextFormField/my_textformfield_email.dart';
 
 import 'forgot_password_state.dart';
@@ -34,7 +35,7 @@ class ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
 
   @override
   Widget build(BuildContext context) {
-  
+    final appRouter = ref.watch(appRouterProvider);
     String emailAtual = '';
     final ForgotPasswordVm(:forgotPassword) =
         ref.watch(forgotPasswordVmProvider.notifier);
@@ -42,21 +43,11 @@ class ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
       forgotPasswordVmProvider,
       (_, state) => switch (state) {
         ForgotPasswordStatus.initial => nil,
-        ForgotPasswordStatus.success => Navigator.of(context).pushReplacementNamed(AppRoutes.checkEmailScreen, arguments: {
-            'email': emailAtual,                                                     
-        }),
+        ForgotPasswordStatus.success => appRouter.pushReplacement('/check-email/$emailAtual'),
         ForgotPasswordStatus.error =>
           Messages.showError('Erro ao enviar Email', context),
       },
     );
-
-    //  final double screenHeight = MediaQuery.of(context).size.height;
-    // final double screenWidth = MediaQuery.of(context).size.width;
-    // final double firstContainer = (179 / 732) * screenHeight;
-    //  final double voltarButtonWidth = (202 / 412) * screenWidth;
-    //  final double voltarButtonHeight = (37 / 732) * screenHeight;
-    //  final double enviarButtonWidth = (74 / 412) * screenWidth;
-    //  final double enviarButtonHeight = (30 / 732) * screenHeight;
 
     return Scaffold(
       backgroundColor: Colors.grey[200],
@@ -116,7 +107,7 @@ class ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
                                     minimumSize: const Size.fromHeight(56),
                                   ),
                                   onPressed: () {
-                                      Navigator.of(context).pop();
+                                     appRouter.pop();
                                   },
                                   child: const Text('Voltar'),
                                 ),

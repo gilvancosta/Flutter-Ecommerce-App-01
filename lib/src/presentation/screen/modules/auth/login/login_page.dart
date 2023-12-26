@@ -12,7 +12,8 @@ import '../../../../../core/constants/constants.dart';
 import '../../../../../core/providers/application_providers.dart';
 
 import '../../../../../core/helpers/messages.dart';
-import '../../../../../core/router/app_routes.dart';
+
+import '../../../../../core/router/app_router.dart';
 import '../../../../widgets/TextFormField/my_textformfield_email.dart';
 import '../../../../widgets/TextFormField/my_textformfield_password.dart';
 
@@ -40,8 +41,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final appRouter = ref.watch(appRouterProvider);
+
     final LoginVm(:login) = ref.watch(loginVmProvider.notifier);
-     final LoginVm(:googleLogin) = ref.watch(loginVmProvider.notifier);
+    final LoginVm(:googleLogin) = ref.watch(loginVmProvider.notifier);
 
     ref.listen(loginVmProvider, (_, state) {
       switch (state) {
@@ -52,7 +55,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         case LoginState(status: LoginStateStatus.error):
           Messages.showError('Erro ao realizar login', context);
         case LoginState(status: LoginStateStatus.admLogin):
-          Navigator.of(context).pushReplacementNamed(AppRoutes.homeAdmView);
+          appRouter.pushReplacement('/adm');
           break;
         case LoginState(status: LoginStateStatus.customerLogin):
           final userCredential = ref.read(firebaseAuthProvider).currentUser;
@@ -60,11 +63,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               userCredential != null ? userCredential.emailVerified : false;
 
           if (emailVerified) {
-            Navigator.of(context)
-                .pushReplacementNamed(AppRoutes.customerRegistrationScreen);
+            appRouter.pushReplacement('/customer-registration');
           } else {
-            Navigator.of(context)
-                .pushReplacementNamed(AppRoutes.emailVerificationScreen);
+            appRouter.push('/email-verification');
           }
       }
     });
@@ -112,8 +113,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             alignment: Alignment.centerRight,
                             child: TextButton(
                               onPressed: () {
-                                Navigator.of(context)
-                                    .pushNamed(AppRoutes.forgotPasswordPage);
+                                appRouter.push('/forgot-password');
                               },
                               child: const Text(
                                 'Esqueceu a Senha?',
@@ -167,7 +167,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                     borderSide: BorderSide.none,
                                   ),
                                   onPressed: () {
-                                      googleLogin();
+                                    googleLogin();
                                   },
                                 ),
                                 const SizedBox(height: 20),
@@ -185,8 +185,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                     ),
                                     TextButton(
                                       onPressed: () {
-                                        Navigator.of(context).pushNamed(
-                                            AppRoutes.userRegisterPage);
+                                        appRouter.push('/register/user');
                                       },
                                       child: const Text(
                                         'Cadastre-se',

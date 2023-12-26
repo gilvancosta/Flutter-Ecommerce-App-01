@@ -5,12 +5,10 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../../core/constants/constants.dart';
-
 import '../../../core/helpers/messages.dart';
+import '../../../core/router/app_router.dart';
 
-import '../../../core/router/app_routes.dart';
 import 'splash_vm.dart';
 
 class SplashPage extends ConsumerStatefulWidget {
@@ -31,19 +29,7 @@ class _SplashPageState extends ConsumerState<SplashPage> {
   var endAnimation = false;
   Timer? redirectTimer;
 
-  void _redirect(String routeName) {
-    if (!endAnimation) {
-      redirectTimer?.cancel();
-      redirectTimer = Timer(
-        const Duration(milliseconds: 300),
-        () => _redirect(routeName),
-      );
-    } else {
-      redirectTimer?.cancel();
-      Navigator.of(context)
-          .pushNamedAndRemoveUntil(routeName, (route) => false);
-    }
-  }
+
 
   @override
   void initState() {
@@ -59,23 +45,39 @@ class _SplashPageState extends ConsumerState<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
+    final appRouter = ref.watch(appRouterProvider);  
+
+
+  void _redirect(String routeName) {
+    if (!endAnimation) {
+      redirectTimer?.cancel();
+      redirectTimer = Timer(
+        const Duration(milliseconds: 300),
+        () => _redirect(routeName),
+      );
+    } else {
+      redirectTimer?.cancel();
+      appRouter.pushReplacement(routeName);
+    }
+  }
+
     ref.listen(splashVmProvider, (_, state) {
       state.whenOrNull(
         error: (error, stackTrace) {
           log('Erro ao validar o login', error: error, stackTrace: stackTrace);
           Messages.showError('Erro ao validar o login', context);
-          _redirect(AppRoutes.loginPage);
+          _redirect('/login');
         },
         data: (data) {
           switch (data) {
             case SplashState.loggedADM:
-              _redirect(AppRoutes.homeAdmView);
+              _redirect('/adm');
               break;
             case SplashState.loggedCustomer:
-              _redirect(AppRoutes.homeCustomerView);
+              _redirect('/customer-registration');
               break;
             case _:
-              _redirect(AppRoutes.loginPage);
+              _redirect('/login');
               break;
           }
         },
