@@ -5,10 +5,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../../core/constants/constants.dart';
-import '../../../core/router/app_router.dart';
 import '../../../core/helpers/messages.dart';
+import '../../../core/router/app_router.dart';
 
 import 'splash_vm.dart';
 
@@ -30,6 +29,8 @@ class _SplashPageState extends ConsumerState<SplashPage> {
   var endAnimation = false;
   Timer? redirectTimer;
 
+
+
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -44,21 +45,21 @@ class _SplashPageState extends ConsumerState<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    final appRouter = ref.watch(appRouterProvider);
+    final appRouter = ref.watch(appRouterProvider);  
 
-    void _redirect(String routeName) {
-      if (!endAnimation) {
-        redirectTimer?.cancel();
-        redirectTimer = Timer(
-          const Duration(milliseconds: 300),
-          () => _redirect(routeName),
-        );
-      } else {
-        redirectTimer?.cancel();
-        appRouter.pushReplacement(routeName);
-        //  Navigator.of(context).pushNamedAndRemoveUntil(routeName, (route) => false);
-      }
+
+  void _redirect(String routeName) {
+    if (!endAnimation) {
+      redirectTimer?.cancel();
+      redirectTimer = Timer(
+        const Duration(milliseconds: 300),
+        () => _redirect(routeName),
+      );
+    } else {
+      redirectTimer?.cancel();
+      appRouter.pushReplacement(routeName);
     }
+  }
 
     ref.listen(splashVmProvider, (_, state) {
       state.whenOrNull(

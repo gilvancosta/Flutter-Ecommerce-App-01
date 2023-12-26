@@ -19,8 +19,7 @@ class HomeHeader extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final barberShop = ref.watch(getMyBarbershopProvider);
-    final appRouter = ref.watch(appRouterProvider);
+final appRouter = ref.watch(appRouterProvider);
     return Container(
       width: MediaQuery.sizeOf(context).width,
       padding: const EdgeInsets.all(16),

@@ -1,12 +1,9 @@
 // ignore_for_file: prefer_final_fields
 
 import 'package:flutter/material.dart';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../../../../core/providers/application_providers.dart';
 import '../../../../../core/router/app_router.dart';
-
 import '../../../../../domain/models/customer_model.dart';
 import 'widgets/registration_form_widget.dart';
 
@@ -38,10 +35,8 @@ class CustomerRegistrationScreenState
 
   @override
   Widget build(BuildContext context) {
-    //  final userModelAsync = ref.watc(getMeProvider);
-    final appRouter = ref.watch(appRouterProvider);
+     final appRouter = ref.watch(appRouterProvider);
 
-    // final userRegisterVm1 = ref.watch(userRegisterVmProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(

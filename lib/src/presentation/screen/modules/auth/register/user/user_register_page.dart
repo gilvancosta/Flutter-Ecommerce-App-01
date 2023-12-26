@@ -1,13 +1,15 @@
 // ignore_for_file: prefer_const_constructors, avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_app_01/src/core/router/app_router.dart';
+
 import 'package:flutter_ecommerce_app_01/src/core/helpers/form_helper.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:validatorless/validatorless.dart';
 
 import '../../../../../../core/fp/nil.dart';
 import '../../../../../../core/helpers/messages.dart';
+
+import '../../../../../../core/router/app_router.dart';
 import 'user_register_vm.dart';
 
 class UserRegisterPage extends ConsumerStatefulWidget {
@@ -63,7 +65,7 @@ class UserRegisterPageState extends ConsumerState<UserRegisterPage> {
               ),
             ),
           ),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => appRouter.pop(),
         ),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

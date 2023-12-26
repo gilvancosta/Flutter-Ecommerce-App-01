@@ -29,11 +29,10 @@ class NavigationDrawerWidgetState
           navDrawerIndex = value;
         });
 
-        final menuItem = appMenuItems[value];
-        appRouter.push(menuItem.location);
-        // context.push(menuItem.link);
-        // widget.scaffoldKey.currentState?.closeDrawer();
-        Navigator.pop(context);
+       // final menuItem = appMenuItems[value];
+       // appRouter.push(menuItem.location);
+
+         appRouter.pop();
       },
       children: [
         UserAccountsDrawerHeader(

@@ -10,9 +10,10 @@ import 'package:flutter_signin_button/button_view.dart';
 import '../../../../../core/constants/constants.dart';
 
 import '../../../../../core/providers/application_providers.dart';
-import '../../../../../core/router/app_router.dart';
 
 import '../../../../../core/helpers/messages.dart';
+
+import '../../../../../core/router/app_router.dart';
 import '../../../../widgets/TextFormField/my_textformfield_email.dart';
 import '../../../../widgets/TextFormField/my_textformfield_password.dart';
 
@@ -45,7 +46,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     final LoginVm(:login) = ref.watch(loginVmProvider.notifier);
     final LoginVm(:googleLogin) = ref.watch(loginVmProvider.notifier);
 
-    ref.listen(loginVmProvider, (_, state) async {
+    ref.listen(loginVmProvider, (_, state) {
       switch (state) {
         case LoginState(status: LoginStateStatus.initial):
           break;
@@ -57,10 +58,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           appRouter.pushReplacement('/adm');
           break;
         case LoginState(status: LoginStateStatus.customerLogin):
-
-          // atualizar credenciais do usuário do firebird
-          // await ref.read(firebaseAuthProvider).currentUser?.reload();
-          // final userCredential = ref.watch(firebaseAuthProvider).currentUser;
           final userCredential = ref.read(firebaseAuthProvider).currentUser;
           final emailVerified =
               userCredential != null ? userCredential.emailVerified : false;
@@ -70,8 +67,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           } else {
             appRouter.push('/email-verification');
           }
-
-          break;
       }
     });
 
@@ -190,14 +185,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                     ),
                                     TextButton(
                                       onPressed: () {
-                                        appRouter
-                                            .pushReplacement('/register/user');
-
-                                        //  Navigator.of(context)
-                                        // .pushNamed('/register/user');
+                                        appRouter.push('/register/user');
                                       },
                                       child: const Text(
-                                        'Cadastre-se1',
+                                        'Cadastre-se',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.w500,

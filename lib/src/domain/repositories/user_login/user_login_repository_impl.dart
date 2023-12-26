@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../../core/exceptions/app_auth_exception.dart';
+import '../../../core/exceptions/auth_exception.dart';
 import '../../../core/exceptions/repository_exception.dart';
 import '../../../core/fp/either.dart';
 
@@ -31,43 +32,35 @@ class UserRepositoryImpl implements UserLoginRepository {
   }
 
   @override
-  Future<User?> login(String email, String password) async {
+  Future<Either<AuthException, String>> login(
+      String email, String password) async {
     try {
       final userCredential = await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
-
-      return userCredential.user;
-    } on PlatformException catch (e, s) {
-      print(' EEEEEEEE 1 --> ${e.code}');
-      print(' SSSSSSSS 1 --> $s');
-      throw AppAuthException(message: e.message ?? 'Erro ao realizar login');
+      final accessToken = await userCredential.user?.getIdToken();
+      // print(' EEEEEEEE 1 --> $accessToken');
+      return Success(accessToken.toString());
     } on FirebaseAuthException catch (e, s) {
-      print(' EEEEEEEE 2 --> ${e.code}');
-      print(' SSSSSSSS 3 --> $s');
-
+      log('FirebaseAuthException', error: e, stackTrace: s);
       if (e.code == 'invalid-credential') {
-        throw AppAuthException(message: 'Login ou senha inválidos');
+        return Failure(AuthError(message: 'Login ou senha inválidos'));
+      } else if (e.code == 'wrong-password') {
+        return Failure(AuthError(message: 'Senha não confere'));
+      } else if (e.code == 'invalid-email') {
+        return Failure(AuthError(message: 'Email inválido'));
+      } else {
+        return Failure(AuthError(message: 'Erro ao realizar login'));
       }
-      if (e.code == 'wrong-password') {
-        throw AppAuthException(message: 'Senha Bão confere');
-      }
-      if (e.code == 'invalid-email') {
-        throw AppAuthException(message: 'Email inválido');
-      }
-      throw AppAuthException(message: e.message ?? 'Erro ao realizar login');
     }
   }
 
   @override
   Future<Either<RepositoryException, Nil>> forgotPassword(String email) async {
-   // print(' --- AAAAAAAAA 1 --- $email');
     try {
       await _firebaseAuth.sendPasswordResetEmail(email: email);
-   //   print(' --- BBBBBBBBBB 2 --- $email');
       return Success(Nil());
     } on Exception catch (e, s) {
       log('Erro no reset da senha', error: e, stackTrace: s);
-     // print(' EEEEEEEE 1 --> $e - $s');
       return Failure(RepositoryException(message: 'Erro no reset da senha'));
     }
   }
@@ -111,8 +104,8 @@ class UserRepositoryImpl implements UserLoginRepository {
 
   @override
   Future<void> logout() async {
-     await GoogleSignIn().signOut();
-     await  _firebaseAuth.signOut();
+    await GoogleSignIn().signOut();
+    await _firebaseAuth.signOut();
   }
 
   @override

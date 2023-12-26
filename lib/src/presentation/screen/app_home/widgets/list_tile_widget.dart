@@ -2,8 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/router/app_router.dart';
-
 
 
 class ListTileWidget extends ConsumerWidget {
@@ -20,11 +18,11 @@ class ListTileWidget extends ConsumerWidget {
     required this.icon,
   });
 
-  get appRouter => null;
+ 
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final appRouter = ref.watch(appRouterProvider);
+
     final colors = Theme.of(context).colorScheme;
 
     return ListTile(
@@ -32,7 +30,7 @@ class ListTileWidget extends ConsumerWidget {
       trailing: Icon(Icons.arrow_forward_ios_rounded, color: colors.primary),
       title: Text(title),
       subtitle: Text(subTitle),
-      onTap: () => appRouter.push(location),
+      onTap: () => Navigator.of(context).pushNamed(location),
     );
   }
 }

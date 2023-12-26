@@ -31,14 +31,14 @@ class DrawerV1Widget extends StatelessWidget {
             title: const Text('Page 1'),
             onTap: () {
               Navigator.popAndPushNamed(context, '/page1');
-              // Navigator.pop(context);
+              // appRouter.pop();
             }),
         ListTile(
             leading: const Icon(Icons.calculate_rounded),
             title: const Text('Page 2'),
             onTap: () {
               Navigator.popAndPushNamed(context, '/page2');
-              // Navigator.pop(context);
+              // appRouter.pop();
             }),
 
         // -- images_page --
