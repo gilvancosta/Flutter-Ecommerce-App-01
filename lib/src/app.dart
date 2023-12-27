@@ -21,6 +21,7 @@ class MyApp extends ConsumerWidget {
       title: CompanyConstants.CompanyName,
       debugShowCheckedModeBanner: false,
       theme: appTheme.getTheme,
+      
       routerConfig: appRoutes,
     
       localizationsDelegates: const [

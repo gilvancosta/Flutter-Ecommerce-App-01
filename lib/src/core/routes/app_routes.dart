@@ -13,60 +13,68 @@ import '../../presentation/screen/modules/auth/verification/email_verification_s
 import '../../presentation/screen/modules/customer/registration/customer_registration_screen.dart';
 import '../../presentation/screen/modules/home/home_adm/home_adm_view.dart';
 import '../../presentation/screen/modules/home/home_customer/home_customer_view.dart';
-
 import '../../presentation/screen/splash/splash_page.dart';
 
 part 'app_routes.g.dart';
 
 @riverpod
 GoRouter appRoutes(AppRoutesRef ref) {
-  return GoRouter(routes: [
-    GoRoute(
-      path: '/',
-      builder: (context, state) => const SplashPage(),
-    ),
-    GoRoute(
-      path: '/home',
-      builder: (context, state) => const HomePage(),
-    ),
-    GoRoute(
-      path: '/login',
-      builder: (context, state) => const LoginPage(),
-    ),
-    GoRoute(
-      path: '/register/user',
-      builder: (context, state) => const UserRegisterPage(),
-    ),
-    GoRoute(
-      path: '/register/barbershop',
-      builder: (context, state) => const BarbershopRegisterPage(),
-    ),
-    GoRoute(
-      path: '/home-customer',
-      builder: (context, state) => const HomeCustomerView(),
-    ),
-    GoRoute(
-      path: '/adm',
-      builder: (context, state) => const HomeAdmView(),
-    ),
-    GoRoute(
-      path: '/email-verification',
-      builder: (context, state) => const EmailVerificationScreen(),
-    ),
-    GoRoute(
-      path: '/customer-registration',
-      builder: (context, state) => const CustomerRegistrationScreen(),
-    ),
-    GoRoute(
-      path: '/forgot-password',
-      builder: (context, state) => const ForgotPasswordPage(),
-    ),
-    GoRoute(
-      path: '/check-email/:email',
-      builder: (BuildContext context, GoRouterState state) {
-        final email = state.pathParameters['email']!;
-        return CheckEmailScreen(email: email);
-      },
-    ),
-  ]);
+  return GoRouter(
+    initialLocation: '/',
+    routes: [
+      GoRoute(
+        path: '/',
+        builder: (context, state) => const SplashPage(),
+      ),
+      GoRoute(
+        path: '/home',
+        builder: (context, state) => const HomePage(),
+      ),
+      GoRoute(
+        path: '/login',
+        // builder: (context, state) => const LoginPage(),
+        // dessa forma o loginPage não é recriado toda vez que é chamado
+        pageBuilder: (context, state) => const MaterialPage(
+          key: ValueKey('LoginPage'),
+          child: LoginPage(),
+         // fullscreenDialog: true,
+        ),
+      ),
+      GoRoute(
+        path: '/register/user',
+        builder: (context, state) => const UserRegisterPage(),
+      ),
+      GoRoute(
+        path: '/register/barbershop',
+        builder: (context, state) => const BarbershopRegisterPage(),
+      ),
+      GoRoute(
+        path: '/home-customer',
+        builder: (context, state) => const HomeCustomerView(),
+      ),
+      GoRoute(
+        path: '/adm',
+        builder: (context, state) => const HomeAdmView(),
+      ),
+      GoRoute(
+        path: '/email-verification',
+        builder: (context, state) => const EmailVerificationScreen(),
+      ),
+      GoRoute(
+        path: '/customer-registration',
+        builder: (context, state) => const CustomerRegistrationScreen(),
+      ),
+      GoRoute(
+        path: '/forgot-password',
+        builder: (context, state) => const ForgotPasswordPage(),
+      ),
+      GoRoute(
+        path: '/check-email/:email',
+        builder: (context, state) {
+          final email = state.pathParameters['email']!;
+          return CheckEmailScreen(email: email);
+        },
+      ),
+    ],
+  );
 }
