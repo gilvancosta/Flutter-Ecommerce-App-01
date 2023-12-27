@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../core/providers/application_providers.dart';
-import '../../../../../core/router/app_router.dart';
+import '../../../../../core/routes/app_routes.dart';
 import '../../../../../domain/models/customer_model.dart';
 import 'widgets/registration_form_widget.dart';
 
@@ -35,7 +35,7 @@ class CustomerRegistrationScreenState
 
   @override
   Widget build(BuildContext context) {
-     final appRouter = ref.watch(appRouterProvider);
+     final appRoutes = ref.watch(appRoutesProvider);
 
 
     return Scaffold(
@@ -46,7 +46,7 @@ class CustomerRegistrationScreenState
           IconButton(
             onPressed: () {
               ref.read(userLoginServiceProvider).logout();
-              appRouter.pushReplacement('/login');
+              appRoutes.pushReplacement('/login');
             },
             icon: const Icon(Icons.logout),
           ),

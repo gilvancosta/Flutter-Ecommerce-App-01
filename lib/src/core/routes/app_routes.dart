@@ -16,10 +16,10 @@ import '../../presentation/screen/modules/home/home_customer/home_customer_view.
 
 import '../../presentation/screen/splash/splash_page.dart';
 
-part 'app_router.g.dart';
+part 'app_routes.g.dart';
 
 @riverpod
-GoRouter appRouter(AppRouterRef ref) {
+GoRouter appRoutes(AppRoutesRef ref) {
   return GoRouter(routes: [
     GoRoute(
       path: '/',

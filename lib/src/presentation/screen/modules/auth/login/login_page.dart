@@ -13,7 +13,7 @@ import '../../../../../core/providers/application_providers.dart';
 
 import '../../../../../core/helpers/messages.dart';
 
-import '../../../../../core/router/app_router.dart';
+import '../../../../../core/routes/app_routes.dart';
 import '../../../../widgets/TextFormField/my_textformfield_email.dart';
 import '../../../../widgets/TextFormField/my_textformfield_password.dart';
 
@@ -41,7 +41,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final appRouter = ref.watch(appRouterProvider);
+    final appRoutes = ref.watch(appRoutesProvider);
 
     final LoginVm(:login) = ref.watch(loginVmProvider.notifier);
     final LoginVm(:googleLogin) = ref.watch(loginVmProvider.notifier);
@@ -55,7 +55,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         case LoginState(status: LoginStateStatus.error):
           Messages.showError('Erro ao realizar login', context);
         case LoginState(status: LoginStateStatus.admLogin):
-          appRouter.pushReplacement('/adm');
+          appRoutes.pushReplacement('/adm');
           break;
         case LoginState(status: LoginStateStatus.customerLogin):
           final userCredential = ref.read(firebaseAuthProvider).currentUser;
@@ -63,9 +63,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               userCredential != null ? userCredential.emailVerified : false;
 
           if (emailVerified) {
-            appRouter.pushReplacement('/customer-registration');
+            appRoutes.pushReplacement('/customer-registration');
           } else {
-            appRouter.push('/email-verification');
+            appRoutes.push('/email-verification');
           }
       }
     });
@@ -113,7 +113,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             alignment: Alignment.centerRight,
                             child: TextButton(
                               onPressed: () {
-                                appRouter.push('/forgot-password');
+                                appRoutes.push('/forgot-password');
                               },
                               child: const Text(
                                 'Esqueceu a Senha?',
@@ -185,7 +185,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                     ),
                                     TextButton(
                                       onPressed: () {
-                                        appRouter.push('/register/user');
+                                        appRoutes.push('/register/user');
                                       },
                                       child: const Text(
                                         'Cadastre-se',

@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../core/helpers/messages.dart';
 import '../../../../../core/providers/application_providers.dart';
 
-import '../../../../../core/router/app_router.dart';
+import '../../../../../core/routes/app_routes.dart';
 
 import '../../../../../core/widgets/avatar_widget.dart';
 import '../../../../widgets/home_header.dart';
@@ -27,7 +27,7 @@ class EmailVerificationScreenState
 
   @override
   Widget build(BuildContext context) {
-    final appRouter = ref.watch(appRouterProvider);
+    final appRoutes = ref.watch(appRoutesProvider);
     final EmailVerificationVm(:sendEmailVerification) =
         ref.watch(emailVerificationVmProvider.notifier);
     final userCredential = ref.watch(firebaseAuthProvider).currentUser;
@@ -95,7 +95,7 @@ class EmailVerificationScreenState
                             user != null ? user.emailVerified : false;
 
                         if (emailVerified2) {
-                          appRouter.pushReplacement('/customer-registration');
+                          appRoutes.pushReplacement('/customer-registration');
                         } else {
                           Messages.showInfo(
                               'O email ainda não foi confirmado', context);

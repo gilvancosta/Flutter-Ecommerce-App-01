@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/constants.dart';
 import '../../../core/helpers/messages.dart';
-import '../../../core/router/app_router.dart';
+import '../../../core/routes/app_routes.dart';
 
 import 'splash_vm.dart';
 
@@ -45,7 +45,7 @@ class _SplashPageState extends ConsumerState<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    final appRouter = ref.watch(appRouterProvider);  
+    final appRoutes = ref.watch(appRoutesProvider);  
 
 
   void _redirect(String routeName) {
@@ -57,7 +57,7 @@ class _SplashPageState extends ConsumerState<SplashPage> {
       );
     } else {
       redirectTimer?.cancel();
-      appRouter.pushReplacement(routeName);
+      appRoutes.pushReplacement(routeName);
     }
   }
 

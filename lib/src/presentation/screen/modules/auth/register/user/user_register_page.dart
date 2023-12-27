@@ -9,7 +9,7 @@ import 'package:validatorless/validatorless.dart';
 import '../../../../../../core/fp/nil.dart';
 import '../../../../../../core/helpers/messages.dart';
 
-import '../../../../../../core/router/app_router.dart';
+import '../../../../../../core/routes/app_routes.dart';
 import 'user_register_vm.dart';
 
 class UserRegisterPage extends ConsumerStatefulWidget {
@@ -35,7 +35,7 @@ class UserRegisterPageState extends ConsumerState<UserRegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    final appRouter = ref.watch(appRouterProvider);
+    final appRoutes = ref.watch(appRoutesProvider);
     final userRegisterVm1 = ref.watch(userRegisterVmProvider.notifier);
 
     ref.listen(
@@ -43,7 +43,7 @@ class UserRegisterPageState extends ConsumerState<UserRegisterPage> {
       (_, state) => switch (state) {
         UserRegisterStateStatus.initial => nil,
         UserRegisterStateStatus.success =>
-          appRouter.push('/email-verification'),
+          appRoutes.push('/email-verification'),
         UserRegisterStateStatus.error =>
           Messages.showError('Erro ao realizar cadastro', context),
       },
@@ -65,7 +65,7 @@ class UserRegisterPageState extends ConsumerState<UserRegisterPage> {
               ),
             ),
           ),
-          onPressed: () => appRouter.pop(),
+          onPressed: () => appRoutes.pop(),
         ),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
